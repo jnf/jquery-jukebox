@@ -18,14 +18,19 @@ $(function () {
       success: function (data) {
         form.append("Artist Results: ");
 
-        var anchor = $("<a></a>");
-        var arr    = data;
-        for(i = 0; i < arr.length; i++) {
-          console.log(arr[i].artist);
-          form.after(arr[i].artist + " ");
+        var songs    = data;
+        for(i = 0; i < songs.length; i++) {
+          makeSong(songs[i]);
         }
       }
     });
+
+    function makeSong(song) {
+      var anchor = $("<a></a>");
+      anchor.text(song.title);
+      anchor.prop("href", song.url);
+      $("form").after(anchor);
+    }
 
   });
 });
