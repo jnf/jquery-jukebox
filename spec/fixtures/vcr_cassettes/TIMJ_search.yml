@@ -1,0 +1,76 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.thisismyjam.com/1/search/jam.json?by=artist&q=the%20knife
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.1.19
+      Date:
+      - Wed, 26 Aug 2015 06:38:33 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '2534'
+      Connection:
+      - close
+      Set-Cookie:
+      - anon=55dd57fc9835a; expires=Thu, 25-Aug-2016 06:09:00 GMT; path=/; domain=api.thisismyjam.com
+      Access-Control-Allow-Origin:
+      - "*"
+      Expires:
+      - Wed, 26 Aug 2015 07:09:00 GMT
+      Vary:
+      - Accept-Encoding
+      X-Cached:
+      - HIT
+    body:
+      encoding: ASCII-8BIT
+      string: '{"jams":[{"id":"afm4s00","from":"melimcclure","title":"Marble House
+        + Lyrics","artist":"The Knife","combinedTruncated":"Marble House + Lyrics
+        by The Knife","caption":null,"jamvatarLarge":"http:\/\/static04.thisismyjam.com\/i\/5f0b3b7942849501f31e0e7bf1fa3696_395.jpg?1440479363","jamvatarMedium":"http:\/\/static04.thisismyjam.com\/i\/5f0b3b7942849501f31e0e7bf1fa3696_185.jpg?1440479363","jamvatarSmall":"http:\/\/static02.thisismyjam.com\/i\/5f0b3b7942849501f31e0e7bf1fa3696_80.jpg?1440479363","creationDate":"Tue,
+        25 Aug 2015 05:10:12 +0000","endDate":"Tue, 01 Sep 2015 05:10:12 +0000","playCount":1,"likesCount":0,"likes":"http:\/\/api.thisismyjam.com\/1\/jams\/afm4s00\/likes.json","commentsCount":0,"comments":"http:\/\/api.thisismyjam.com\/1\/jams\/afm4s00\/comments.json","current":true,"apiUrl":"http:\/\/api.thisismyjam.com\/1\/jams\/afm4s00.json","via":"youtube","viaUrl":"http:\/\/www.youtube.com\/watch?v=kyN5BYL8l_o","url":"http:\/\/www.thisismyjam.com\/melimcclure\/_afm4s00","background":"http:\/\/static03.thisismyjam.com\/bg\/b61665edc6e10d13d5d0cdf12f70a78a1085039004.jpg","rejamsCount":0},{"id":"afqt6ze","from":"Wockenfuss","title":"Close
+        Up","artist":"Peaches (feat. Kim Gordon)","combinedTruncated":"Close Up by
+        Peaches (feat. Kim Gord\u2026","caption":"Spoogie oogie look at that spillage","jamvatarLarge":"http:\/\/static03.thisismyjam.com\/i\/8bc25f582df518cc20ae9e2e9cc0e962_395.jpg?1440558604","jamvatarMedium":"http:\/\/static03.thisismyjam.com\/i\/8bc25f582df518cc20ae9e2e9cc0e962_185.jpg?1440558604","jamvatarSmall":"http:\/\/static03.thisismyjam.com\/i\/8bc25f582df518cc20ae9e2e9cc0e962_80.jpg?1440558604","creationDate":"Wed,
+        26 Aug 2015 03:11:28 +0000","endDate":"Wed, 02 Sep 2015 03:11:28 +0000","playCount":0,"likesCount":0,"likes":"http:\/\/api.thisismyjam.com\/1\/jams\/afqt6ze\/likes.json","commentsCount":0,"comments":"http:\/\/api.thisismyjam.com\/1\/jams\/afqt6ze\/comments.json","current":true,"apiUrl":"http:\/\/api.thisismyjam.com\/1\/jams\/afqt6ze.json","via":"youtube","viaUrl":"http:\/\/www.youtube.com\/watch?v=-rnJAe3zuzQ","url":"http:\/\/www.thisismyjam.com\/Wockenfuss\/_afqt6ze","background":"http:\/\/static01.thisismyjam.com\/bg\/a774f78d54b5eface298e88fa8c88594936444785.jpg","rejamsCount":0},{"id":"afnkb3b","from":"madmartyr","title":"Utopia","artist":"Goldfrapp","combinedTruncated":"Utopia
+        by Goldfrapp","caption":"Feeling good and making stuff. Good weird stuff.","jamvatarLarge":"http:\/\/static03.thisismyjam.com\/i\/9427d574b5494e02f8f83907def263e0_395.jpg?1440513026","jamvatarMedium":"http:\/\/static03.thisismyjam.com\/i\/9427d574b5494e02f8f83907def263e0_185.jpg?1440513026","jamvatarSmall":"http:\/\/static03.thisismyjam.com\/i\/9427d574b5494e02f8f83907def263e0_80.jpg?1440513026","creationDate":"Tue,
+        25 Aug 2015 14:31:45 +0000","endDate":"Tue, 01 Sep 2015 14:31:45 +0000","playCount":7,"likesCount":0,"likes":"http:\/\/api.thisismyjam.com\/1\/jams\/afnkb3b\/likes.json","commentsCount":0,"comments":"http:\/\/api.thisismyjam.com\/1\/jams\/afnkb3b\/comments.json","current":true,"apiUrl":"http:\/\/api.thisismyjam.com\/1\/jams\/afnkb3b.json","via":"vimeo","viaUrl":"http:\/\/vimeo.com\/10996684","url":"http:\/\/www.thisismyjam.com\/madmartyr\/_afnkb3b","background":"http:\/\/static01.thisismyjam.com\/bg\/02ea9cf63646934ccaf09a2e50e7edc0104933930.jpg","rejamsCount":0},{"id":"afjiijf","from":"wiederspielwert","title":"Lovely
+        Head","artist":"Goldfrapp","combinedTruncated":"Lovely Head by Goldfrapp","caption":"","jamvatarLarge":"http:\/\/static04.thisismyjam.com\/i\/285fb8170452769e85ef71d00a65c8ab_395.jpg?1440434973","jamvatarMedium":"http:\/\/static04.thisismyjam.com\/i\/285fb8170452769e85ef71d00a65c8ab_185.jpg?1440434973","jamvatarSmall":"http:\/\/static04.thisismyjam.com\/i\/285fb8170452769e85ef71d00a65c8ab_80.jpg?1440434973","creationDate":"Mon,
+        24 Aug 2015 16:55:43 +0000","endDate":"Mon, 31 Aug 2015 16:55:43 +0000","playCount":7,"likesCount":5,"likes":"http:\/\/api.thisismyjam.com\/1\/jams\/afjiijf\/likes.json","commentsCount":0,"comments":"http:\/\/api.thisismyjam.com\/1\/jams\/afjiijf\/comments.json","current":true,"apiUrl":"http:\/\/api.thisismyjam.com\/1\/jams\/afjiijf.json","via":"youtube","viaUrl":"http:\/\/www.youtube.com\/watch?v=ITi6uat0BuQ","url":"http:\/\/www.thisismyjam.com\/wiederspielwert\/_afjiijf","background":"http:\/\/static03.thisismyjam.com\/bg\/b81fec3542a87b93bdd0a08070cb4209918313837.jpg","rejamsCount":0},{"id":"afhn06b","from":"nowhereboy","title":"You
+        Never Know","artist":"Goldfrapp","combinedTruncated":"You Never Know by Goldfrapp","caption":"#album
+        #10th #bday #Supernature \u00a0\u2661","jamvatarLarge":"http:\/\/static01.thisismyjam.com\/i\/5bd53d7181be397c7f9b502e5a6b3c08_395.jpg?1440401673","jamvatarMedium":"http:\/\/static03.thisismyjam.com\/i\/5bd53d7181be397c7f9b502e5a6b3c08_185.jpg?1440401673","jamvatarSmall":"http:\/\/static02.thisismyjam.com\/i\/5bd53d7181be397c7f9b502e5a6b3c08_80.jpg?1440401673","creationDate":"Mon,
+        24 Aug 2015 08:35:07 +0000","endDate":"Mon, 31 Aug 2015 08:35:07 +0000","playCount":4,"likesCount":0,"likes":"http:\/\/api.thisismyjam.com\/1\/jams\/afhn06b\/likes.json","commentsCount":0,"comments":"http:\/\/api.thisismyjam.com\/1\/jams\/afhn06b\/comments.json","current":true,"apiUrl":"http:\/\/api.thisismyjam.com\/1\/jams\/afhn06b.json","via":"youtube","viaUrl":"http:\/\/www.youtube.com\/watch?v=iI7CZk2C_YQ","url":"http:\/\/www.thisismyjam.com\/nowhereboy\/_afhn06b","background":"http:\/\/static03.thisismyjam.com\/bg\/1ede0b07fb5333579cb862e18c83ac911076935649.jpg","rejamsCount":0},{"id":"af4oje5","from":"schmutzie","title":"Boys
+        Wanna Be Her","artist":"Peaches","combinedTruncated":"Boys Wanna Be Her by
+        Peaches","caption":null,"jamvatarLarge":"http:\/\/static04.thisismyjam.com\/i\/3aa2b1761e0c31b079d2152fbd290eee_395.jpg?1440119778","jamvatarMedium":"http:\/\/static03.thisismyjam.com\/i\/3aa2b1761e0c31b079d2152fbd290eee_185.jpg?1440119778","jamvatarSmall":"http:\/\/static03.thisismyjam.com\/i\/3aa2b1761e0c31b079d2152fbd290eee_80.jpg?1440119778","creationDate":"Fri,
+        21 Aug 2015 01:17:14 +0000","endDate":"Fri, 28 Aug 2015 01:17:14 +0000","playCount":5,"likesCount":5,"likes":"http:\/\/api.thisismyjam.com\/1\/jams\/af4oje5\/likes.json","commentsCount":0,"comments":"http:\/\/api.thisismyjam.com\/1\/jams\/af4oje5\/comments.json","current":true,"apiUrl":"http:\/\/api.thisismyjam.com\/1\/jams\/af4oje5.json","via":"youtube","viaUrl":"http:\/\/www.youtube.com\/watch?v=qcKMg7eEjj8","url":"http:\/\/www.thisismyjam.com\/schmutzie\/_af4oje5","background":"http:\/\/static01.thisismyjam.com\/bg\/90a1339373fd7d0f7b0e5332225f91fa2007558455.jpg","rejamsCount":0},{"id":"afkeu0f","from":"loveofmylife","title":"White
+        Elephant","artist":"Ladytron","combinedTruncated":"White Elephant by Ladytron","caption":null,"jamvatarLarge":"http:\/\/static04.thisismyjam.com\/i\/c2adecc8be6a48406cffd1987793d5a5_395.jpg?1440446102","jamvatarMedium":"http:\/\/static03.thisismyjam.com\/i\/c2adecc8be6a48406cffd1987793d5a5_185.jpg?1440446102","jamvatarSmall":"http:\/\/static02.thisismyjam.com\/i\/c2adecc8be6a48406cffd1987793d5a5_80.jpg?1440446102","creationDate":"Mon,
+        24 Aug 2015 19:55:54 +0000","endDate":"Mon, 31 Aug 2015 19:55:54 +0000","playCount":4,"likesCount":3,"likes":"http:\/\/api.thisismyjam.com\/1\/jams\/afkeu0f\/likes.json","commentsCount":0,"comments":"http:\/\/api.thisismyjam.com\/1\/jams\/afkeu0f\/comments.json","current":true,"apiUrl":"http:\/\/api.thisismyjam.com\/1\/jams\/afkeu0f.json","via":"vimeo","viaUrl":"http:\/\/vimeo.com\/27719272","url":"http:\/\/www.thisismyjam.com\/loveofmylife\/_afkeu0f","background":"http:\/\/static02.thisismyjam.com\/bg\/b3920963ed0699b66cf504ab9a2d3582773294165.jpg","rejamsCount":0},{"id":"aex6hxp","from":"drikkes","title":"Close
+        Up","artist":"Peaches (feat. Kim Gordon)","combinedTruncated":"Close Up by
+        Peaches (feat. Kim Gord\u2026","caption":"","jamvatarLarge":"http:\/\/static03.thisismyjam.com\/i\/f23c6ee89ac3afcaefebd4162368e5a4_395.jpg?1439979046","jamvatarMedium":"http:\/\/static02.thisismyjam.com\/i\/f23c6ee89ac3afcaefebd4162368e5a4_185.jpg?1439979046","jamvatarSmall":"http:\/\/static03.thisismyjam.com\/i\/f23c6ee89ac3afcaefebd4162368e5a4_80.jpg?1439979046","creationDate":"Wed,
+        19 Aug 2015 10:11:48 +0000","endDate":"Wed, 26 Aug 2015 10:11:48 +0000","playCount":2,"likesCount":3,"likes":"http:\/\/api.thisismyjam.com\/1\/jams\/aex6hxp\/likes.json","commentsCount":3,"comments":"http:\/\/api.thisismyjam.com\/1\/jams\/aex6hxp\/comments.json","current":true,"apiUrl":"http:\/\/api.thisismyjam.com\/1\/jams\/aex6hxp.json","via":"youtube","viaUrl":"http:\/\/www.youtube.com\/watch?v=-rnJAe3zuzQ","url":"http:\/\/www.thisismyjam.com\/drikkes\/_aex6hxp","background":"http:\/\/static02.thisismyjam.com\/bg\/1446434b579a7caba11ec1465063cf99249341.jpg","rejamsCount":0},{"id":"aflofst","from":"wincest","title":"If
+        I Had a Heart","artist":"Fever Ray","combinedTruncated":"If I Had a Heart
+        by Fever Ray","caption":null,"jamvatarLarge":"http:\/\/static02.thisismyjam.com\/i\/83653c00462ae9572e2c9035c5505d21_395.jpg?1440468093","jamvatarMedium":"http:\/\/static04.thisismyjam.com\/i\/83653c00462ae9572e2c9035c5505d21_185.jpg?1440468093","jamvatarSmall":"http:\/\/static04.thisismyjam.com\/i\/83653c00462ae9572e2c9035c5505d21_80.jpg?1440468093","creationDate":"Tue,
+        25 Aug 2015 02:02:03 +0000","endDate":"Tue, 01 Sep 2015 02:02:03 +0000","playCount":1,"likesCount":0,"likes":"http:\/\/api.thisismyjam.com\/1\/jams\/aflofst\/likes.json","commentsCount":0,"comments":"http:\/\/api.thisismyjam.com\/1\/jams\/aflofst\/comments.json","current":true,"apiUrl":"http:\/\/api.thisismyjam.com\/1\/jams\/aflofst.json","via":"hypemachine","viaUrl":"http:\/\/hypem.com\/item\/ngxb","url":"http:\/\/www.thisismyjam.com\/wincest\/_aflofst","background":"http:\/\/static04.thisismyjam.com\/bg\/8d7b75a2af99e615837d45ae6e4ad357528348742.jpg","rejamsCount":0},{"id":"afl7x4x","from":"79Omdus","title":"Triangle
+        Walks","artist":"Fever Ray","combinedTruncated":"Triangle Walks by Fever Ray","caption":"wasn''t
+        gonna post a last jam...,but this song is just too good not to make it my
+        very last jam. calling @drumnbass @BBW_BFF!!\nthis is it!","jamvatarLarge":"http:\/\/static01.thisismyjam.com\/i\/83d75ff555d30d48148b504e6c3ca2e0_395.jpg?1440459121","jamvatarMedium":"http:\/\/static03.thisismyjam.com\/i\/83d75ff555d30d48148b504e6c3ca2e0_185.jpg?1440459121","jamvatarSmall":"http:\/\/static02.thisismyjam.com\/i\/83d75ff555d30d48148b504e6c3ca2e0_80.jpg?1440459121","creationDate":"Mon,
+        24 Aug 2015 23:33:34 +0000","endDate":"Mon, 31 Aug 2015 23:33:34 +0000","playCount":6,"likesCount":1,"likes":"http:\/\/api.thisismyjam.com\/1\/jams\/afl7x4x\/likes.json","commentsCount":1,"comments":"http:\/\/api.thisismyjam.com\/1\/jams\/afl7x4x\/comments.json","current":true,"apiUrl":"http:\/\/api.thisismyjam.com\/1\/jams\/afl7x4x.json","via":"hypemachine","viaUrl":"http:\/\/hypem.com\/item\/p77q","url":"http:\/\/www.thisismyjam.com\/79Omdus\/_afl7x4x","background":"http:\/\/static02.thisismyjam.com\/bg\/023dae4ef0877509feca6c63da328154560251719.jpg","rejamsCount":0},{"id":"af2fx6c","from":"sirswithin","title":"Gunshot","artist":"Lykke
+        Li","combinedTruncated":"Gunshot by Lykke Li","caption":null,"jamvatarLarge":"http:\/\/static02.thisismyjam.com\/i\/8320ae46fb32eaf9cdf152e6a67c4469_395.jpg?1440083531","jamvatarMedium":"http:\/\/static03.thisismyjam.com\/i\/8320ae46fb32eaf9cdf152e6a67c4469_185.jpg?1440083531","jamvatarSmall":"http:\/\/static02.thisismyjam.com\/i\/8320ae46fb32eaf9cdf152e6a67c4469_80.jpg?1440083531","creationDate":"Thu,
+        20 Aug 2015 15:12:30 +0000","endDate":"Thu, 27 Aug 2015 15:12:30 +0000","playCount":13,"likesCount":6,"likes":"http:\/\/api.thisismyjam.com\/1\/jams\/af2fx6c\/likes.json","commentsCount":0,"comments":"http:\/\/api.thisismyjam.com\/1\/jams\/af2fx6c\/comments.json","current":true,"apiUrl":"http:\/\/api.thisismyjam.com\/1\/jams\/af2fx6c.json","via":"vimeo","viaUrl":"http:\/\/vimeo.com\/100788649","url":"http:\/\/www.thisismyjam.com\/sirswithin\/_af2fx6c","background":"http:\/\/static02.thisismyjam.com\/bg\/62a9f2687729f60bfb63ecfef9ac4a7e2062017755.jpg","rejamsCount":0}],"list":{"next":null,"hasMore":false}}'
+    http_version: 
+  recorded_at: Wed, 26 Aug 2015 06:38:33 GMT
+recorded_with: VCR 2.9.3
