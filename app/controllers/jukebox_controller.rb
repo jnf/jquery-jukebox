@@ -1,0 +1,2 @@
+class JukeboxController < ApplicationController
+end
