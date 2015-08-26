@@ -17,3 +17,9 @@ Hi! For this project, let's use [This is My Jam](https://www.thisismyjam.com/) t
 ## Bonus Fun
 - Instead of adding links to the view, try using the data to create embedded players for the specific service (i.e., embed the YouTube video, instead of linking to it).
 - If a user's search returns no results, suggest/embed/link to something for them instead.
+
+var anchor = $("<a></a>"); // creates an anchor element
+anchor.text("Text on the page");
+anchor.prop("href", "/link/to/stuff");
+
+$("body").append(anchor); // this makes it appear on page
