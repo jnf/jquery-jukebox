@@ -12,21 +12,43 @@ $(function() {
     $.ajax(url, {
       type: "GET",
       success: function(data) {
-        // console.log(data);
         var songs = data;
-        console.log(songs[0]);
-        for (i = 0; i < songs.length; i++) {
-          makeSongAnchor(songs[i]);
+        makeUL();
+        if (songs.length > 0) {
+          for (i = 0; i < songs.length; i++) {
+            makeSongAnchor(songs[i]);
+          };
+        } else {
+          apologize();
         };
       }
     });
   });
 
   function makeSongAnchor(song) {
-    var anchor = $("<a></a>"); // creates an anchor element
+    makeLI();
+    var anchor = $("<a></a>");
     anchor.text(song.title);
     anchor.prop("href", song.url);
-    $("form").after(anchor); // this makes it appear on page
+    var lastLI = $("li:last-child");
+
+    lastLI.append(anchor);
+  }
+
+  function makeUL() {
+    var list = $("<ul></ul>");
+    $("form").after(list);
+  }
+
+  function makeLI() {
+    var listItem = $("<li></li>");
+    $("ul").append(listItem);
+  }
+
+  function apologize() {
+    var p = $("<p></p>");
+    p.text("That is not anyone else's jam.");
+    $("form").after(p);
   }
 });
 
