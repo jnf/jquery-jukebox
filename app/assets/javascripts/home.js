@@ -1,22 +1,18 @@
-$(function() {
-  $(".search").click(function(event) {
+$(document).ready(function() {
+  $("form").submit(function(event) {
     event.preventDefault();
-    // var form = $("form").children("input");
-    var input = $("#artist");
-    console.log(input);
-    var searchTerm = input.val();
+
+    var textField = $("#artist");
+    var searchTerm = textField.val();
     console.log(searchTerm);
 
-    // var url = "/search/miranda";
-    // console.log(url);
+    var url = "/search/" + searchTerm;
 
-    // $.ajax(url, {
-    //   type: "GET",
-    //   success: function (data) {
-    //     console.log(data);
-    //   }
-
-    // });
-
+    $.ajax(url, {
+      type: "GET",
+      success: function(data) {
+        console.log(data);
+      }
+    });
   });
 });
