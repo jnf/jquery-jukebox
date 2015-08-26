@@ -1,0 +1,7 @@
+<h1>This is My Jam?</h1>
+
+<%= form_tag(search_path(:q), method: "get") do %>
+  <%= label_tag(:q, "Search Artists:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Jam?") %>
+<% end %>
