@@ -1,0 +1,2 @@
+module JamboxHelper
+end
