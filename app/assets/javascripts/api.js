@@ -11,14 +11,15 @@ $(function() {
     var children = formTag.children("#artist")
     var artistField = children.val()
 
-    // console.log(value)
+    var query = { "artist" : artistField }
 
-    // $.ajax(url, {
-    //  type: method,
-    //  success: function (data) {
-    //   console.log(data)
-    //   }
-    // });
+    $.ajax(url, {
+     type: method,
+     data: query,
+     success: function (data) {
+      console.log(data)
+      }
+    });
 
     // collect text in the field
     // assemble the correct url
