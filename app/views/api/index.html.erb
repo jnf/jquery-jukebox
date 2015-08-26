@@ -1,1 +1,7 @@
-<h1>Oh hai</h1>
+<h1>Who's Your Jam?</h1>
+
+<%= form_tag search_path(:artist) do %>
+  <%= label_tag :artist %>
+  <%= text_field_tag :artist %>
+  <%= submit_tag "RAWK" %>
+<% end %>
