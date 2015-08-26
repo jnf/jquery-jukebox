@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  controller :api do
-    get '/', action: 'index'
-    get '/search/:artist', action: 'search'
-  end
+  root 'api#index'
+  get '/search/:artist' => 'api#search', as: 'search'
 end
