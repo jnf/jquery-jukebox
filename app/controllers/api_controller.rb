@@ -1,6 +1,11 @@
 class ApiController < ApplicationController
   JAM = "http://api.thisismyjam.com/1/search/jam.json"
 
+  def index
+    
+  end
+
+
   def search
     begin
       response = HTTParty.get(JAM, query: { "by" => "artist", "q" => params[:artist] })
