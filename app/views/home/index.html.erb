@@ -1,8 +1,8 @@
 <h1>YO</h1>
   
-<%= form_tag root_path do %>
+<%= form_tag '/' do %>
   <%= label_tag :artist %>
   <%= text_field_tag :artist %>
 
-  <%= submit_tag 'Search' %>
+  <%= submit_tag 'Search', class: "search" %>
 <% end %>
