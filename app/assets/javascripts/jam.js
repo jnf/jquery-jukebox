@@ -53,13 +53,17 @@ $(function () {
 
   function unwantedSong() {
     $(".jams-div").html("");
-    var anchor = $("<a></a>");
+    var list = $('<div>');
+    list.addClass("list-group");
+    var anchor = $("<a>");
+    anchor.addClass("list-group-item");
     var url = "https://www.youtube.com/watch?v=-gPuH1yeZ08";
     var unwanted_song = "That's no one's jam. Maybe this is your jam?";
     anchor.text(unwanted_song);
     anchor.prop("href", url);
     anchor.prop("target", "_blank");
-    $(".jams-div").append(anchor);
+    list.append(anchor);
+    $(".jams-div").append(list);
   } // end unwantdSong
 
 }); // end js file
