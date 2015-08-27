@@ -2,6 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.jams-div {
-  background: red;
+body {
+  font-family: Arial;
+}
+
+.jams-div a {
+  text-decoration: none;
+  color: #666;
+}
+
+.jams-div a:hover,
+.jams-div a:active,
+.jams-div a:visited {
+  color: inherit;
 }

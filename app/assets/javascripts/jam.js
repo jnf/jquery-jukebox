@@ -7,8 +7,10 @@ $(function () {
     var url = form.attr("action");
     $.ajax(url, {
       type: method,
+      data: { "artist" : $("#q").val()},
       success: function(data) {
         console.log(data);
+        $(".jams-div").html();
         renderData(data);
       }
     }); // end ajax
@@ -23,17 +25,12 @@ $(function () {
       var via = jam.via;
       var anchor = $("<a></a>");
       var newline = $("<br>");
-      var listing = (artist + " : " + title + " (via " + via + ")");
+      var listing = (artist + " - " + title + " (via " + via + ")");
       anchor.text(listing);
       anchor.prop("href", url);
-      $("body").append(anchor);
-      $("body").append(newline);
+      $(".jams-div").append(anchor);
+      $(".jams-div").append(newline);
     }
   } // end renderData
 
 }); // end js file
-
-// var anchor = $("<a></a>"); // new anchor element
-// anchor.text("text on the page");
-// anchor.prop("href", "/link/to/place");
-// $("body").append(anchor); // <a href="/link/to/place">text on the page</a>
