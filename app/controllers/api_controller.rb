@@ -15,7 +15,6 @@ class ApiController < ApplicationController
   end
 
   def index
-    @results = params
   end
 
   private
