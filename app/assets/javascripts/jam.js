@@ -9,7 +9,7 @@ $(function () {
       type: method,
       data: { "artist" : $("#q").val()},
       success: function(data) {
-        if ($.isPlainObject(data)) {
+        if ($.isEmptyObject(data)) {
           unwantedSong();
         } else {
           renderData(data);
