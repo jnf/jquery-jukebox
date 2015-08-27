@@ -1,16 +1,14 @@
 $(function() {
-  $(".search").click(function() {
+  $('.search').click(function() {
     event.preventDefault();
 
-    $('ul').empty();
-
     var form = $(this).parent();
-    var url = form.attr("action");
-    var method = form.attr("method");
+    var url = form.attr('action');
+    var method = form.attr('method');
 
     $.ajax(url, {
       type: method,
-      data: { 'artist' : $("#artist").val() },
+      data: { 'artist' : $('#artist').val() },
       success: function (data) {
         formatData(data);
       }
@@ -18,6 +16,8 @@ $(function() {
   });
 
   function formatData(data) {
+    $('ul').empty();
+
     for (var i = 0; i < data.length; i++) {
       var anchor = $('<a></a>');
       anchor.text(data[i].artist + " - " + data[i].title);
