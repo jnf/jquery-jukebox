@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
     root 'api#index'
 
-    get '/search', action: 'search', as: "search"
+    get '/search', action: 'search', as: 'search'
+
+    get '/popular', action: 'popular', as: 'popular'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
