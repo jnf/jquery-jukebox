@@ -10,6 +10,7 @@ $(document).ready(function() {
       dataType: "json",
       success: function(data) {
         clearPreviousResults();
+        console.log(data);
         var rareSongs = data.jams;
         console.log(rareSongs);
         for (var i = 0; i < 20; i++){
