@@ -23,7 +23,6 @@ class ApiController < ApplicationController
     begin
       response = HTTParty.get(RANDO_JAM)
       response["jams"] = response["jams"].take(LIMIT)
-      binding.pry
       data = setup_data(response)
       code = :ok
     rescue
