@@ -24,14 +24,17 @@ $(function() {
 
        for (i = 0; i < artistArray.length; i++) {
 
+        // YouTube embed
         if (artistArray[i].via == "youtube") {
-        // generate an iframe node
         var iframeTemplate = $("<iframe src = '' type='text/html' width='640' height='390' />");
         $("body").append(iframeTemplate);
-        $("iframe").attr("src", artistArray[i].via)
+        var youtubeURL = artistArray[i].url
+        var modifiedYoutubeUrl = youtubeURL.replace("watch?v=", "embed/")
+        console.log(modifiedYoutubeUrl)
+        $("iframe").attr("src", modifiedYoutubeUrl)
         }
 
-        //  Link Version
+          //  Link Version
           var anchor = $("<a class='song' target='new'></a>");
           anchor.text(artistArray[i].artist + " - " + artistArray[i].title);
           anchor.prop("href", artistArray[i].url);
