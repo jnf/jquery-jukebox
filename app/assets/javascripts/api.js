@@ -34,9 +34,11 @@ $(function(){
           var audioTypes = ["hypemachine", "soundcloud", "webaudio"];
           var videoTypes = ["youtube", "vimeo"];
 
-          if ($.inArray(data[i].via, audioTypes) === 0) {
-            formattedJamItems.push();
-          } else if ($.inArray(data[i].via, videoTypes) === 0) {
+          // if ($.inArray(data[i].via, audioTypes) === 0) {
+          //   formattedJamItems.push();
+          // } else
+
+          if ($.inArray(data[i].via, videoTypes) === 0) {
             formattedJamItems.push(formatVideoEmbed(data[i]));
           }
         }
@@ -67,9 +69,9 @@ function formatVideoEmbed(videoJam){
 
   // build the URL for the iframe
   if(mediaSource === "youtube"){
-    url = "http://www.youtube.com/embed/" + videoJam[i].url.slice(31);
+    url = "http://www.youtube.com/embed/" + videoJam.url.slice(31);
   } else if (mediaSource === "vimeo"){
-    url = "https://player.vimeo.com/video/" + videoJam[i].url.slice(17);
+    url = "https://player.vimeo.com/video/" + videoJam.url.slice(17);
   }
 
   // assign properties
