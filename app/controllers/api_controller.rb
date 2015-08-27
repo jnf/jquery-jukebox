@@ -7,21 +7,9 @@ class ApiController < ApplicationController
 
   def search
     begin
-      if params[:artist] == ""
-        response = HTTParty.get(CHANCE)
-        data = setup_data(response)
-        code = :ok
-      else
-        response = HTTParty.get(JAM, query: { "by" => "artist", "q" => params[:artist] })
-        data = setup_data(response)
-        if data == []
-          response = HTTParty.get(CHANCE)
-          data = setup_data(response)
-        else
-          data
-        end
-        code = :ok
-      end
+      response = HTTParty.get(JAM, query: { "by" => "artist", "q" => params[:artist] })
+      data = setup_data(response)
+      code = :ok
     rescue
       data = {}
       code = :no_content
@@ -37,6 +25,19 @@ class ApiController < ApplicationController
       code = :ok
     rescue
       data = {}
+      code = :no_content
+    end
+
+    render json: data.as_json, code: code
+  end
+
+  def chance
+    begin
+      response = HTTParty.get(CHANCE)
+      data = setup_data(response)
+      code = :ok
+    rescue
+      data ={}
       code = :no_content
     end
 
