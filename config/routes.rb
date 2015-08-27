@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   controller :api do
-    get '/search/:artist', action: 'search'
+    get '/search', action: 'home'
+
+    post '/search/:artist', action: 'search'
   end
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
