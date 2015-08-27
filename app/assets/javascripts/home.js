@@ -18,11 +18,13 @@ $(function() {
           if (songs.length > 0) {
             makeUL();
             for (i = 0; i < songs.length; i++) {
-              if (songs[i].via == "youtube") {
-                makeSongEmbed(songs[i]);
-              } else {
-                makeSongAnchor(songs[i]);
-              }
+              makeSongEmbed(songs[i]);
+              // if (songs[i].via == "youtube") {
+              //   makeSongEmbed(songs[i]);
+              // } else {
+              //   makeSongAnchor(songs[i]);
+              //   console.log(songs[i]);
+              // }
             };
           } else {
             apologize();
@@ -55,7 +57,7 @@ $(function() {
 
   function makeSongEmbed(song) {
     makeLI();
-    var url = makeEmbedUrl(song.url);
+    var url = makeEmbedUrl(song.url, song.via);
     var iFrame = $("<iframe></iframe>");
     iFrame.prop("src", url);
     var lastLI = $("li:last-child");
@@ -69,11 +71,24 @@ $(function() {
     return arr[1];
   }
 
-  function makeEmbedUrl(url) {
-    var id = extractYoutubeId(url);
-    var baseUrl = "http://www.youtube.com/embed/";
-    var embedUrl = baseUrl + id;
+  function makeEmbedUrl(url, source) {
+    var baseYoutubeUrl = "http://www.youtube.com/embed/";
+    var baseVimeoUrl = "http://player.vimeo.com/video/";
+    if (source == "youtube") {
+      var id = extractYoutubeId(url);
+      var embedUrl = baseYoutubeUrl + id;
+    } else if (source == "vimeo") {
+      var id = extractVimeoId(url);
+      var embedUrl = baseVimeoUrl + id;
+    }
+    
     return embedUrl;
+  }
+
+  function extractVimeoId(url) {
+    var rx = /vimeo.com\/(.*)/;
+    var arr = rx.exec(url);
+    return arr[1];
   }
 
   function removeOldInfo() {
