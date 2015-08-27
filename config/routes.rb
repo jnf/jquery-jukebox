@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   controller :api do
     get '/search/:artist', action: 'search', as: :search
+    get '/chance', action: 'chance', as: :chance
   end
 
 

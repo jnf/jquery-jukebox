@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+
+.chance {
+  margin-bottom: 2rem;
+}
+
+li {
+  padding: 1rem;
+}
+
+#iframe {
+  border-style: none;
+}

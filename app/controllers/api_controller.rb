@@ -1,11 +1,25 @@
 class ApiController < ApplicationController
-  JAM = "http://api.thisismyjam.com/1/search/jam.json"
+  JAM    = "http://api.thisismyjam.com/1/search/jam.json"
+  CHANCE = "http://api.thisismyjam.com/1/explore/chance.json"
 
   def search
     begin
       response = HTTParty.get(JAM, query: { "by" => "artist", "q" => params[:artist] })
       data = setup_data(response)
       data.empty? ? code = :no_content : code = :ok
+    rescue
+      data = {}
+      code = :no_content
+    end
+
+    render json: data.as_json, status: code
+  end
+
+  def chance
+    begin
+      response = HTTParty.get(CHANCE)
+      data = setup_data(response)
+      data = data.sample(10)
     rescue
       data = {}
       code = :no_content
