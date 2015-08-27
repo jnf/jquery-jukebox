@@ -23,6 +23,8 @@ class ApiController < ApplicationController
       data = {}
       code = :no_content
     end
+    # limit to 10 jams
+    data = data[0..9]
     render json: data.as_json, code: code
   end
 

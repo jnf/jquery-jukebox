@@ -25,7 +25,6 @@ $(function () {
     $.ajax(url, {
       type: "get",
       success: function(data) {
-        console.log(data);
         renderData(data);
       } // end success
     }); // end ajax
