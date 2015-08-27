@@ -1,11 +1,47 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+html {
+  background-color: #ADCACC;
+  font-family: 'Lucida Sans Typewriter', 'Lucida Console', monaco, 'Bitstream Vera Sans Mono', monospace;
+}
+
+h1 {
+  margin: 10px;
+  font-family: 'Brush Script MT', cursive;
+  font-size: 4em;
+  color: #A6256E;
+}
+
+a:hover {
+  color: #A24252;
+}
+
+.search-form {
+  font-size: 1.2em;
+}
+
+input[type="submit"] {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 50px;
+}
 .results {
   margin-top: 20px;
 }
 
-iframe {
-  width: 480px;
-  height: 587px;
+.giphy {
+  width: 400px;
+  height: 480px;
+}
+
+///1.777777
+.youtube {
+  width: 444px;
+  height: 250px;
+}
+
+// 1.3333333
+.vimeo {
+  width: 444px;
+  height: 333px;
 }

@@ -12,33 +12,42 @@ $(function() {
         if (data.length == 0) {
           $('<iframe />');
           $('<iframe />', {
-            id: 'giphy'
+            class: 'giphy',
             src: 'http://giphy.com/embed/tUmqyBrCWAyTC'
           }).appendTo(".results");
         } else {
           for (var i = 0; i < data.length; i++) {
+            var nextline = $("<br><br>");
             if (data[i].via == 'youtube' ) {
               var url = data[i].url;
-              var vid_link = url.substr(url.indexOf("=") + 1);
+              var yt_link = url.substr(url.indexOf("=") + 1);
               $('<iframe />');
               $('<iframe />', {
-                id: 'youtube'
-                src: 'https://www.youtube.com/embed/' +
+                class: 'youtube',
+                src: 'https://www.youtube.com/embed/' + yt_link
               }).appendTo(".results");
-
             } else if (data[i].via == 'vimeo' ) {
+              var url = data[i].url;
+              var vim_link = url.substr(url.lastIndexOf("/") + 1);
+              $('<iframe />');
+              $('<iframe />', {
+                class: 'vimeo',
+                src: 'https://player.vimeo.com/video/' + vim_link
+              }).appendTo(".results");
             } else {
               var anchor = $("<a></a>");
-              var nextline = $("<br><br>");
+              var url = data[i].url;
+              var vim_link = url.substr(url.lastIndexOf("/") + 1);
               anchor.text("Artist: " + data[i].artist +
                           ", Song: " + data[i].title +
-                          " via: " + data[i].via );
+                          " via: " + data[i].via);
               anchor.prop("href", data[i].url); //look up diff between attr and prop
               $(".results").append(anchor);
-              $(".results").append(nextline);
             }
+            $(".results").append(nextline);
           }
         }
+       $("input[type=text]").val("");
       }
     });
   });
