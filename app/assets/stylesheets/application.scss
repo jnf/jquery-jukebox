@@ -15,3 +15,36 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+
+body {
+  font-family: 'PT Sans', 'sans-serif';
+}
+
+.container-fluid {
+  width: 85%;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  font-family: 'Indie Flower', 'cursive';
+  font-size: 500%;
+}
+
+img {
+  max-width: 50%;
+  display: block;
+  margin: auto;
+}
+
+form {
+  text-align: center;
+}
+
+ul {
+  max-width: 80%;
+  margin: 20px auto;
+}

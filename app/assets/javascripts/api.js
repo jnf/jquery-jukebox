@@ -24,7 +24,9 @@ $(function() {
       anchor.prop('href', data[i].url);
       $('ul').append(anchor);
 
-      $('a').wrap('<li></li>');
     }
+
+    $('a').wrap('<li></li>');
+    $('li').addClass('list-group-item');
   }
 });
