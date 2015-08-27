@@ -9,8 +9,7 @@ $(function () {
       type: method,
       data: { "artist" : $("#q").val()},
       success: function(data) {
-        console.log(data);
-        if (data.length === 0) {
+        if ($.isPlainObject(data)) {
           unwantedSong();
         } else {
           renderData(data);
@@ -47,6 +46,6 @@ $(function () {
     anchor.prop("href", url);
     anchor.prop("target", "_blank");
     $(".jams-div").append(anchor);
-  } // end lol
+  } // end unwantdSong
 
 }); // end js file
