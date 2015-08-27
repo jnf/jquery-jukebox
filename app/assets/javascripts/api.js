@@ -28,20 +28,25 @@ $(function(){
         var list = $("<ul></ul>");
         list.css("list-style-type", "none");
 
-        // create outside functions to create video/audio tags
-        // write a conditional to choose one
-        // should return a <li> to append to the main list (<ul>)
+        var formattedJamItems = [];
+        // format each result based on its media source
+        for(i = 0; i < data.length; i++) {
+          var audioTypes = ["hypemachine", "soundcloud", "webaudio"];
+          var videoTypes = ["youtube", "vimeo"];
 
-
-        // selects all the video results
-        var videos = $.map(data, function(obj){
-          if (obj.via === "youtube" || obj.via == "vimeo") {
-            return obj;
+          if ($.inArray(data[i].via, audioTypes) === 0) {
+            formattedJamItems.push();
+          } else if ($.inArray(data[i].via, videoTypes) === 0) {
+            formattedJamItems.push(formatVideoEmbed(data[i]));
           }
-        });
+        }
 
-        var formattedResults = displayVideoResults(videos);
-        $("#results").append(formattedResults);
+        // add each of the embed list items to the list
+        for(i = 0; i < formattedJamItems.length; i++) {
+          list.append(formattedJamItems[i]);
+        }
+
+        $("#results").append(list);
       }
     });
   });
@@ -53,47 +58,26 @@ function removeResults(){
   old_results.remove();
 }
 
-function displayVideoResults(data){
-  // // create the list for the results
-  // var list = $("<ul></ul>");
-  // list.css("list-style-type", "none");
+function formatVideoEmbed(videoJam){
+  // create a list item & iframe
+  var listItem = $("<li></li>");
+  var iframeTag = $("<iframe></iframe>");
+  var url = "";
+  var mediaSource = videoJam.via;
 
-  for(var i = 0; i < data.length; i++) {
-    // create a list item with an iframe inside it
-    var listItem = $("<li></li>");
-    var iframeTag = $("<iframe></iframe>");
-    var url = "";
-    var mediaSource = data[i].via;
-
-    // build the URL for the iframe
-    if(mediaSource === "youtube"){
-      url = "http://www.youtube.com/embed/" + data[i].url.slice(31);
-    } else if (mediaSource === "vimeo"){
-      url = "https://player.vimeo.com/video/" + data[i].url.slice(17);
-    }
-
-    // connect everything
-    iframeTag.prop("src", url);
-    iframeTag.prop("width", "500");
-    iframeTag.prop("height", "281");
-    listItem.append(iframeTag);
-    // add the completed list item to the list
-    list.append(listItem);
+  // build the URL for the iframe
+  if(mediaSource === "youtube"){
+    url = "http://www.youtube.com/embed/" + videoJam[i].url.slice(31);
+  } else if (mediaSource === "vimeo"){
+    url = "https://player.vimeo.com/video/" + videoJam[i].url.slice(17);
   }
 
-  // return list;
-}
+  // assign properties
+  iframeTag.prop("src", url);
+  iframeTag.prop("width", "500");
+  iframeTag.prop("height", "281");
+  // put the iframe in the list item
+  listItem.append(iframeTag);
 
-// function embedMedia(type, source){
-//   var audioTypes = ["hypemachine", "soundcloud", "webaudio"];
-//   var videoTypes = ["youtube", "vimeo"];
-//   if ($.inArray(type, audioTypes) === 0) {
-//     var audioTag = $("<audio></audio>");
-//     audioTag.prop("src", source);
-//     return audioTag;
-//   } else if ($.inArray(type, videoTypes) === 1) {
-//     var videoTag = $("<video></video>");
-//     videoTag.prop("src", source);
-//     return videoTag;
-//   }
-// }
+  return listItem;
+}
