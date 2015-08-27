@@ -1,3 +1,4 @@
+require 'HTTParty'
 class ApiController < ApplicationController
   JAM = "http://api.thisismyjam.com/1/search/jam.json"
 
