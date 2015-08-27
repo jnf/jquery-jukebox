@@ -20,17 +20,42 @@ body {
 }
 
 header {
-  height: 20em;
-}
-
-div {
+  border-bottom: solid, black;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
   margin-top: 5em;
-  background-color: rgba(255, 112, 77, .95);
+  background-color:rgba(153, 204, 255, .8);
   width: 70%;
-  height: 30em;
   padding: 1em;
   font-family: 'Lato', sans-serif;
+}
+
+div {
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5em;
+  background-color: rgba(153, 204, 255, .8);
+  width: 70%;
+  padding: 1em;
+  font-family: 'Lato', sans-serif;
+}
+
+.search_form {
+
+}
+
+.song {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.popular {
+  float: right;
+  clear: right;
+}
+
+iframe {
+  margin: 5em;
 }

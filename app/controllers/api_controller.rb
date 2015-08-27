@@ -18,6 +18,20 @@ class ApiController < ApplicationController
     render json: data.as_json, code: code
   end
 
+  def popular
+    begin
+      response = HTTParty.get("http://api.thisismyjam.com/1/explore/popular.json")
+      data = setup_data(response)
+      data = data[0..10]
+      code = :ok
+    rescue
+      data = {}
+      code = :no_content
+    end
+
+    render json: data.as_json, code: code
+  end
+
   private
 
   def setup_data(response)

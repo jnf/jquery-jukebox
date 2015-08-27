@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   controller :api do
     get '/search', action: 'search', as: "search"
+    get '/popular', action: 'popular', as: "popular"
   end
 
 
