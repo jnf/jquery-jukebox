@@ -32,20 +32,22 @@ $(function () {
 
   function renderData(data) {
     $(".jams-div").html("");
+    var list = $('<div>');
+    list.addClass("list-group");
     for (var i = 0; i < data.length; i++) {
       var jam = data[i];
       var artist = jam.artist;
       var title = jam.title;
       var url = jam.url;
       var via = jam.via;
-      var anchor = $("<a></a>");
-      var newline = $("<br>");
+      var anchor = $("<a>");
+      anchor.addClass("list-group-item");
       var listing = (artist + " - " + title + " (via " + via + ")");
       anchor.text(listing);
       anchor.prop("href", url);
       anchor.prop("target", "_blank");
-      $(".jams-div").append(anchor);
-      $(".jams-div").append(newline);
+      list.append(anchor);
+      $('.jams-div').append(list);
     }
   } // end renderData
 
