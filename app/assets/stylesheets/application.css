@@ -20,7 +20,7 @@ input[name=artist] {
   color: white;
 }
 
-input[search=yes] {
+input[type=submit] {
   background-color: red;
   font-family: Arial;
   color: #ffffff;
@@ -35,10 +35,14 @@ li {
   margin: 1em 0;
 }
 
+ul {
+  padding: 0;
+}
+
 body {
   width: 960px;
   margin: auto;
-  padding: 0 0 20px 0;
+  padding-bottom: 20px;
   font-family: fantasy;
   text-align: center;
   background-color: white;
