@@ -15,11 +15,13 @@ $(function() { // autoloads javascript into browser window for the rails window
       type: method,
       success: function (data) {
         var list = $('<ul></ul>')
+        var listItem = $('<li></li>'); // new list element
+        var anchor = $('<a></a>'); // new anchor element
 
         if (data.length == 0) {
-          list.append();
-
-          do stuff;
+          anchor.text('Try this on for size');
+          anchor.prop('href', 'https://www.youtube.com/watch?v=KmtzQCSh6xk');
+          list.append(anchor);
         } else {
 
           for(var i = 0; i < data.length-1; i ++) {
@@ -27,11 +29,9 @@ $(function() { // autoloads javascript into browser window for the rails window
             var title = data[i].title;
             var artist = data[i].artist;
 
-            var anchor = $('<a></a>'); // new anchor element
             anchor.text(data[i].via);
             anchor.prop('href', sourceUrl);
 
-            var listItem = $('<li></li>'); // new list element
             listItem.text(title + ", by: " + artist + " via "); // text within <li> tags
             listItem.append(anchor[0]); // link
 
