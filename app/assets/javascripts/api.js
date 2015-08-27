@@ -19,9 +19,19 @@ $(function(){
       success: function(data){
         removeResults();
 
+        // if there aren't any results
         if (data.length === 0){
           $("#results").append("<h2>Can you believe it? No jams. Dummies.</h2><img src='https://media.giphy.com/media/nXyx1m3mx2PxS/giphy.gif'>");
         }
+
+        // create the list for the results
+        var list = $("<ul></ul>");
+        list.css("list-style-type", "none");
+
+        // create outside functions to create video/audio tags
+        // write a conditional to choose one
+        // should return a <li> to append to the main list (<ul>)
+
 
         // selects all the video results
         var videos = $.map(data, function(obj){
@@ -44,9 +54,9 @@ function removeResults(){
 }
 
 function displayVideoResults(data){
-  // create the list for the results
-  var list = $("<ul></ul>");
-  list.css("list-style-type", "none");
+  // // create the list for the results
+  // var list = $("<ul></ul>");
+  // list.css("list-style-type", "none");
 
   for(var i = 0; i < data.length; i++) {
     // create a list item with an iframe inside it
@@ -69,7 +79,7 @@ function displayVideoResults(data){
     list.append(listItem);
   }
 
-  return list;
+  // return list;
 }
 
 // function embedMedia(type, source){
