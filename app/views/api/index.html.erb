@@ -1,11 +1,21 @@
-<h1>Find Your Jam</h1>
+<header><h1 class="text-center title-text">FIND YOUR JAM</h1></header>
 
-<%= form_for search_path(:artist), html: { class: "search-form" } do |f| %>
-  <%= f.label :jam, "Search for JamZ by Artist", class: "search-header" %><br>
-  <%= f.text_field :jam, :size => 50, placeholder: "artist", class: "artist" %>
-  <%= button_tag("Search", type: 'submit', class: "btn-search") %>
-<% end %>
+<div class="text-center">
+  <%= form_for search_path(:artist), html: { class: "search-form form-inline" } do |f| %>
+    <h2><%= f.label :jam, "Search for JamZ by Artist", class: "search-header" %></h2><br>
+    <%= f.text_field :jam, :size => 50, placeholder: "artist", class: "form-control artist" %>
+    <%= button_tag("Search", type: 'submit', class: "btn btn-search btn-default") %>
+  <% end %>
+</div>
 
-<ul>
-  <!-- RESULTS GO HERE -->
-</ul>
+<div class="text-center vid-frame">
+  <!-- FRAME GOES HERE -->
+</div>
+
+<div class="row">
+  <div class="col-sm-4 col-sm-offset-4 list">
+    <ul>
+      <!-- RESULTS GO HERE -->
+    </ul>
+  </div>
+</div>
