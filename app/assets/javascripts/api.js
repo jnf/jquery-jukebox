@@ -42,8 +42,6 @@ $(function() { // this tricks rails into seeing our code
       list.append(listItem);
     }
     results.append(list);
-    $('li:even').addClass('grey');
-    // p:nth-of-type(3n+2) {
   }
 
   function displayMessage(message) {

@@ -2,7 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$light-grey: #efe;
 $dark-green: #080;
 $black: #000;
 $results-width: 600px;
@@ -26,6 +25,21 @@ $results-width: 600px;
   }
 }
 
-#results .grey {
-  background-color: $light-grey;
+li:nth-of-type(6n) {
+  background: #fa8; // orange, 6 12
+}
+li:nth-of-type(6n+1) {
+  background: #ff8; // yellow, 1 7
+}
+li:nth-of-type(6n+2) {
+  background: #8f8; // green, 2 8
+}
+li:nth-of-type(6n+3) {
+  background: #8ff; // cyan, 3 9
+}
+li:nth-of-type(6n+4) {
+  background: #aaf; // blue, 4 10
+}
+li:nth-of-type(6n+5) {
+  background: #f8f; // pink, 5 11
 }
