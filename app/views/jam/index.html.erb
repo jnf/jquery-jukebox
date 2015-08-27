@@ -1,9 +1,11 @@
-<h1>This is My Jam?</h1>
+<h1>This is My Jam... ?</h1>
 
-<%= form_tag(search_path, method: "post") do %>
-  <%= label_tag(:q, "Search Artists:") %>
-  <%= text_field_tag(:q) %>
-  <%= submit_tag("Jam?") %>
+<%= form_tag(search_path, method: "post", class: "form") do %>
+  <div class="form-group form-inline">
+    <%= text_field_tag(:q, nil, placeholder: "Search Artists", class: "form-control") %>
+  </div>
+
+  <%= submit_tag "Jam?", class: "btn btn-default" %>
 <% end %>
 
 <div class="jams-div">
