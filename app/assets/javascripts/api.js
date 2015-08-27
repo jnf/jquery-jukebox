@@ -1,19 +1,31 @@
+
 $(function() {
-  $(".search").click(function(event){
-    event.preventDefault();
-    var searchButton = $(this);
-    var formTag = searchButton.parent("form");
+
+  function searchVals(){
+    var artistField = $("input#artist");
+    var query = artistField.val();
+    var formTag = $("form#search");
     var url = formTag.attr("action");
     var method = formTag.attr("method");
-    var children = formTag.children("#artist")
-    var artistField = children.val()
-    var query = { "artist" : artistField }
 
-    $.ajax(url, {
-      type: method,
-      data: query,
+    return {
+      // This needs to be a key value pair
+      params : { "artist": query},
+      url : url,
+      aMethod: method
+    };
+  }
+
+  
+
+  $(".search").click(function(event){
+    event.preventDefault();
+
+    $.ajax(searchVals().url, {
+      type: searchVals().aMethod,
+      data: searchVals().params,
       success: function (data) {
-
+        console.log(data)
         var artistArray = data; // Renamed for clarity
 
         // Removing the previous results
