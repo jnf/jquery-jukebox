@@ -1,6 +1,12 @@
 <header><h1 class="text-center title-text">FIND YOUR JAM</h1></header>
 
 <div class="text-center">
+  <%= form_for chance_path, html: { class: "form-inline" } do |f| %>
+    <button type="button" class="btn btn-chance btn-default">
+      <span class="glyphicon glyphicon-headphones"></span> Rando JamZ
+    </button>
+  <% end %>
+
   <%= form_for search_path(:artist), html: { class: "search-form form-inline" } do |f| %>
     <h2><%= f.label :jam, "Search for JamZ by Artist", class: "search-header" %></h2><br>
     <%= f.text_field :jam, :size => 50, placeholder: "artist", class: "form-control artist" %>
