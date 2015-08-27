@@ -15,19 +15,21 @@ $(function() { // autoloads javascript into browser window for the rails window
       type: method,
       success: function (data) {
         var list = $('<ul></ul>')
-        var listItem = $('<li></li>'); // new list element
-        var anchor = $('<a></a>'); // new anchor element
 
         if (data.length == 0) {
-          anchor.text('Try this on for size');
-          anchor.prop('href', 'https://www.youtube.com/watch?v=KmtzQCSh6xk');
-          list.append(anchor);
+
+        var listItem = $('<li></li>'); // new list element
+        var anchor = $('<a></a>'); // new anchor element
+          list.append('<iframe width="420" height="315" src="https://www.youtube.com/embed/KmtzQCSh6xk" frameborder="0" allowfullscreen></iframe>')
         } else {
 
           for(var i = 0; i < data.length-1; i ++) {
             var sourceUrl = data[i].url;
             var title = data[i].title;
             var artist = data[i].artist;
+            var listItem = $('<li></li>'); // new list element
+            var anchor = $('<a></a>'); // new anchor element
+
 
             anchor.text(data[i].via);
             anchor.prop('href', sourceUrl);

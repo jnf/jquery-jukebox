@@ -1,10 +1,7 @@
 <h1>Search for Your Jam</h1>
 <div id="form">
-<%= form_tag search_path %>
-  <%= label_tag :artist %>
-  <%= text_field_tag :artist %>
-
-    <%= submit_tag "Look up Jukebox Users", class: "btn btn-default" %>
+<%= text_field_tag :artist %>
+<%= button_to "Look up Jukebox Users", search_path, class: "btn btn-default"%>
 </div>
 <div id="results">
 
