@@ -34,11 +34,10 @@ $(function(){
           var audioTypes = ["hypemachine", "soundcloud", "webaudio"];
           var videoTypes = ["youtube", "vimeo"];
 
-          // if ($.inArray(data[i].via, audioTypes) === 0) {
+          // if ($.inArray(data[i].via, audioTypes) > -1) {
           //   formattedJamItems.push();
           // } else
-
-          if ($.inArray(data[i].via, videoTypes) === 0) {
+          if ($.inArray(data[i].via, videoTypes) > -1) {
             formattedJamItems.push(formatVideoEmbed(data[i]));
           }
         }
