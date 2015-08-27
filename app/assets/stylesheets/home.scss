@@ -46,6 +46,23 @@ input[type="text"] {
 input[type="text"]:hover {
   border: solid 2px #E4DB05;
 }
+
+.popular-api {
+  margin-left: 90px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.popular-api button[type="submit"] {
+  font-family: 'Lucida Sans Typewriter', 'Lucida Console';
+  background-color: #4700B2;
+  font-size: 1.2rem;
+}
+
+button[type="submit"]:hover {
+  background-color: #de5200;
+   color: white;
+}
 .results {
   margin-top: 20px;
 }
