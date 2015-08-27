@@ -40,8 +40,8 @@ $(function(){
           }
         });
 
-        var list = displayVideoResults(videos);
-        $("#results").append(list);
+        var formattedResults = displayVideoResults(videos);
+        $("#results").append(formattedResults);
       }
     });
   });
@@ -74,6 +74,8 @@ function displayVideoResults(data){
 
     // connect everything
     iframeTag.prop("src", url);
+    iframeTag.prop("width", "500");
+    iframeTag.prop("height", "281");
     listItem.append(iframeTag);
     // add the completed list item to the list
     list.append(listItem);

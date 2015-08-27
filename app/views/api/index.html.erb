@@ -1,11 +1,18 @@
-<h1>JQuery Jukebox</h1>
+<div class="jumbotron text-center">
+  <h1>jQuery Jukebox</h1>
 
-<%= form_tag(search_path(:artist), method: :get) do %>
-  <%= label_tag :artist, "Search an artist: " %>
-  <%= text_field_tag :artist %>
+  <br><br>
 
-  <%= submit_tag "Search", id: 'search' %>
-<% end %>
+  <div class="center-block col-sm-3 no-float">
+    <%= form_tag(search_path(:artist), method: :get) do %>
+      <%= label_tag :artist, "Find Jams by Artist" %>
+      <%= text_field_tag :artist, nil, class: "form-control center-text" %>
+      <br>
+      <%= submit_tag "Search", id: 'search', class: "btn btn-default" %>
+    <% end %>
+  </div>
+</div>
+
 
 <br><br>
 
