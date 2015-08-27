@@ -32,7 +32,6 @@ $(function() { // this tricks rails into seeing our code
       link.text(result.artist + "'s " + result.title);
       link.prop('href', result.url);
       paragraph.append(link);
-      // console.log(result.url.includes("youtube"));
 
       if (result.url.includes("youtube")) {
         paragraph.append("<br />");
@@ -45,17 +44,12 @@ $(function() { // this tricks rails into seeing our code
   }
 
   function youtubeEmbed(url) {
-    // "aa".replace("a", "b") // "ba"
-    // https://www.youtube.com/watch?v=j-TSYvSOv6Y
     url = url.replace("http://", "https://");
     url = url.replace("watch?v=", "embed/");
 
-    // <iframe width="560" height="315" src="https://www.youtube.com/embed/6rNgCnY1lPg" frameborder="0" allowfullscreen></iframe>
     var output = '<iframe width="560" height="315" src="';
     output += url;
     output += '" frameborder="0" allowfullscreen></iframe>';
-    // return '<iframe width="560" height="315" src="https://www.youtube.com/embed/d6PJdJvMt2U" frameborder="0" allowfullscreen></iframe>';
-    console.log(url);
     return output;
   };
 
