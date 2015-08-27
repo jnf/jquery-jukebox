@@ -2,6 +2,7 @@ require 'rails_helper'
 
 TIMJ_SEARCH = { cassette_name: "TIMJ_search", record: :new_episodes }
 POPULAR = { cassette_name: "Popular", record: :new_episodes }
+CHANCE = { cassette_name: "Chance", record: :new_episodes }
 
 RSpec.describe ApiController, type: :controller do
   describe "interacting with the This Is My Jam API" do
@@ -47,6 +48,50 @@ RSpec.describe ApiController, type: :controller do
           data = JSON.parse response.body
           %w(title artist via url).each do |key|
             expect(data.map(&:keys).flatten.uniq).to include key
+          end
+        end
+      end
+    end
+
+    describe "exploring chance", vcr: CHANCE do
+      before :each do
+        get :search
+      end
+
+      context "when nothing is typed into the search field" do
+        it "should be successful" do
+          expect(response).to be_ok
+        end
+
+        it "should return a json response object" do
+          expect(response.header['Content-Type']).to include 'application/json'
+        end
+
+        context "the returned json object" do
+          it "has the right keys" do
+            data = JSON.parse response.body
+            %w(title artist via url).each do |key|
+              expect(data.map(&:keys).flatten.uniq).to include key
+            end
+          end
+        end
+      end
+
+      context "when the search has no results" do
+        it "should be successful" do
+          expect(response).to be_ok
+        end
+
+        it "should return a json response object" do
+          expect(response.header['Content-Type']).to include 'application/json'
+        end
+
+        context "the returned json object" do
+          it "has the right keys" do
+            data = JSON.parse response.body
+            %w(title artist via url).each do |key|
+              expect(data.map(&:keys).flatten.uniq).to include key
+            end
           end
         end
       end
