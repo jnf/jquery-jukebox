@@ -15,6 +15,20 @@ $(function() {
     });
   });
 
+  $('.random').click(function() {
+    event.preventDefault();
+
+    var url = $(this).attr('url');
+    var method = $(this).attr('method');
+
+    $.ajax(url, {
+      type: method,
+      success: function (data) {
+        formatData(data);
+      }
+    });
+  });
+
   function formatData(data) {
     $('ul').empty();
     if (data.length == 0) {

@@ -28,6 +28,7 @@ class ApiController < ApplicationController
       data = {}
       code = :no_content
     end
+
     render json: data.as_json, code: code
   end
 

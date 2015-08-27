@@ -12,7 +12,9 @@
       </div>
 
       <%= submit_tag "Search", class: "search btn btn-default" %>
+      <%= button_tag "Random", class: "random btn btn-default", method: "get", url: "/random" %>
     <% end %>
+
     <ul class="list-group">
     </ul>
   </div>
