@@ -26,7 +26,7 @@ Hi! For this project, let's use [This is My Jam](https://www.thisismyjam.com/) t
 
 ### Wave 2 TIMJ API Calls - Choose at least one to implement
 - __Popular__
-    GET `http://api.thisismyjam.com/1/explore/popular.json`
+    GET http://api.thisismyjam.com/1/explore/popular.json
     Today’s most-loved jams.
 
 - __Breaking__
