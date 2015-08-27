@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+body {
+  margin: 50px auto;
+  text-align: center;
+}
+
+input[type="text"]{
+  margin-bottom: 10px;
+}
+
+#searchResults p {
+  color: green;
+  font-size: 17px;
+}

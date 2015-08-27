@@ -16,9 +16,9 @@ $(function() {
           success: function (data) {
             // data is an array
 
-            if (data.length == 0)
+            if (data.length === 0)
             {
-              $("#searchResults").append("You apparently have a horribly singular taste in 'good' music. Try searching for someone else and in the meantime, enjoy this Rick Roll while you think about what you've done...<br><br>");
+              $("#searchResults").append("<p>You apparently have a horribly singular taste in 'good' music. Try searching for someone else and in the meantime, enjoy this Rick Roll while you think about what you've done...🐵 🙈 🙉 🙊</p><br>");
 
               var rickRollVideoId = "dQw4w9WgXcQ";
 
