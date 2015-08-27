@@ -11,13 +11,41 @@ $(function() {
       type: method,
       data: { 'artist' : $("#artist").val() },
       success: function(data) {
-        showResults(data);
+        if (data.length == 0){
+          $.ajax({
+            url: '/chance',
+            type:'get',
+            success: function(data) {
+              console.log(data);
+              showResults(data);
+            }
+          });
+        } else {
+          showResults(data);
+        }
       }
     });
 
   });
 
   $('.popular').click(function(event){
+    event.preventDefault();
+
+    var button = $(this);
+    var formTag = button.parent();
+    var method = formTag.attr("method");
+    var url = formTag.attr("action");
+
+    $.ajax(url, {
+      type: method,
+      success: function(data){
+        showResults(data);
+      }
+    });
+
+  });
+
+  $('.chance').click(function(event){
     event.preventDefault();
 
     var button = $(this);
