@@ -18,10 +18,12 @@ $(function() {
      data: query,
      success: function (data) {
 
-       var artistArray = data;
+       var artistArray = data; // Renamed for clarity
+
+       $("a").empty(); // Removing the previous results
 
        for (i = 0; i < artistArray.length; i++) {
-         var anchor = $("<a></a><br />");
+         var anchor = $("<a class='song'></a>");
          anchor.text(artistArray[i].artist + " - " + artistArray[i].title);
          anchor.prop("href", artistArray[i].url);
          $("body").append(anchor);
