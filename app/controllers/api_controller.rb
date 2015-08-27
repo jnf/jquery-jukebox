@@ -1,6 +1,6 @@
 class ApiController < ApplicationController
   JAM = "http://api.thisismyjam.com/1/search/jam.json"
-
+  HOT =  "http://api.thisismyjam.com/1/explore/breaking.json"
   def index; end
 
   def search
@@ -12,6 +12,13 @@ class ApiController < ApplicationController
       data = {}
       code = :no_content
     end
+    render json: data.as_json, code: code
+  end
+
+  def popular
+    resonse = HTTParty.get(HOT)
+    data = setup_data(response)
+    code = :ok
     render json: data.as_json, code: code
   end
 
