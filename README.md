@@ -1,4 +1,4 @@
-# This Is My Jam: AJAX Playback Links
+# This Is My Jam: AJAX Playback Links Michelle McCarthy
 Hi! For this project, let's use [This is My Jam](https://www.thisismyjam.com/) to find lots of links to music we like. :)
 
 ## This repo already has...
@@ -16,4 +16,4 @@ Hi! For this project, let's use [This is My Jam](https://www.thisismyjam.com/) t
 
 ## Bonus Fun
 - Instead of adding links to the view, try using the data to create embedded players for the specific service (i.e., embed the YouTube video, instead of linking to it).
-- If a user's search returns no results, suggest/embed/link to something for them instead.
+- If a user's search returns no results, suggest/embed/link to something for them instead. (there may or may not be a promise or lack of promise for RickRoll)
