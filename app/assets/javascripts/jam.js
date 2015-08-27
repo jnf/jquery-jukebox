@@ -40,17 +40,29 @@ $(function () {
       var title = jam.title;
       var url = jam.url;
       var via = jam.via;
+      var anchor = $("<a>");
+      anchor.addClass("list-group-item");
       if (via == "youtube") {
         youtube_id = url.split("v=")[1];
         var iframe = $("<iframe>");
-        iframe.prop("width", "560");
-        iframe.prop("height", "315");
+        iframe.prop("width", "500");
+        iframe.prop("height", "281");
         iframe.prop("src", "https://www.youtube.com/embed/" + youtube_id);
         iframe.prop("frameborder", "0");
-        list.append(iframe);
+        anchor.append(iframe);
+        list.append(anchor);
+      } else if (via == "vimeo") {
+        vimeo_id = url.split(".com/")[1];
+        var iframe = $("<iframe>");
+        iframe.prop("width", "500");
+        iframe.prop("height", "281");
+        iframe.prop("src", "https://player.vimeo.com/video/" + vimeo_id);
+        iframe.prop("frameborder", "0");
+        anchor.append(iframe);
+        list.append(anchor);
+        // https://vimeo.com/68587392
+        // <iframe src="https://player.vimeo.com/video/68587392" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
       } else {
-        var anchor = $("<a>");
-        anchor.addClass("list-group-item");
         var listing = (artist + " - " + title + " (via " + via + ")");
         anchor.text(listing);
         anchor.prop("href", url);
