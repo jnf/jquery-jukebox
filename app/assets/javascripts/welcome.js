@@ -10,13 +10,21 @@ $(document).ready(function() {
       dataType: "json",
       success: function(data) {
         clearPreviousResults();
-        console.log(data);
         var rareSongs = data.jams;
-        console.log(rareSongs);
         for (var i = 0; i < 20; i++){
           var anchor = $('<a></a>');
           anchor.text(rareSongs[i].title + " by " + rareSongs[i].artist);
           anchor.prop('href', rareSongs[i].url);
+          if (rareSongs[i].via == "youtube"){
+            songUrl = rareSongs[i].viaUrl;
+            var urlChunk = songUrl.split('=')[1];
+            console.log(urlChunk);
+            $('<iframe>',{
+              src: "https://www.youtube.com/embed/" + urlChunk,
+              frameborder: 0,
+              scrolling: 'no'
+            }).appendTo('body');
+          }
           $('body').append(anchor);
           $('a').wrap( "<div class='result'></div>" )
           $('body').append("<br>");

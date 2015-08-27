@@ -19,6 +19,7 @@
  }
 
 .rare {
+  display: block;
   margin-bottom: 25px;
   background-color: #FF69B4;
   color: #fff;
@@ -34,4 +35,9 @@
  h3 {
    font-size: 24px;
    color: purple;
+ }
+
+ iframe {
+   margin-top: 25px;
+   margin-bottom: 25px;
  }
