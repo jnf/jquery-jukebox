@@ -35,7 +35,7 @@ function clearPreviousResults(){
 };
 
 function noResults(){
-  $('body').append('<p>Unfortunately your search did not return any results, don\'t fret, David will keep you warm.</p>');
+  $('body').append('<p>Unfortunately your search did not return any results. Don\'t fret, David will keep you warm.</p>');
   $('body').append('<br>');
   $('body').append(defaultVideo);
 }
