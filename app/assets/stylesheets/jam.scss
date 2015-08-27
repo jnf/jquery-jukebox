@@ -12,13 +12,13 @@ body {
   line-height: 1.5;
 }
 
-.jams-div a {
+.jams-div a,
+.jams-div a:visited {
   text-decoration: none;
   color: #666;
 }
 
 .jams-div a:hover,
-.jams-div a:active,
-.jams-div a:visited {
+.jams-div a:active {
   color: inherit;
 }
