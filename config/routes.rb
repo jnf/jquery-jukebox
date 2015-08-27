@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     get '/search', action: 'home'
 
     post '/search/:artist', action: 'search'
+
+    get '/breaking', action: 'breaking'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

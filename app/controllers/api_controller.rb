@@ -1,5 +1,6 @@
 class ApiController < ApplicationController
   JAM = "http://api.thisismyjam.com/1/search/jam.json"
+  BREAKING = "http://api.thisismyjam.com/1/explore/breaking.json"
 
   def home
   end
@@ -7,6 +8,19 @@ class ApiController < ApplicationController
   def search
     begin
       response = HTTParty.get(JAM, query: { "by" => "artist", "q" => params[:artist] })
+      data = setup_data(response)
+      code = :ok
+    rescue
+      data = {}
+      code = :no_content
+    end
+
+    render json: data.as_json, code: code
+  end
+
+  def breaking
+    begin
+      response = HTTParty.get(BREAKING)
       data = setup_data(response)
       code = :ok
     rescue
