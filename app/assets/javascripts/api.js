@@ -11,6 +11,13 @@ $(function() {
     frame.attr("src", emptyResponseUrl);
   }
 
+  function showYoutube(url) {
+    var frame = $("<iframe id='frame' width='448' height='252' src='' frameborder='0' autoplay='1' allowfullscreen></iframe>");
+    $(".vid-frame").prepend(frame);
+    url = url.replace("watch?v=", "/embed/");
+    frame.attr("src", url + "?rel=0&autoplay=1");
+  }
+
   $(".btn-search").click(function(event) {
     event.preventDefault();
 
@@ -26,10 +33,7 @@ $(function() {
       } else {
         var firstResult = data[0];
         if (firstResult.via === "youtube") {
-          var firstFrame = $("<iframe id='frame' width='448' height='252' src='' frameborder='0' autoplay='1' allowfullscreen></iframe>");
-          $(".vid-frame").prepend(firstFrame);
-          firstResult.url = firstResult.url.replace("watch?v=", "/embed/");
-          firstFrame.attr("src", firstResult.url + "?rel=0&autoplay=1");
+          showYoutube(firstResult.url);
         }
         for (var i = 0; i < data.length; i++) {
           var thisArtist = data[i];
@@ -62,10 +66,7 @@ $(function() {
       } else {
         var firstResult = data[0];
         if (firstResult.via === "youtube") {
-          var firstFrame = $("<iframe id='frame' width='448' height='252' src='' frameborder='0' autoplay='1' allowfullscreen></iframe>");
-          $(".vid-frame").prepend(firstFrame);
-          firstResult.url = firstResult.url.replace("watch?v=", "/embed/");
-          firstFrame.attr("src", firstResult.url + "?rel=0&autoplay=1");
+          showYoutube(firstResult.url);
         }
         for (var i = 0; i < data.length; i++) {
           var thisArtist = data[i];
