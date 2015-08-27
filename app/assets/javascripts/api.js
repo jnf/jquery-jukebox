@@ -4,7 +4,7 @@
 
 $(function() {
 
-  $(".find").click(function(event) {
+  $(".submit").click(function(event) {
     event.preventDefault();
 
     var searchButton = $(this);
@@ -13,7 +13,7 @@ $(function() {
     //console.log(formTag.hasClass("form"));
 
     var text_box = formTag.children(".text_box");
-  //  console.log(text_box.hasClass("text_box"));
+  // console.log(text_box.hasClass("text_box"));
 
     var search_input = text_box.val();
 
@@ -21,17 +21,17 @@ $(function() {
 
     var method = text_box.attr("method");
 
-    var last_child = $('body').children(':last-child');
+    // var last_child = $(formTag).children(':last-child');
 
-    // console.log(last_child);
+    //console.log(last_child);
 
   $.ajax(url, {
     type: method,
     success: function (data) {
-
       displayData(data);
       console.log(displayData(data));
     }
+
   });
 
   function displayData(data) {
@@ -44,7 +44,7 @@ $(function() {
       anchor.prop('href', url);
       var p_tag = $('<p></p>');
       p_tag.append(anchor);
-      $('body').append(p_tag);
+      $('.something').append(p_tag);
 
       //via = data[i].via;
   }
