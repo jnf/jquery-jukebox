@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
   controller :api do
-    get '/search/:artist', action: 'search'
+    get '/search/:artist', action: 'search', as: "search"
   end
-  
+
+  controller :welcome do
+    get '/', action: 'index', as: "home"
+  end
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

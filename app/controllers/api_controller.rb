@@ -14,6 +14,10 @@ class ApiController < ApplicationController
     render json: data.as_json, code: code
   end
 
+  def index
+    @results = params
+  end
+
   private
 
   def setup_data(response)
