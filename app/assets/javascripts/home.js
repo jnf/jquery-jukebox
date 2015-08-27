@@ -71,6 +71,12 @@ $(function() {
     return arr[1];
   }
 
+  function extractVimeoId(url) {
+    var rx = /vimeo.com\/(.*)/;
+    var arr = rx.exec(url);
+    return arr[1];
+  }
+
   function makeEmbedUrl(url, source) {
     var baseYoutubeUrl = "http://www.youtube.com/embed/";
     var baseVimeoUrl = "http://player.vimeo.com/video/";
@@ -83,12 +89,6 @@ $(function() {
     }
     
     return embedUrl;
-  }
-
-  function extractVimeoId(url) {
-    var rx = /vimeo.com\/(.*)/;
-    var arr = rx.exec(url);
-    return arr[1];
   }
 
   function makeUL() {
