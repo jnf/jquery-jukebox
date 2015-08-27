@@ -2,7 +2,7 @@ $(function() {
   $("form.search").submit(function(event) {
     event.preventDefault();
 
-    removeOldInfo();
+    removeOldResults();
 
     var textField = $("#artist");
     var searchTerm = textField.val();
@@ -12,9 +12,13 @@ $(function() {
     if (url) {
       $.ajax(url, {
         type: "GET",
-        success: function(data) {
-          var songs = data;
-          displaySongs(songs);
+        success: function(data, textStatus, jqHXR) {
+          if (jqHXR.status == 204) {
+            apologize();
+          } else {
+            var songs = data;
+            displaySongs(songs);
+          }
         }
       });
     } else { // no search term entered
@@ -25,7 +29,7 @@ $(function() {
   $("form.popular").submit(function(event) {
     event.preventDefault();
 
-    removeOldInfo();
+    removeOldResults();
 
     var url = "/popular";
 
@@ -48,6 +52,7 @@ $(function() {
           makeSongAnchor(songs[i]);
         }
       };
+      addYo();
     } else { // no songs returned
       apologize();
     };
@@ -62,10 +67,10 @@ $(function() {
     }
   }
 
-  function removeOldInfo() {
+  function removeOldResults() {
     if ($("body").children(":last-child") != $("form")) {
       $("ul").remove();
-      $("p").remove();
+      $("p.result").remove();
     }
   }
 
@@ -126,7 +131,14 @@ $(function() {
 
   function apologize() {
     var p = $("<p></p>");
+    p.addClass("result")
     p.text("That is not anyone else's jam.");
     $("form.search").after(p);
+  }
+
+  function addYo() {
+    var span = $("<span></span>");
+    span.text(" YO.");
+    $("p.subheading").append(span);
   }
 });
