@@ -1,7 +1,7 @@
 <%= form_tag("/", method: "get", class: "form") do |f| %>
-    <%= label_tag(:artist, "Search artists")%><br>
+    <%= label_tag(:artist, "Search JAMz by Artist")%><br>
     <%= text_field_tag(:artist, params[:artist], class: "text_box") %>
-    <%= submit_tag("Search", class: "submit") %>
+    <%= submit_tag("Search", class: "search") %>
   <% end %>
 <%= button_to "RANDO SONG", rando_path, class: "rando btn btn-success", method: :get  %>
 <div class="results"></div>

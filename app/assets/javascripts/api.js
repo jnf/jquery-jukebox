@@ -4,7 +4,7 @@
 
 $(function() {
 
-  $(".submit").click(function(event) {
+  $(".search").click(function(event) {
     event.preventDefault();
 
     var searchButton = $(this);
@@ -51,8 +51,19 @@ $(function() {
     $.ajax(url, {
       type: method,
       success: function (data) {
-        if( $('.results').is(':empty')) {
+
+        // if the user decided to retrieve a random song
+        if(url === "/rando") {
+          if ($('.results').is(':empty')) {
+            displayData(data.sort( randOrd).slice(0,10));
+          } else {
+            // '.empty().append()' prevents new calls for random songs to be appended on top of the old list
+            $('.results').empty().append(displayData(data.sort(randOrd).slice(0,10)));
+          }
+        // if the user searched for an artist & if there were no prior results
+        } else if ( $('.results').is(':empty')) {
           displayData(data);
+        // this prevents new search results from appending on top of the old results
         } else {
           $('.results').empty().append(displayData(data));
         }
@@ -73,4 +84,9 @@ $(function() {
       }
       return data; //return artist will have console.log(displayData(data)); inside success function to be only the artist
     }
+
+    // for making the results for a random song to actually be random
+    function randOrd(){
+      return (Math.round(Math.random())-0.5); }
+      
 });
