@@ -8,7 +8,7 @@ class ApiController < ApplicationController
   def search
     begin
       response = HTTParty.get(JAM, query: { "by" => "artist", "q" => params[:artist] })
-      data = setup_data(response)
+      data = setup_data(response)[0..20] # limiting to first 20
       code = :ok
     rescue
       data = {}
@@ -21,7 +21,7 @@ class ApiController < ApplicationController
   def breaking
     begin
       response = HTTParty.get(BREAKING)
-      data = setup_data(response)
+      data = setup_data(response)[0..20] # taking the first 20 results
       code = :ok
     rescue
       data = {}

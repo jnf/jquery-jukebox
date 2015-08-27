@@ -38,9 +38,7 @@ $(function() { // autoloads javascript into browser window for the rails window
             listItem.append(anchor[0]); // link
 
             list.append(listItem);
-
         }
-
 
       } // for loop
       $('#results').append(list)
