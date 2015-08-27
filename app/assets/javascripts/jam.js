@@ -14,9 +14,22 @@ $(function () {
         } else {
           renderData(data);
         } // end if/else
-      }
+      } // end success
     }); // end ajax
-  });
+  }); // end form submit listener
+
+  $("#randomizer").click(function(event) {
+    event.preventDefault();
+    var button = $(this);
+    var url = button.prop("href");
+    $.ajax(url, {
+      type: "get",
+      success: function(data) {
+        console.log(data);
+        renderData(data);
+      } // end success
+    }); // end ajax
+  }); // end randomizer button listener
 
   function renderData(data) {
     $(".jams-div").html("");

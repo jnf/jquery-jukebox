@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   controller :api do
-    post '/search', action: 'search', as: "search"
+    post '/search', action: 'search', as: 'search'
+    get '/random', action: 'random', as: 'random'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

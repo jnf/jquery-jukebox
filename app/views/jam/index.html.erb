@@ -1,12 +1,26 @@
 <h1>This is My Jam... ?</h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6">
+      <%= form_tag(search_path, method: "post", class: "form") do %>
+        <div class="form-group form-inline">
+          <%= text_field_tag(:q, nil, placeholder: "Search Artists", class: "form-control") %>
+        </div>
 
-<%= form_tag(search_path, method: "post", class: "form") do %>
-  <div class="form-group form-inline">
-    <%= text_field_tag(:q, nil, placeholder: "Search Artists", class: "form-control") %>
+        <%= submit_tag "Jam?", class: "btn btn-default" %>
+      <% end %>
+    </div>
+    <div class="col-lg-6">
+      <span>...or &nbsp;</span><%= link_to "Jam Roulette", random_path, id: "randomizer", class: "btn btn-default" %>
+    </div>
   </div>
 
-  <%= submit_tag "Jam?", class: "btn btn-default" %>
-<% end %>
+</div>
+
+
+
+
+
 
 <div class="jams-div">
 </div>
