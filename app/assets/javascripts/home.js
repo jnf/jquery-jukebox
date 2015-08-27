@@ -33,7 +33,6 @@ $(function() {
         type: "GET",
         success: function(data) {
           var songs = data;
-          console.log(songs);
           displaySongs(songs);
         }
       });
@@ -112,7 +111,6 @@ $(function() {
       var id = extractVimeoId(url);
       var embedUrl = baseVimeoUrl + id;
     }
-    
     return embedUrl;
   }
 
