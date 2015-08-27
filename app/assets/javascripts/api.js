@@ -23,7 +23,7 @@ $(function() {
        $("a").empty(); // Removing the previous results
 
        for (i = 0; i < artistArray.length; i++) {
-         var anchor = $("<a class='song'></a>");
+         var anchor = $("<a class='song' target='new'></a>");
          anchor.text(artistArray[i].artist + " - " + artistArray[i].title);
          anchor.prop("href", artistArray[i].url);
          $(".song").wrap("<p></p>");
