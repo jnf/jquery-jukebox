@@ -11,11 +11,13 @@ $(function() {
       type: method,
       success: function (data) {
         if (data.length == 0) {
+          $(".results").append("Uhh, what's that you wanted?");
           $('<iframe />');
           $('<iframe />', {
             class: 'giphy',
             src: 'http://giphy.com/embed/tUmqyBrCWAyTC'
           }).appendTo(".results");
+
         } else {
           for (var i = 0; i < data.length; i++) {
             var nextline = $("<br><br>");
