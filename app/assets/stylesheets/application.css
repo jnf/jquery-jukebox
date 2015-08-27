@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+/*SO COOL*/
+input[name=artist] {
+  background-color: black;
+  color: white;
+}
+
+/*li:nth-child(3n) {
+  background-color: hsla(0, 0%, 75%, 0.5);
+}
+li:nth-child(3n-1) {
+  background-color: hsla(0, 0%, 65%, 0.5);
+}
+li:nth-child(3n-2) {
+  background-color: hsla(0, 0%, 55%, 0.5);
+}*/

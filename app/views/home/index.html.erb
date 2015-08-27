@@ -1,0 +1,9 @@
+<h1>GIVE ME A JAM</h1>
+
+<%= form_tag(root_path, method: :get) do %>
+  <%= label_tag :artist, "Artist" %>
+  <%= text_field_tag :artist, nil, placeholder: "Artist" %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<div class="results"></div>
