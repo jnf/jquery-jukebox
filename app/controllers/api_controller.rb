@@ -5,7 +5,8 @@ class ApiController < ApplicationController
     begin
       response = HTTParty.get(JAM, query: { "by" => "artist", "q" => params[:artist] })
       data = setup_data(response)
-      code = data.any? ? :ok : :no_content
+      # code = data.any? ? :ok : :no_content
+      code = :ok
     rescue
       data = {}
       code = :no_content
@@ -23,7 +24,8 @@ class ApiController < ApplicationController
         via: jam.fetch("via", ""),
         url: jam.fetch("viaUrl", ""),
         title: jam.fetch("title", ""),
-        artist: jam.fetch("artist", "")
+        artist: jam.fetch("artist", ""),
+        image: jam.fetch("jamvatarMedium", "")
       }
     end
   end
