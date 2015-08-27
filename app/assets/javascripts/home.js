@@ -1,8 +1,9 @@
 $(function() {
-  $("button[type=submit]").click(function(event) {
+  $(".submit").click(function(event) {
     event.preventDefault();
     var form_tag = $(this).parent("form");
     var method = form_tag.attr("method");
+    console.log(method);
     var search_field = $(this).siblings("input[type=text]").val();
     var url = form_tag.attr("action") + "/" + search_field;
     $(".results").empty();
