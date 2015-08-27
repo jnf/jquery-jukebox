@@ -6,11 +6,11 @@ $(function() {
     var url = ("/search/" + artist);
 
     $.getJSON(url, function(data) {
+      $("li").remove();
       if (data.length === 0) {
         // var video = $('<video></video>');
         alert( "No one has heard of that artist! You must be the coolest!" );
       } else {
-        $("li").remove();
         for (var i = 0; i < data.length; i++) {
           var thisArtist = data[i];
           var listItem = $('<li></li>');
