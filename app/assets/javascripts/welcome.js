@@ -9,8 +9,17 @@ $(document).ready(function() {
       type: method,
       dataType: "json",
       success: function(data) {
-        var rareArray = data;
-        console.log(rareArray);
+        clearPreviousResults();
+        var rareSongs = data.jams;
+        console.log(rareSongs);
+        for (var i = 0; i < 20; i++){
+          var anchor = $('<a></a>');
+          anchor.text(rareSongs[i].title + " by " + rareSongs[i].artist);
+          anchor.prop('href', rareSongs[i].url);
+          $('body').append(anchor);
+          $('a').wrap( "<div class='result'></div>" )
+          $('body').append("<br>");
+        }
       }
       });
   });
@@ -28,15 +37,15 @@ $(document).ready(function() {
       dataType: "json",
       success: function (data) {
       clearPreviousResults();
-        var songArray = data;
-        (songArray.length < 1) ? noResults() : console.log("");
-          for (var i = 0; i < songArray.length; i++){
-          var anchor = $('<a></a>');
-           anchor.text(songArray[i].title + " by " + songArray[i].artist);
-           anchor.prop('href', songArray[i].url);
-           $('body').append(anchor);
-           $('a').wrap( "<div class='result'></div>" )
-           $('body').append("<br>");
+      var songArray = data;
+      (songArray.length < 1) ? noResults() : console.log("");
+      for (var i = 0; i < songArray.length; i++){
+      var anchor = $('<a></a>');
+       anchor.text(songArray[i].title + " by " + songArray[i].artist);
+       anchor.prop('href', songArray[i].url);
+       $('body').append(anchor);
+       $('a').wrap( "<div class='result'></div>" )
+       $('body').append("<br>");
         }
       }
     });
@@ -56,5 +65,15 @@ function noResults(){
   $('body').append(defaultVideo);
 }
 
+// function populateResults(){
+//   for (var i = 0; i < songArray.length; i++){
+//   var anchor = $('<a></a>');
+//    anchor.text(songArray[i].title + " by " + songArray[i].artist);
+//    anchor.prop('href', songArray[i].url);
+//    $('body').append(anchor);
+//    $('a').wrap( "<div class='result'></div>" )
+//    $('body').append("<br>");
+//  }
+// }
 
 var defaultVideo = '<iframe width="420" height="315" src="https://www.youtube.com/embed/PJQVlVHsFF8?autoplay=1" frameborder="0" allowfullscreen></iframe>'
