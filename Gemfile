@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
+# For external API calls
 gem 'httparty', '~> 0.13.5'
-
+# styling
+gem 'bootstrap-sass'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record

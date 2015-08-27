@@ -14,6 +14,9 @@
  *= require_self
  */
 
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
 iframe {
   width: 420px;
   height: 315px;
