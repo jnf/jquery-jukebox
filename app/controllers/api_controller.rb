@@ -1,5 +1,6 @@
 class ApiController < ApplicationController
   JAM = "http://api.thisismyjam.com/1/search/jam.json"
+  RANDO = "http://api.thisismyjam.com/1/explore/chance.json"
 
   def search
     begin
@@ -16,9 +17,9 @@ class ApiController < ApplicationController
 
   def form; end
 
-  def chance
+  def rando
     begin
-      response = HTTParty.get(JAM, query: { "by" => "artist", "q" => params[:artist] })
+      response = HTTParty.get(RANDO)
       data = setup_data(response)
       code = :ok
     rescue
@@ -27,6 +28,7 @@ class ApiController < ApplicationController
     end
 
     render json: data.as_json, code: code
+
   end
 
   private
