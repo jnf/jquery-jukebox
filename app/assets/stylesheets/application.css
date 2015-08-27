@@ -20,6 +20,10 @@ input[name=artist] {
   color: white;
 }
 
+input[testing=yes] {
+  background-color: red;
+}
+
 /*li:nth-child(3n) {
   background-color: hsla(0, 0%, 75%, 0.5);
 }
