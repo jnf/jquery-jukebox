@@ -1,9 +1,14 @@
-<h1>Jeri's Brilliant Rainbow jQuery Jukebox</h1>
-
-<%= form_tag search_path, method: "get" do %>
-  <%= text_field_tag :artist %>
-  <%= submit_tag "Search by Artist", id: "button" %>
-<% end %>
-
 <div id="results">
+  <%= form_tag search_path, method: "get" do %>
+    <%= text_field_tag :artist %>
+    <%= submit_tag "Search by Artist", id: "button" %>
+  <% end %>
+
+  <ul class="list-group">
+    <li class="list-group-item">
+      <p>Search for your favorite artist in the box above!</p>
+      <p>Find out what other people think is their best song.</p>
+      <p>This service is powered by <a id="jam" href="https://www.thisismyjam.com/">This Is My Jam</a>.</p>
+    </li>
+  </ul>
 </div>

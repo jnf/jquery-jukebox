@@ -1,4 +1,13 @@
-$(function() { // this tricks rails into seeing our code
+$(function() {
+  // set the container's minimum height based on the window's size
+  var container = $('.container');
+  var windowHeight = $(window).height();
+  container.css({ "min-height": windowHeight + 'px' });
+
+  // set default form padding based on window size, too
+  var form = $('form');
+  form.css({ "margin-bottom": windowHeight - 270 + 'px' });
+
   $("form").submit(function(event) {
     event.preventDefault();
     var button = $(":submit");
@@ -21,10 +30,15 @@ $(function() { // this tricks rails into seeing our code
   });
 
   function displayResults(data) {
+    // oh hey! if we're displaying results, we don't need to see the jukebox anymore.
+    form.css({ "margin-bottom": 25 + 'px' });
+    // goodbye, jukebox.
+
     var results = $('#results');
     if ($('ul')) { $('ul').remove(); };
     var list = $('<ul></ul>');
     list.addClass('list-group');
+
     for(var i = 0; i < data.length; i++) {
       var result = data[i];
       var listItem = $('<li></li>');
@@ -41,6 +55,7 @@ $(function() { // this tricks rails into seeing our code
 
       list.append(listItem);
     }
+
     results.append(list);
   }
 

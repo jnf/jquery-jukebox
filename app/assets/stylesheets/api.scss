@@ -1,10 +1,32 @@
-// Place all the styles related to the api controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 $dark-green: #080;
 $black: #000;
 $results-width: 600px;
+
+body {
+  padding: 0;
+  margin: 0;
+  background-image: url("jukebox.jpg");
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+main.container {
+  min-width: 700px;
+  max-width: 700px;
+  width: 700px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+h1#title {
+  margin: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 20%;
+  color: #ffe;
+  display: inline-block;
+  text-align: center;
+}
 
 #results {
   padding-top: 20px;
@@ -14,6 +36,7 @@ $results-width: 600px;
   min-width: $results-width;
   a, a:link, a:visited, a:hover, a:active {
     font-size: 1.5rem;
+    font-weight: bold;
     color: $dark-green;
     padding: 5px;
     display: inline-block;
@@ -23,23 +46,20 @@ $results-width: 600px;
     text-decoration: none;
     color: $black;
   }
+  a#jam {
+    padding: 0px;
+  }
 }
 
-li:nth-of-type(6n) {
-  background: #fa8; // orange, 6 12
+li:nth-of-type(4n) {
+  background: rgba(255, 150, 255, 0.9);
 }
-li:nth-of-type(6n+1) {
-  background: #ff8; // yellow, 1 7
+li:nth-of-type(4n+1) {
+  background: rgba(150, 255, 150, 0.9);
 }
-li:nth-of-type(6n+2) {
-  background: #8f8; // green, 2 8
+li:nth-of-type(4n+2) {
+  background: rgba(255, 255, 150, 0.9);
 }
-li:nth-of-type(6n+3) {
-  background: #8ff; // cyan, 3 9
-}
-li:nth-of-type(6n+4) {
-  background: #aaf; // blue, 4 10
-}
-li:nth-of-type(6n+5) {
-  background: #f8f; // pink, 5 11
+li:nth-of-type(4n+3) {
+  background: rgba(150, 255, 255, 0.9);
 }
