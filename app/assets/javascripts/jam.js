@@ -9,8 +9,7 @@ $(function () {
       type: method,
       data: { "artist" : $("#q").val()},
       success: function(data) {
-        console.log(data);
-        $(".jams-div").html();
+        $(".jams-div").html("");
         renderData(data);
       }
     }); // end ajax
