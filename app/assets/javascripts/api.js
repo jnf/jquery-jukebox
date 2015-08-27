@@ -1,4 +1,8 @@
 $(function() {
+  $(".btn").mouseup(function(){
+    $(this).blur();
+  });
+
   $('.search').click(function() {
     event.preventDefault();
 
