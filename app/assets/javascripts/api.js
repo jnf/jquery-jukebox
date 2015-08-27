@@ -65,8 +65,18 @@ $(function() {
           anchor.parent().append(embedVideo);
         }
 
-      }
+        if (data[i].via == "vimeo") {
+          var embedVideo = $('<iframe></iframe>');
+          var embedUrl = data[i].url.replace('vimeo.com/', 'player.vimeo.com/video/');
 
+          embedVideo.attr('src', embedUrl);
+          embedVideo.attr('width', '320');
+          embedVideo.attr('height', '180');
+          embedVideo.attr('frameborder', '0');
+
+          anchor.parent().append(embedVideo);
+        }
+      }
     }
 
     $('li').addClass('list-group-item');
