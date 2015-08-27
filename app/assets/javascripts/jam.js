@@ -29,6 +29,9 @@ Formatter.prototype.build = function() {
     case "vimeo":
       var code = this.vimeo_embed();
       break;
+    case "soundcloud":
+      var code = this.soundcloud_embed();
+      break;
     default:
       var code = this.link_to();
   }
@@ -59,5 +62,14 @@ Formatter.prototype.vimeo_embed = function() {
 
   iframe.prop("allowfullscreen","").prop('frameborder', 0);
   iframe.prop("src", "https://player.vimeo.com/video/" + embed_reference);
+  return iframe;
+}
+
+Formatter.prototype.soundcloud_embed = function() {
+  var embed_reference = encodeURI(this.data["url"]);
+  var iframe = $('<iframe></iframe>');
+
+  iframe.prop("allowfullscreen","").prop('frameborder', 0);
+  iframe.prop("src", "https://w.soundcloud.com/player/?url=" + embed_reference);
   return iframe;
 }
