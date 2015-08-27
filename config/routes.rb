@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     get '/search', action: 'home'
 
     get '/search/:artist', action: 'search'
-
+    get '/rando', action: 'rando'
     get '/breaking', action: 'breaking'
   end
 

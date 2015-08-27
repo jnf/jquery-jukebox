@@ -1,13 +1,41 @@
 // Place all the styles related to the api controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+// from Color Palette #2249
+$black: #2d1001;
 $dark-brown: #552601;
 $light-brown: #8c450d;
+$orange: #f69649;
+$pale-yellow: #feefaa;
+
+body {
+  font-family: 'Abel', sans-serif;
+  font-size: 2em;
+  color: $black;
+}
+
+h1 {
+  color: $black;
+}
+
+.btn-primary {
+  background-color: $orange;
+}
+
+.btn-info {
+  background-color: $dark-brown;
+
+}
 
 #results {
   color: $light-brown;
 
+}
+
+.button_to {
+  display: inline;
 }

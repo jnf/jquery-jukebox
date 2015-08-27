@@ -1,9 +1,19 @@
-<h1>Search for Your Jam</h1>
-<div id="form">
-  <%= text_field_tag :artist %>
-  <%= button_to "Look up Jukebox Users", search_path, method: :get, class: "btn btn-default"%>
-</div>
-  <%= button_to "Breaking Songs", breaking_path, method: :get, class: "btn btn-default" %>
-<div id="results">
-
+<div class="container-fluid">
+  <div class="row">
+    <h1>Search for Your Jam</h1>
+      <%= text_field_tag :artist %>
+      <%= button_to "Start Jammin'", search_path,
+       method: :get, class: "btn btn-primary", id: "searchartist"
+      %>
+    <%= button_to "Break Out", breaking_path,
+     method: :get, class: "btn btn-info", id: "breaking"
+    %>
+    <%= button_to "Take a Chance", rando_path,
+     method: :get, class: "btn btn-info", id: "rando"
+    %>
+  </div>
+  <div class='row'>
+    <div class="col-md-6" id="results">
+    </div>
+  </div>
 </div>
