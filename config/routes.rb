@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   controller :api do
     get '/search', action: 'home'
 
-    post '/search/:artist', action: 'search'
+    get '/search/:artist', action: 'search'
 
     get '/breaking', action: 'breaking'
   end
