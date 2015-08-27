@@ -18,7 +18,9 @@ $(function() {
           for (var i = 0; i < data.length; i++) {
             var anchor = $("<a></a>");
             var nextline = $("<br><br>");
-            anchor.text("Artist: " + data[i].artist + ", Song: " + data[i].title);
+            anchor.text("Artist: " + data[i].artist +
+                        ", Song: " + data[i].title +
+                        " via: " + data[i].via );
             anchor.prop("href", data[i].url); //look up diff between attr and prop
             $(".results").append(anchor);
             $(".results").append(nextline);
