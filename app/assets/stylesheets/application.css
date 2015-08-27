@@ -15,5 +15,20 @@
  */
 
 .success {
-  color: red;
+  font-weight: bold;
+}
+
+body {
+  background-image: url("record.jpg");;
+}
+
+div {
+  position: center;
+  margin-left: 17em;
+  margin-top: 5em;
+  background-color: rgba(255, 235, 194, .9);
+  width: 50em;
+  height: 30em;
+  padding: 1em;
+  font-family: 'Lato', sans-serif;
 }

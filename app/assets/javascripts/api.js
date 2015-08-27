@@ -27,8 +27,8 @@ $(function() {
           anchor.prop('href', result_array[i].url);
           var line = $('<br>')
 
-          $('body').append(anchor);
-          $('body').append(line);
+          $('div').append(anchor);
+          $('div').append(line);
         }
       }
     });
