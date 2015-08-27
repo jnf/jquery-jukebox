@@ -15,5 +15,5 @@ Hi! For this project, let's use [This is My Jam](https://www.thisismyjam.com/) t
 - DONE At no point should the view refresh or the user be taken to another URL.
 
 ## Bonus Fun
-- Instead of adding links to the view, try using the data to create embedded players for the specific service (i.e., embed the YouTube video, instead of linking to it).
+- DONE Instead of adding links to the view, try using the data to create embedded players for the specific service (i.e., embed the YouTube video, instead of linking to it).
 - If a user's search returns no results, suggest/embed/link to something for them instead.
