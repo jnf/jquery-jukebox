@@ -21,26 +21,35 @@ $(function() { // this tricks rails into seeing our code
   });
 
   function displayResults(data) {
-    var body = $('body');
-    if ($('div')) { $('div').remove(); };
+    var results = $('#results');
+    if ($('ul')) { $('ul').remove(); };
 
-    var div = $('<div></div>');
+    var list = $('<ul></ul>');
+    list.addClass('list-group');
     for(var i = 0; i < data.length; i++) {
       var result = data[i];
-      var paragraph = $('<p></p>');
+      var listItem = $('<li></li>');
+      listItem.addClass('list-group-item');
       var link = $('<a></a>');
       link.text(result.artist + "'s " + result.title);
       link.prop('href', result.url);
-      paragraph.append(link);
+      listItem.append(link);
 
       if (result.url.includes("youtube")) {
-        paragraph.append("<br />");
-        paragraph.append(youtubeEmbed(result.url));
+        listItem.append("<br />");
+        listItem.append(youtubeEmbed(result.url));
       }
 
-      div.append(paragraph);
+      list.append(listItem);
     }
-    body.append(div);
+    results.append(list);
+  }
+
+  function displayMessage(message) {
+    var messageElement = $('#message');
+    var header = $("<h3></h3>");
+    header.append(message);
+    messageElement.append(header);
   }
 
   function youtubeEmbed(url) {
@@ -53,10 +62,9 @@ $(function() { // this tricks rails into seeing our code
     return output;
   };
 
-  function rickRoll(artist) {
-    var explanationText = "No results were found for " + artist + ". Perhaps you would enjoy one of these musical selections:"
-    var body = $('body');
-    body.append("<p>" + explanationText + "</p>");
+  function rickRoll(failedQuery) {
+    var explanationText = "No results were found for " + failedQuery + ". Perhaps you will enjoy one of these musical selections."
+    displayMessage(explanationText);
 
     var firstLink = {
       artist: "The Muppets",
