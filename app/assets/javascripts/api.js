@@ -19,7 +19,7 @@ $(function() {
     $('ul').empty();
     if (data.length == 0) {
       var listItem = $('<li></li>');
-      listItem.addClass("empty");
+      listItem.addClass('empty');
       listItem.text('Sorry, there were no jams for this artist.');
       $('ul').append(listItem);
 
