@@ -1,7 +1,8 @@
 
 $(function() {
 
-  function searchVals(){
+  // Sets search form values
+  function setSearchVals(){
     var artistField = $("input#artist");
     var query = artistField.val();
     var formTag = $("form#search");
@@ -12,20 +13,15 @@ $(function() {
       // This needs to be a key value pair
       params : { "artist": query},
       url : url,
-      aMethod: method
+      method: method
     };
   }
 
-  
-
-  $(".search").click(function(event){
-    event.preventDefault();
-
-    $.ajax(searchVals().url, {
-      type: searchVals().aMethod,
-      data: searchVals().params,
+  function executeSearch(searchVals){
+    $.ajax(searchVals.url, {
+      type: searchVals.method,
+      data: searchVals.params,
       success: function (data) {
-        console.log(data)
         var artistArray = data; // Renamed for clarity
 
         // Removing the previous results
@@ -54,6 +50,13 @@ $(function() {
 
       }
     });
+  }
+
+  $(".search").click(function(event){
+    event.preventDefault();
+
+    executeSearch(setSearchVals())
+
   });
 
   // Popular Tracks
