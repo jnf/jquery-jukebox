@@ -19,11 +19,13 @@ $(function() {
      success: function (data) {
 
        var artistArray = data;
-       var anchor = $("<a></a>");
-       anchor.text(artistArray[0].artist + " - " + artistArray[0].title);
-       anchor.prop("href", artistArray[0].url);
 
-       $("body").append(anchor);
+       for (i = 0; i < artistArray.length; i++) {
+         var anchor = $("<a></a><br />");
+         anchor.text(artistArray[i].artist + " - " + artistArray[i].title);
+         anchor.prop("href", artistArray[i].url);
+         $("body").append(anchor);
+       }
       }
     });
 
