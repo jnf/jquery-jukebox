@@ -1,0 +1,8 @@
+<h1>Who do you want to listen to today?</h1>
+
+<%= form_tag('/search', method: "get") do %>
+
+    <%= text_field_tag :artist, class: "input-field" %>
+
+    <%= submit_tag "Search", class: "art" %>
+<% end %>
