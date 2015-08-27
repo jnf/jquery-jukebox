@@ -14,34 +14,36 @@ $(function() {
     var query = { "artist" : artistField }
 
     $.ajax(url, {
-     type: method,
-     data: query,
-     success: function (data) {
+      type: method,
+      data: query,
+      success: function (data) {
 
-       var artistArray = data; // Renamed for clarity
+        var artistArray = data; // Renamed for clarity
 
-       $("a").empty(); // Removing the previous results
+        // Removing the previous results
+        $("a, iframe").remove();
 
-       for (i = 0; i < artistArray.length; i++) {
+        // For each search result
+        for (i = 0; i < artistArray.length; i++) {
 
-        // YouTube embed
-        if (artistArray[i].via == "youtube") {
-        var iframeTemplate = $("<iframe src = '' type='text/html' width='640' height='390' />");
-        $("body").append(iframeTemplate);
-        var youtubeURL = artistArray[i].url
-        var modifiedYoutubeUrl = youtubeURL.replace("watch?v=", "embed/")
-        console.log(modifiedYoutubeUrl)
-        $("iframe").attr("src", modifiedYoutubeUrl)
+          // YouTube embed
+          if (artistArray[i].via == "youtube") {
+            var iframeTemplate = $("<iframe class='other-media' type='text/html' width='640' height='390' src = '' ></iframe>");
+            var youtubeURL = artistArray[i].url;
+            var modifiedYoutubeUrl = youtubeURL.replace("watch?v=", "embed/");
+            iframeTemplate.attr("src", modifiedYoutubeUrl);
+            $(".search-results").append(iframeTemplate);
+          } else {
+            //  Link Version
+            var anchor = $("<a class='song-link' target='new'></a>");
+            anchor.text(artistArray[i].artist + " - " + artistArray[i].title);
+            anchor.prop("href", artistArray[i].url);
+            $(".search-results").append(anchor);
+          }
         }
 
-          //  Link Version
-          var anchor = $("<a class='song' target='new'></a>");
-          anchor.text(artistArray[i].artist + " - " + artistArray[i].title);
-          anchor.prop("href", artistArray[i].url);
-          $(".song").wrap("<p></p>");
-          $("body").append(anchor);
+        $(".song-link").wrap("<p></p>");
 
-       }
       }
     });
   });
