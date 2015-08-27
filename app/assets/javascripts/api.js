@@ -28,10 +28,5 @@ $(function() {
        }
       }
     });
-
-    // collect text in the field
-    // assemble the correct url
-    // snag the correct method
-    // hit the controller
   });
 });
