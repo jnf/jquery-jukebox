@@ -16,7 +16,18 @@ class ApiController < ApplicationController
 
   def form; end
 
-  def results; end
+  def chance
+    begin
+      response = HTTParty.get(JAM, query: { "by" => "artist", "q" => params[:artist] })
+      data = setup_data(response)
+      code = :ok
+    rescue
+      data = {}
+      code = :no_content
+    end
+
+    render json: data.as_json, code: code
+  end
 
   private
 

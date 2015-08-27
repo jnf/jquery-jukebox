@@ -22,9 +22,6 @@ $(function() {
     var method = text_box.attr("method");
 
     var last_child = $('body').children(".results");
-    //var last_child = $(formTag).children(':last-child');
-
-  //  console.log(last_child);
 
   $.ajax(url, {
     type: method,
@@ -35,10 +32,6 @@ $(function() {
       } else {
         $('.results').empty().append(displayData(data));
       }
-  //  displayData(data);
-   //$('.results').append(displayData(data));
-    //$('.something').html(displayData(data));
-  //  console.log(displayData(data));
     }
 
   });
@@ -55,17 +48,10 @@ $(function() {
       p_tag.append(anchor);
       $('.results').append(p_tag);
 
-      //via = data[i].via;
   }
   return data; //return artist will have console.log(displayData(data)); inside success function to be only the artist
 }
 
 
   });
-
-// var archor = $('<a></a>'); // new anchor element
-//  anchor.text('Text on the page.');
-//  anchor.prop('href', '/link/to/stuff'); prop > attr
-//  $('body').append(anchor); // <a href="/link/to/stuff">Text on the page.</a>
-//
 });
