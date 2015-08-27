@@ -17,14 +17,22 @@ class ApiController < ApplicationController
 
   def popular
     begin
+      response = HTTParty.get(POPULAR)
+      data = setup_data(response)
+      code = data.any? ? :ok : :no_content
     rescue
+      data = {}
+      code = :no_content
     end
+
+    render json: data.as_json, status: code
   end
 
   private
 
   def setup_data(response)
     jams = response.fetch "jams", {}
+    jams = jams[0..9] # top 10 jams
     jams.map do |jam|
       {
         via: jam.fetch("via", ""),
