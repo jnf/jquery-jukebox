@@ -3,8 +3,7 @@ class ApiController < ApplicationController
   RANDO_JAM = "http://api.thisismyjam.com/1/explore/chance.json"
   LIMIT = 10
 
-  def index
-  end
+  def index; end
 
   def search
     begin

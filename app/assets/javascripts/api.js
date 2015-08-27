@@ -2,6 +2,7 @@ $(function() {
   var emptyResponseUrl = "https://www.youtube.com/embed/B62P6Gm9jpE?rel=0&autoplay=1";
   var noArtistMessage = "No one has heard of that artist! You must be the coolest!";
   var failedRandoMessage = "Our randomizer broke! Try again.";
+  var errorMsg = "Something terrible has happened. Run for the hills.";
 
   function noData(message) {
     var frame = $("<iframe id='frame' width='640' height='360' src='' frameborder='0' autoplay='1' allowfullscreen></iframe>");
@@ -18,16 +19,26 @@ $(function() {
     frame.attr("src", url + "?rel=0&autoplay=1");
   }
 
+  function displayTIMJdata(data) {
+    for (var i = 0; i < data.length; i++) {
+      var thisArtist = data[i];
+      var listItem = $('<li></li>');
+      var anchor = $('<a></a>');
+
+      anchor.text(thisArtist.artist + ", " + thisArtist.title);
+      anchor.prop("href", thisArtist.url);
+      listItem.append(anchor);
+      $('ul').append(listItem);
+    }
+  }
+
   $(".btn-search").click(function(event) {
     event.preventDefault();
-
     var artist = $(".artist").val();
     var url = ("/search/" + artist);
 
     $.getJSON(url, function(data) {
-      $("li").remove();
-      $("iframe").remove();
-      $(".message").remove();
+      $("li, iframe, .message").remove();
       if (data.length === 0) {
         noData(noArtistMessage);
       } else {
@@ -35,32 +46,22 @@ $(function() {
         if (firstResult.via === "youtube") {
           showYoutube(firstResult.url);
         }
-        for (var i = 0; i < data.length; i++) {
-          var thisArtist = data[i];
-          var listItem = $('<li></li>');
 
-          var anchor = $('<a></a>');
-          anchor.text(thisArtist.artist + ", " + thisArtist.title);
-          anchor.prop("href", thisArtist.url);
-          listItem.append(anchor);
-          $('ul').append(listItem);
-        }
+        displayTIMJdata(data);
       }
     }).fail(function() {
-      alert( "Something terrible has happened. Run for the hills." );
+      alert(errorMsg);
     });
   });
 
 
   $(".btn-chance").click(function(event) {
     event.preventDefault();
-
     var url = ("/chance");
 
     $.getJSON(url, function(data) {
-      $("li").remove();
-      $("iframe").remove();
-      $(".empty").remove();
+      $("li, iframe, .message").remove();
+
       if (data.length === 0) {
         noData(failedRandoMessage);
       } else {
@@ -68,19 +69,10 @@ $(function() {
         if (firstResult.via === "youtube") {
           showYoutube(firstResult.url);
         }
-        for (var i = 0; i < data.length; i++) {
-          var thisArtist = data[i];
-          var listItem = $('<li></li>');
-
-          var anchor = $('<a></a>');
-          anchor.text(thisArtist.artist + ", " + thisArtist.title);
-          anchor.prop("href", thisArtist.url);
-          listItem.append(anchor);
-          $('ul').append(listItem);
-        }
+        displayTIMJdata(data);
       }
     }).fail(function() {
-      alert( "Something terrible has happened. Run for the hills." );
+      alert(errorMsg);
     });
   });
 });
