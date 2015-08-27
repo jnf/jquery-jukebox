@@ -8,7 +8,6 @@ $(function(){
 
     var button = $(this);
     var formTag = button.parent();
-    // var url = formTag.attr("action");
     var value = formTag.children("input#artist").val();
     var url = "/search/" + value;
     var query = { 'artist' : value } ;
@@ -48,6 +47,18 @@ $(function(){
         }
 
         $("#results").append(list);
+      }
+    });
+  });
+
+  $('#random').click(function(){
+    var url = "/random";
+
+    $.ajax(url, {
+      type: "GET",
+      success: function(data){
+        removeResults();
+        console.log(data);
       }
     });
   });

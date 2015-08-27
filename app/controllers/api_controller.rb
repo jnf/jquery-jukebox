@@ -16,6 +16,19 @@ class ApiController < ApplicationController
     render json: data.as_json, code: code
   end
 
+  def random
+    begin
+      response = HTTParty.get("http://api.thisismyjam.com/1/explore/chance.json")
+      data = select_random(response)
+      code = :ok
+    rescue
+      data = {}
+      code = :no_content
+    end
+    binding.pry
+    render json: data.as_json, code: code
+  end
+
   private
 
   def setup_data(response)
@@ -28,5 +41,10 @@ class ApiController < ApplicationController
         artist: jam.fetch("artist", "")
       }
     end
+  end
+
+  def select_random(response)
+    jams = response.fetch "jams", []
+    random_jam = jams.sample
   end
 end

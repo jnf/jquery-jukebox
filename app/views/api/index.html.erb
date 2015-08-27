@@ -3,13 +3,23 @@
 
   <br><br>
 
-  <div class="center-block col-sm-3 no-float">
-    <%= form_tag(search_path(:artist), method: :get) do %>
-      <%= label_tag :artist, "Find Jams by Artist" %>
-      <%= text_field_tag :artist, nil, class: "form-control center-text" %>
-      <br>
-      <%= submit_tag "Search", id: 'search', class: "btn btn-default" %>
-    <% end %>
+  <div class="center-block col-sm-8 no-float">
+    <div class="col-sm-5">
+      <%= form_tag(search_path(:artist), method: :get) do %>
+        <%= label_tag :artist, "Find Jams by Artist" %>
+        <%= text_field_tag :artist, nil, class: "form-control center-text" %>
+        <br>
+        <%= submit_tag "Search", id: 'search', class: "btn btn-default" %>
+      <% end %>
+    </div>
+
+    <div class="col-sm-2">
+      <h4>&mdash; OR &mdash;</h4>
+    </div>
+
+    <div class="col-sm-5 center-text">
+      <%= button_tag "I'm Feelin' Lucky", class: "btn btn-default", id: "random" %>
+    </div>
   </div>
 </div>
 
