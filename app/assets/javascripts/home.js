@@ -88,10 +88,14 @@ $(function() {
     makeLI();
     var url = makeEmbedUrl(song.url, song.via);
     var iFrame = $("<iframe></iframe>");
+    iFrame.addClass("embed-responsive-item");
     iFrame.prop("src", url);
+    var div = $("<div></div>");
+    div.addClass("embed-responsive embed-responsive-4by3");
+    div.append(iFrame);
     var lastLI = $("li:last-child");
 
-    lastLI.append(iFrame);
+    lastLI.append(div);
   }
 
   function extractYoutubeId(url) {
@@ -121,6 +125,7 @@ $(function() {
 
   function makeUL() {
     var list = $("<ul></ul>");
+    list.addClass("results");
     $("form.search").after(list);
   }
 
