@@ -1,14 +1,27 @@
 class ApiController < ApplicationController
   JAM = "http://api.thisismyjam.com/1/search/jam.json"
   POPULAR = "http://api.thisismyjam.com/1/explore/popular.json"
+  CHANCE = "http://api.thisismyjam.com/1/explore/chance.json"
 
   def index; end
 
   def search
     begin
-      response = HTTParty.get(JAM, query: { "by" => "artist", "q" => params[:artist] })
-      data = setup_data(response)
-      code = :ok
+      if params[:artist] == ""
+        response = HTTParty.get(CHANCE)
+        data = setup_data(response)
+        code = :ok
+      else
+        response = HTTParty.get(JAM, query: { "by" => "artist", "q" => params[:artist] })
+        data = setup_data(response)
+        if data == []
+          response = HTTParty.get(CHANCE)
+          data = setup_data(response)
+        else
+          data
+        end
+        code = :ok
+      end
     rescue
       data = {}
       code = :no_content
