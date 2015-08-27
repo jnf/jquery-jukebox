@@ -19,6 +19,16 @@ class ApiController < ApplicationController
   end
 
   def random
+    begin
+      response = HTTParty.get(JAM_RANDOM)
+      data = setup_data(response)
+      data = data.sample(10)
+      code = :ok
+    rescue
+      data = {}
+      code = :no_content
+    end
+    render json: data.as_json, code: code
   end
 
   private
