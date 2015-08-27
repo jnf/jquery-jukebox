@@ -1,4 +1,16 @@
 $(function() {
+  var emptyResponseUrl = "https://www.youtube.com/embed/B62P6Gm9jpE?rel=0&autoplay=1";
+  var noArtistMessage = "No one has heard of that artist! You must be the coolest!";
+  var failedRandoMessage = "Our randomizer broke! Try again.";
+
+  function noData(message) {
+    var frame = $("<iframe id='frame' width='640' height='360' src='' frameborder='0' autoplay='1' allowfullscreen></iframe>");
+    var addMessage = $("<h4 class='message'>" + message + "</h4>");
+    $(".vid-frame").prepend(addMessage);
+    $(".vid-frame").append(frame);
+    frame.attr("src", emptyResponseUrl);
+  }
+
   $(".btn-search").click(function(event) {
     event.preventDefault();
 
@@ -8,13 +20,9 @@ $(function() {
     $.getJSON(url, function(data) {
       $("li").remove();
       $("iframe").remove();
-      $(".coolest").remove();
+      $(".message").remove();
       if (data.length === 0) {
-        var frame = $("<iframe id='frame' width='640' height='360' src='' frameborder='0' autoplay='1' allowfullscreen></iframe>");
-        var noArtist = $("<h4 class='coolest'>No one has heard of that artist! You must be the coolest!</h4>");
-        $(".vid-frame").prepend(noArtist);
-        $(".vid-frame").append(frame);
-        frame.attr("src", "https://www.youtube.com/embed/B62P6Gm9jpE?rel=0&autoplay=1");
+        noData(noArtistMessage);
       } else {
         var firstResult = data[0];
         if (firstResult.via === "youtube") {
@@ -50,11 +58,7 @@ $(function() {
       $("iframe").remove();
       $(".empty").remove();
       if (data.length === 0) {
-        var frame = $("<iframe id='frame' width='640' height='360' src='' frameborder='0' autoplay='1' allowfullscreen></iframe>");
-        var noArtist = $("<h4 class='empty'>Our randomizer broke! Try again.</h4>");
-        $(".vid-frame").prepend(noArtist);
-        $(".vid-frame").append(frame);
-        frame.attr("src", "https://www.youtube.com/embed/B62P6Gm9jpE?rel=0&autoplay=1");
+        noData(failedRandoMessage);
       } else {
         var firstResult = data[0];
         if (firstResult.via === "youtube") {
