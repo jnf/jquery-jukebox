@@ -19,8 +19,13 @@ $(function() {
     $('ul').empty();
     if (data.length == 0) {
       var listItem = $('<li></li>');
+      listItem.addClass("empty");
       listItem.text('Sorry, there were no jams for this artist.');
       $('ul').append(listItem);
+
+      var jarImage = $('<img>');
+      jarImage.attr('src', '/assets/emptyjar.gif')
+      $('.empty').append(jarImage);
 
     } else {
       for (var i = 0; i < data.length; i++) {
