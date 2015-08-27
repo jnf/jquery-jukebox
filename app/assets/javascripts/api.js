@@ -47,13 +47,26 @@ $(function() {
 
     } else {
       for (var i = 0; i < data.length; i++) {
+
         var anchor = $('<a></a>');
         anchor.text(data[i].artist + " - " + data[i].title);
         anchor.prop('href', data[i].url);
         $('ul').append(anchor);
+        anchor.wrap('<li></li>');
+
+        if (data[i].via == "youtube") {
+          var embedVideo = $('<iframe></iframe>');
+          var embedUrl = data[i].url.replace('watch?v=', 'embed/');
+
+          embedVideo.attr('src', embedUrl);
+          embedVideo.attr('width', '320');
+          embedVideo.attr('height', '180');
+
+          anchor.parent().append(embedVideo);
+        }
+
       }
 
-      $('a').wrap('<li></li>');
     }
 
     $('li').addClass('list-group-item');

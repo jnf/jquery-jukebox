@@ -52,6 +52,10 @@ ul {
   margin: 20px auto;
 }
 
+iframe {
+  display: inherit;
+  margin: 0 auto;
+}
 .empty img {
   max-width: 50%;
 }
