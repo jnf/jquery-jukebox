@@ -8,7 +8,6 @@ $(function() {
     var input = formTag.children('input#artist');
     var value = input.val();
     var query = { 'artist' : value};
-    console.log(query)
     var url = formTag.attr('action');
     var method = formTag.attr('method');
 
@@ -18,12 +17,9 @@ $(function() {
       success: function (data) {
         heading.addClass("success");
 
-        result_array = data
-        console.log(result_array)
+        result_array = data;
 
-        var list = $("<ul></ul>");
-          list.text("Results")
-         $('body').append(list);
+        clear();
 
         for(i = 0; i < result_array.length; i++) {
           var anchor = $('<a></a>');
@@ -38,4 +34,9 @@ $(function() {
     });
 
   });
+
+  function clear(){
+    $('a').remove();
+    $('br').remove();
+  }
 });
