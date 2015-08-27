@@ -26,6 +26,7 @@ $(function() {
          var anchor = $("<a class='song'></a>");
          anchor.text(artistArray[i].artist + " - " + artistArray[i].title);
          anchor.prop("href", artistArray[i].url);
+         $(".song").wrap("<p></p>");
          $("body").append(anchor);
        }
       }
