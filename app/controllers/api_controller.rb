@@ -22,7 +22,6 @@ class ApiController < ApplicationController
     jams = response.fetch "jams", {}
     jams.map do |jam|
       {
-        via: jam.fetch("via", ""),
         url: jam.fetch("viaUrl", ""),
         title: jam.fetch("title", ""),
         artist: jam.fetch("artist", "")

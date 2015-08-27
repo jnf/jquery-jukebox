@@ -2,21 +2,30 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$light-grey: #efe;
+$dark-green: #080;
+$black: #000;
+$results-width: 600px;
+
 #results {
+  padding-top: 20px;
   margin: auto;
-  width: 600px;
-  max-width: 600px;
-  min-width: 600px;
+  width: $results-width;
+  max-width: $results-width;
+  min-width: $results-width;
   a, a:link, a:visited, a:hover, a:active {
-    font-size: 2rem;
-    background-color: #ccc;
-    color: #080;
+    font-size: 1.5rem;
+    color: $dark-green;
     padding: 5px;
-    display: block;
+    display: inline-block;
     text-align: center;
   }
   a:hover, a:active {
     text-decoration: none;
-    color: #000;
+    color: $black;
   }
+}
+
+#results .grey {
+  background-color: $light-grey;
 }

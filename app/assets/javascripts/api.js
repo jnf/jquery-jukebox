@@ -23,7 +23,6 @@ $(function() { // this tricks rails into seeing our code
   function displayResults(data) {
     var results = $('#results');
     if ($('ul')) { $('ul').remove(); };
-
     var list = $('<ul></ul>');
     list.addClass('list-group');
     for(var i = 0; i < data.length; i++) {
@@ -35,30 +34,43 @@ $(function() { // this tricks rails into seeing our code
       link.prop('href', result.url);
       listItem.append(link);
 
-      if (result.url.includes("youtube")) {
+      if (result.url.includes("youtube") || result.url.includes("vimeo")) {
         listItem.append("<br />");
-        listItem.append(youtubeEmbed(result.url));
+        listItem.append(embedVideo(result.url));
       }
 
       list.append(listItem);
     }
     results.append(list);
+    $('li:even').addClass('grey');
+    // p:nth-of-type(3n+2) {
   }
 
   function displayMessage(message) {
-    var messageElement = $('#message');
-    var header = $("<h3></h3>");
-    header.append(message);
-    messageElement.append(header);
+    if (!$("message")) {
+      var messageElement = $("<div></div>");
+      messageElement.addClass("message");
+      var header = $("<h3></h3>");
+      header.append(message);
+      messageElement.append(header);
+    }
   }
 
-  function youtubeEmbed(url) {
+  function embedUrl(url) {
     url = url.replace("http://", "https://");
-    url = url.replace("watch?v=", "embed/");
+    if (url.includes("youtube")) {
+      url = url.replace("watch?v=", "embed/");
+    } else if (url.includes("vimeo")) {
+      url = url.replace("/vimeo.com/", "/player.vimeo.com/video/");
+    };
 
+    return url;
+  }
+
+  function embedVideo(url) {
     var output = '<iframe width="560" height="315" src="';
-    output += url;
-    output += '" frameborder="0" allowfullscreen></iframe>';
+    output += embedUrl(url);
+    output += '" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>';
     return output;
   };
 
