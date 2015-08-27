@@ -1,4 +1,3 @@
-// $(document).ready(function() {
 $(function() {
   $("form").submit(function(event) {
     event.preventDefault();
@@ -19,19 +18,13 @@ $(function() {
             makeUL();
             for (i = 0; i < songs.length; i++) {
               makeSongEmbed(songs[i]);
-              // if (songs[i].via == "youtube") {
-              //   makeSongEmbed(songs[i]);
-              // } else {
-              //   makeSongAnchor(songs[i]);
-              //   console.log(songs[i]);
-              // }
             };
-          } else {
+          } else { // no songs returned
             apologize();
           };
         }
       });
-    } else {
+    } else { // no search term entered
       apologize();
     }
   });
@@ -42,6 +35,13 @@ $(function() {
       return url;
     } else {
       return false;
+    }
+  }
+
+  function removeOldInfo() {
+    if ($("body").children(":last-child") != $("form")) {
+      $("ul").remove();
+      $("p").remove();
     }
   }
 
@@ -91,13 +91,6 @@ $(function() {
     return arr[1];
   }
 
-  function removeOldInfo() {
-    if ($("body").children(":last-child") != $("form")) {
-      $("ul").remove();
-      $("p").remove();
-    }
-  }
-
   function makeUL() {
     var list = $("<ul></ul>");
     $("form").after(list);
@@ -114,4 +107,3 @@ $(function() {
     $("form").after(p);
   }
 });
-
