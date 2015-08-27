@@ -3,27 +3,41 @@ $(function() {
   $("form").submit(function(event) {
     event.preventDefault();
 
+    removeOldInfo();
+
     var textField = $("#artist");
     var searchTerm = textField.val();
-    console.log(searchTerm);
 
-    var url = "/search/" + searchTerm;
+    var url = makeUrl(searchTerm);
 
-    $.ajax(url, {
-      type: "GET",
-      success: function(data) {
-        var songs = data;
-        makeUL();
-        if (songs.length > 0) {
-          for (i = 0; i < songs.length; i++) {
-            makeSongAnchor(songs[i]);
+    if (url) {
+      $.ajax(url, {
+        type: "GET",
+        success: function(data) {
+          var songs = data;
+          if (songs.length > 0) {
+            makeUL();
+            for (i = 0; i < songs.length; i++) {
+              makeSongAnchor(songs[i]);
+            };
+          } else {
+            apologize();
           };
-        } else {
-          apologize();
-        };
-      }
-    });
+        }
+      });
+    } else {
+      apologize();
+    }
   });
+
+  function makeUrl(searchTerm) {
+    if (searchTerm.length > 0) {
+      var url = "/search/" + searchTerm;
+      return url;
+    } else {
+      return false;
+    }
+  }
 
   function makeSongAnchor(song) {
     makeLI();
@@ -33,6 +47,13 @@ $(function() {
     var lastLI = $("li:last-child");
 
     lastLI.append(anchor);
+  }
+
+  function removeOldInfo() {
+    if ($("body").children(":last-child") != $("form")) {
+      $("ul").remove();
+      $("p").remove();
+    }
   }
 
   function makeUL() {
