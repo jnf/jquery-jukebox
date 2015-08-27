@@ -48,7 +48,8 @@ class ApiController < ApplicationController
 
   def setup_data(response)
     jams = response.fetch "jams", {}
-    jams.map do |jam|
+    top_ten = jams.first(10)
+    top_ten.map do |jam|
       {
         via: jam.fetch("via", ""),
         url: jam.fetch("viaUrl", ""),
