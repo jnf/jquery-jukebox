@@ -17,7 +17,11 @@ $(function() {
           if (songs.length > 0) {
             makeUL();
             for (i = 0; i < songs.length; i++) {
-              makeSongEmbed(songs[i]);
+              if (songs[i].via == "youtube" || songs[i].via == "vimeo" ) {
+                makeSongEmbed(songs[i]);
+              } else { // sources other than those above
+                makeSongAnchor(songs[i]);
+              }
             };
           } else { // no songs returned
             apologize();
