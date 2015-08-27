@@ -1,0 +1,14 @@
+<h1>JQuery Jukebox</h1>
+
+<%= form_tag(search_path(:artist), method: :get) do %>
+  <%= label_tag :artist, "Search an artist: " %>
+  <%= text_field_tag :artist %>
+
+  <%= submit_tag "Search", id: 'search' %>
+<% end %>
+
+<br><br>
+
+<div id="results">
+  <!-- js will handle posting here -->
+</div>

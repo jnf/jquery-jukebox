@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+
+  root 'api#index'
+
   controller :api do
-    get '/search/:artist', action: 'search'
+    get  '/search/:artist', action: 'search', as: 'search'
+    post '/search/:artist', action: 'index'
   end
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
