@@ -14,14 +14,14 @@ $(function() {
         var noArtist = $("<h4 class='coolest'>No one has heard of that artist! You must be the coolest!</h4>");
         $(".vid-frame").prepend(noArtist);
         $(".vid-frame").append(frame);
-        $("#frame").attr("src", "https://www.youtube.com/embed/B62P6Gm9jpE?rel=0&autoplay=1");
+        frame.attr("src", "https://www.youtube.com/embed/B62P6Gm9jpE?rel=0&autoplay=1");
       } else {
         var firstResult = data[0];
         if (firstResult.via === "youtube") {
           var firstFrame = $("<iframe id='frame' width='448' height='252' src='' frameborder='0' autoplay='1' allowfullscreen></iframe>");
           $(".vid-frame").prepend(firstFrame);
           firstResult.url = firstResult.url.replace("watch?v=", "/embed/");
-          $("#frame").attr("src", firstResult.url + "?rel=0&autoplay=1");
+          firstFrame.attr("src", firstResult.url + "?rel=0&autoplay=1");
         }
         for (var i = 0; i < data.length; i++) {
           var thisArtist = data[i];
@@ -54,14 +54,14 @@ $(function() {
         var noArtist = $("<h4 class='empty'>Our randomizer broke! Try again.</h4>");
         $(".vid-frame").prepend(noArtist);
         $(".vid-frame").append(frame);
-        $("#frame").attr("src", "https://www.youtube.com/embed/B62P6Gm9jpE?rel=0&autoplay=1");
+        frame.attr("src", "https://www.youtube.com/embed/B62P6Gm9jpE?rel=0&autoplay=1");
       } else {
         var firstResult = data[0];
         if (firstResult.via === "youtube") {
           var firstFrame = $("<iframe id='frame' width='448' height='252' src='' frameborder='0' autoplay='1' allowfullscreen></iframe>");
           $(".vid-frame").prepend(firstFrame);
           firstResult.url = firstResult.url.replace("watch?v=", "/embed/");
-          $("#frame").attr("src", firstResult.url + "?rel=0&autoplay=1");
+          firstFrame.attr("src", firstResult.url + "?rel=0&autoplay=1");
         }
         for (var i = 0; i < data.length; i++) {
           var thisArtist = data[i];

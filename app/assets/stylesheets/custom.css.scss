@@ -21,10 +21,11 @@
 }
 
 .vid-frame {
+  margin-top: 10px;
   color: #F2008E;
 }
 
-.btn.btn-chance {
+.btn.btn-chance, .btn.btn-chance:link, .btn.btn-chance:active, .btn.btn-chance:visited {
   background-color: #00D87B;
   border-color: #00D87B;
 }
@@ -32,9 +33,4 @@
 .btn.btn-chance:hover {
   background-color: #41DB99;
   border-color: #41DB99;
-}
-
-.btn.btn-chance:visited {
-  background-color: #00D87B;
-  border-color: #00D87B;
 }
