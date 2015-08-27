@@ -1,5 +1,5 @@
 $(function() {
-  $("input[type=submit]").click(function(event) {
+  $("button[type=submit]").click(function(event) {
     event.preventDefault();
     var form_tag = $(this).parent("form");
     var method = form_tag.attr("method");
@@ -42,6 +42,7 @@ $(function() {
                           ", Song: " + data[i].title +
                           " via: " + data[i].via);
               anchor.prop("href", data[i].url); //look up diff between attr and prop
+              anchor.attr('target','_blank');
               $(".results").append(anchor);
             }
             $(".results").append(nextline);

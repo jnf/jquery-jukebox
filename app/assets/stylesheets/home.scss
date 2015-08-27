@@ -9,21 +9,42 @@ html {
 h1 {
   margin: 10px;
   font-family: 'Brush Script MT', cursive;
-  font-size: 4em;
+  font-size: 4.4em;
   color: #A6256E;
+}
+a {
+  color: #0A204A;
+  font-size: 1.1rem;
 }
 
 a:hover {
-  color: #A24252;
+  color: #777D22;
 }
 
 .search-form {
-  font-size: 1.2em;
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-left: 10px;
 }
 
-input[type="submit"] {
-  font-family: 'Brush Script MT', cursive;
-  font-size: 50px;
+button[type="submit"] {
+  font-family: 'Lucida Sans Typewriter', 'Lucida Console';
+  background-color: #E4DB05;
+  font-size: 1.1rem;
+}
+
+button[type="submit"]:hover {
+  background-color: #de5200;
+   color: white;
+}
+
+input[type="text"] {
+  font-family: 'Lucida Sans Typewriter', 'Lucida Console';
+  font-size: 1.1rem;
+}
+
+input[type="text"]:hover {
+  border: solid 2px #E4DB05;
 }
 .results {
   margin-top: 20px;
