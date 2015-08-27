@@ -29,8 +29,8 @@ body {
 
 h1 {
   text-align: center;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 25px;
+  margin-bottom: 25px;
 
   font-family: 'Indie Flower', 'cursive';
   font-size: 500%;
@@ -44,6 +44,7 @@ img {
 
 form {
   padding-top: 10px;
+  padding-bottom: 10px;
   text-align: center;
 }
 
@@ -52,10 +53,24 @@ ul {
   margin: 20px auto;
 }
 
+ul, li {
+  border-color: black;
+}
+
 iframe {
   display: inherit;
   margin: 0 auto;
 }
+
 .empty img {
   max-width: 50%;
+}
+
+.fixed {
+  overflow: scroll;
+  position: absolute;
+  height: 400px;
+  width: 100%;
+  border: black solid;
+  border-radius: 15px;
 }
