@@ -33,8 +33,7 @@ $(function() {
       if( $('.results').is(':empty') ) {
         displayData(data);
       } else {
-        $('.results').html(displayData(data));
-
+        $('.results').empty().append(displayData(data));
       }
   //  displayData(data);
    //$('.results').append(displayData(data));
