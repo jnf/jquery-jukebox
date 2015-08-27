@@ -13,3 +13,33 @@
  *= require_tree .
  *= require_self
  */
+
+
+* {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+
+.button_to {
+  display: inline-block;
+}
+
+input[type="text"] {
+  display: block;
+  margin: 10px auto;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+
+h1 {
+  font-family: 'Codystar', cursive;
+}
+
+.search-box {
+  text-align: center;
+  margin: 50px auto;
+}
+
+li {
+  margin: 10px auto;
+}
