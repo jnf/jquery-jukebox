@@ -21,15 +21,25 @@ $(function() {
 
     var method = text_box.attr("method");
 
-    // var last_child = $(formTag).children(':last-child');
+    var last_child = $('body').children(".results");
+    //var last_child = $(formTag).children(':last-child');
 
-    //console.log(last_child);
+  //  console.log(last_child);
 
   $.ajax(url, {
     type: method,
     success: function (data) {
-      displayData(data);
-      console.log(displayData(data));
+
+      if( $('.results').is(':empty') ) {
+        displayData(data);
+      } else {
+        $('.results').html(displayData(data));
+
+      }
+  //  displayData(data);
+   //$('.results').append(displayData(data));
+    //$('.something').html(displayData(data));
+  //  console.log(displayData(data));
     }
 
   });
@@ -44,7 +54,7 @@ $(function() {
       anchor.prop('href', url);
       var p_tag = $('<p></p>');
       p_tag.append(anchor);
-      $('.something').append(p_tag);
+      $('.results').append(p_tag);
 
       //via = data[i].via;
   }
