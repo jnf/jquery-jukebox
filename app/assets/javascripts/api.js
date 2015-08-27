@@ -23,7 +23,13 @@ $(function() {
        $("a").empty(); // Removing the previous results
 
        for (i = 0; i < artistArray.length; i++) {
-         // Iframes why you break?!
+
+        if (artistArray[i].via == "youtube") {
+        // generate an iframe node
+        var iframeTemplate = $("<iframe src = '' type='text/html' width='640' height='390' />");
+        $("body").append(iframeTemplate);
+        $("iframe").attr("src", artistArray[i].via)
+        }
 
         //  Link Version
           var anchor = $("<a class='song' target='new'></a>");
