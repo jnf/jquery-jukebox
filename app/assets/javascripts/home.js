@@ -1,5 +1,5 @@
 $(function() {
-  $("form").submit(function(event) {
+  $("form.search").submit(function(event) {
     event.preventDefault();
 
     removeOldInfo();
@@ -14,24 +14,45 @@ $(function() {
         type: "GET",
         success: function(data) {
           var songs = data;
-          if (songs.length > 0) {
-            makeUL();
-            for (i = 0; i < songs.length; i++) {
-              if (songs[i].via == "youtube" || songs[i].via == "vimeo" ) {
-                makeSongEmbed(songs[i]);
-              } else { // sources other than those above
-                makeSongAnchor(songs[i]);
-              }
-            };
-          } else { // no songs returned
-            apologize();
-          };
+          displaySongs(songs);
         }
       });
     } else { // no search term entered
       apologize();
     }
   });
+
+  $("form.popular").submit(function(event) {
+    event.preventDefault();
+
+    removeOldInfo();
+
+    var url = "/popular";
+
+    $.ajax(url, {
+        type: "GET",
+        success: function(data) {
+          var songs = data;
+          console.log(songs);
+          displaySongs(songs);
+        }
+      });
+  });
+
+  function displaySongs(songs) {
+    if (songs.length > 0) {
+      makeUL();
+      for (i = 0; i < songs.length; i++) {
+        if (songs[i].via == "youtube" || songs[i].via == "vimeo" ) {
+          makeSongEmbed(songs[i]);
+        } else { // sources other than those above
+          makeSongAnchor(songs[i]);
+        }
+      };
+    } else { // no songs returned
+      apologize();
+    };
+  }
 
   function makeUrl(searchTerm) {
     if (searchTerm.length > 0) {
@@ -97,7 +118,7 @@ $(function() {
 
   function makeUL() {
     var list = $("<ul></ul>");
-    $("form").after(list);
+    $("form.search").after(list);
   }
 
   function makeLI() {
@@ -108,6 +129,6 @@ $(function() {
   function apologize() {
     var p = $("<p></p>");
     p.text("That is not anyone else's jam.");
-    $("form").after(p);
+    $("form.search").after(p);
   }
 });
