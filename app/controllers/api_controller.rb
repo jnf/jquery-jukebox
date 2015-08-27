@@ -1,6 +1,6 @@
 class ApiController < ApplicationController
   JAM = "http://api.thisismyjam.com/1/search/jam.json"
-
+  LOVELESS = "http://api.thisismyjam.com/1/explore/rare.json"
   def search
     begin
       response = HTTParty.get(JAM, query: { "by" => "artist", "q" => params[:artist] })
@@ -12,6 +12,17 @@ class ApiController < ApplicationController
     end
 
     render json: data.as_json, code: code
+  end
+
+  def lookingForLove
+    begin
+      response = HTTParty.get(LOVELESS)
+      code = :ok
+    rescue
+      data = {}
+      code = :no_content
+    end
+    render json: response.as_json, code: code
   end
 
   def index

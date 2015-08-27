@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   controller :api do
     get '/search/:artist', action: 'search', as: "search"
+    get '/rare', action: 'lookingForLove', as: "rare"
   end
 
   controller :welcome do

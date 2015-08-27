@@ -1,9 +1,25 @@
 $(document).ready(function() {
+  $(".rare").click(function(event) {
+    event.preventDefault();
+    var rareButton = $(this);
+    var url = "/rare";
+    var method = rareButton.attr("method");
+
+    $.ajax(url,{
+      type: method,
+      dataType: "json",
+      success: function(data) {
+        var rareArray = data;
+        console.log(rareArray);
+      }
+      });
+  });
+
   $(".search").click(function(event) {
     event.preventDefault();
-    var button = $(this);
-    var searchBox = button.siblings("input[type=text]");
-    var formTag = button.parent();
+    var searchButton = $(this);
+    var searchBox = searchButton.siblings("input[type=text]");
+    var formTag = searchButton.parent();
     var url = "/search/" + searchBox.val();
     var method = formTag.attr("method");
 
@@ -13,7 +29,7 @@ $(document).ready(function() {
       success: function (data) {
       clearPreviousResults();
         var songArray = data;
-        (songArray.length < 1) ? noResults();
+        (songArray.length < 1) ? noResults() : console.log("");
           for (var i = 0; i < songArray.length; i++){
           var anchor = $('<a></a>');
            anchor.text(songArray[i].title + " by " + songArray[i].artist);
@@ -28,7 +44,7 @@ $(document).ready(function() {
 });
 
 function clearPreviousResults(){
-  $("a").remove();
+  $(".result").remove();
   $("br").remove();
   $("iframe").remove();
   $("p").remove();

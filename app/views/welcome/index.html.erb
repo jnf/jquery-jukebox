@@ -1,6 +1,6 @@
-<h3>Search for some supa' sweet jams:</h3>
+<h3>Search for jams by artist:</h3>
 <%= form_tag("/search/:artist", method: "get") do %>
   <%= text_field_tag :artist %>
   <%= submit_tag "Search", class: "search" %>
 <% end %>
-<br><br><br>
+<%= link_to "These Jams Need Love <3", method: "get", action: "lookingForLove", controller: "api", class: "rare" %>
