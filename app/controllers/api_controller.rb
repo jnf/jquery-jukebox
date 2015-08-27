@@ -1,9 +1,10 @@
 class ApiController < ApplicationController
-  JAM = "http://api.thisismyjam.com/1/search/jam.json"
+  SEARCH =  "http://api.thisismyjam.com/1/search/jam.json"
+  POPULAR = "http://api.thisismyjam.com/1/explore/popular.json"
 
   def search
     begin
-      response = HTTParty.get(JAM, query: { "by" => "artist", "q" => params[:artist] })
+      response = HTTParty.get(SEARCH, query: { "by" => "artist", "q" => params[:artist] })
       data = setup_data(response)
       code = data.any? ? :ok : :no_content
     rescue
@@ -12,6 +13,12 @@ class ApiController < ApplicationController
     end
 
     render json: data.as_json, status: code
+  end
+
+  def popular
+    begin
+    rescue
+    end
   end
 
   private
