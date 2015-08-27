@@ -17,7 +17,13 @@ $(function() {
      type: method,
      data: query,
      success: function (data) {
-      console.log(data)
+
+       var artistArray = data;
+       var anchor = $("<a></a>");
+       anchor.text(artistArray[0].artist + " - " + artistArray[0].title);
+       anchor.prop("href", artistArray[0].url);
+
+       $("body").append(anchor);
       }
     });
 
