@@ -1,0 +1,11 @@
+<h1>Find Your Jam</h1>
+
+<%= form_for search_path(:artist), html: { class: "search-form" } do |f| %>
+  <%= f.label :jam, "Search for JamZ by Artist", class: "search-header" %><br>
+  <%= f.text_field :jam, :size => 50, placeholder: "artist", class: "artist", id: "artist" %>
+  <%= button_tag("Search", type: 'submit', class: "btn-search") %>
+<% end %>
+
+<ul>
+  <!-- RESULTS HERE -->
+</ul>
