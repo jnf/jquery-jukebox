@@ -40,15 +40,25 @@ $(function () {
       var title = jam.title;
       var url = jam.url;
       var via = jam.via;
-      var anchor = $("<a>");
-      anchor.addClass("list-group-item");
-      var listing = (artist + " - " + title + " (via " + via + ")");
-      anchor.text(listing);
-      anchor.prop("href", url);
-      anchor.prop("target", "_blank");
-      list.append(anchor);
+      if (via == "youtube") {
+        youtube_id = url.split("v=")[1];
+        var iframe = $("<iframe>");
+        iframe.prop("width", "560");
+        iframe.prop("height", "315");
+        iframe.prop("src", "https://www.youtube.com/embed/" + youtube_id);
+        iframe.prop("frameborder", "0");
+        list.append(iframe);
+      } else {
+        var anchor = $("<a>");
+        anchor.addClass("list-group-item");
+        var listing = (artist + " - " + title + " (via " + via + ")");
+        anchor.text(listing);
+        anchor.prop("href", url);
+        anchor.prop("target", "_blank");
+        list.append(anchor);
+      } // end if/else youtube
       $('.jams-div').append(list);
-    }
+    } // end for loop
   } // end renderData
 
   function unwantedSong() {
