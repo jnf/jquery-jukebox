@@ -1,0 +1,14 @@
+<div class="search-box">
+  <h1>Jookboqs</h1>
+
+  <label for="searchArtist">
+    Who do you want to listen to?
+    <input type="text">
+  </label>
+
+  <%= button_to "Search", '/search/', method: :get, class: "submit"  %>
+</div>
+
+<div class="search-results">
+  <ul></ul>
+</div>
