@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'httparty', '~> 0.13.5'
+gem 'bootstrap-sass'
+gem "font-awesome-rails"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
@@ -40,6 +42,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'pry-rails'
   gem 'vcr'
+  gem 'simplecov', require: false
 end
 
 group :development do

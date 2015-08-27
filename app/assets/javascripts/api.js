@@ -6,7 +6,6 @@ $(function() {
     var url = "/search/" + artist;
     var method = $('form').attr("method")
 
-    // removes current results, if any
     $('.result').remove();
     $('.no-result').remove();
 
@@ -15,6 +14,7 @@ $(function() {
       success: function(data) {
         var results = data.forEach(displayResults)
         $('a').wrap( "<div class='result'></div>" );
+        // display no results found
         if (data.length == 0) {
           $('body').append("<div class='no-result'>no results found</div>");
         }
@@ -28,31 +28,35 @@ $(function() {
     var url = "/popular";
     var method = $('form').attr("method")
 
-    // removes current results, if any
     $('.result').remove();
+    $('.no-result').remove();
 
     $.ajax(url, {
       type: method,
+      dataType: "json",
       success: function(data) {
-        var results = data.forEach(displayResults)
+        data = data.slice(1, 10)
+        var results = data.forEach(displayResults);
         $('a').wrap( "<div class='result'></div>" );
       }
     });
   });
 
-  $("input[value='Random Jams']").click(function(event) {
+  $("input[value='Random Jam']").click(function(event) {
     event.preventDefault();
 
     var url = "/random";
     var method = $('form').attr("method")
 
-    // removes current results, if any
     $('.result').remove();
+    $('.no-result').remove();
 
     $.ajax(url, {
       type: method,
+      dataType: "json",
       success: function(data) {
-        var results = data.forEach(displayResults)
+        var result = data[0];
+        displayResults(result);
         $('a').wrap( "<div class='result'></div>" );
       }
     });
