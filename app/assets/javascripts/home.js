@@ -18,7 +18,11 @@ $(function() {
           if (songs.length > 0) {
             makeUL();
             for (i = 0; i < songs.length; i++) {
-              makeSongAnchor(songs[i]);
+              if (songs[i].via == "youtube") {
+                makeSongEmbed(songs[i]);
+              } else {
+                makeSongAnchor(songs[i]);
+              }
             };
           } else {
             apologize();
@@ -47,6 +51,29 @@ $(function() {
     var lastLI = $("li:last-child");
 
     lastLI.append(anchor);
+  }
+
+  function makeSongEmbed(song) {
+    makeLI();
+    var url = makeEmbedUrl(song.url);
+    var iFrame = $("<iframe></iframe>");
+    iFrame.prop("src", url);
+    var lastLI = $("li:last-child");
+
+    lastLI.append(iFrame);
+  }
+
+  function extractYoutubeId(url) {
+    var rx = /\\?v=(.*)/;
+    var arr = rx.exec(url);
+    return arr[1];
+  }
+
+  function makeEmbedUrl(url) {
+    var id = extractYoutubeId(url);
+    var baseUrl = "http://www.youtube.com/embed/";
+    var embedUrl = baseUrl + id;
+    return embedUrl;
   }
 
   function removeOldInfo() {
