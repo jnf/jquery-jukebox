@@ -5,12 +5,13 @@ class ApiController < ApplicationController
     begin
       response = HTTParty.get(JAM, query: { "by" => "artist", "q" => params[:artist] })
       data = setup_data(response)
-      code = :ok
+      data.empty? ? code = :no_content : code = :ok
     rescue
       data = {}
       code = :no_content
     end
-    render json: data.as_json, code: code
+
+    render json: data.as_json, status: code
   end
 
   private
