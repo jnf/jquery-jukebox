@@ -18,7 +18,7 @@ $(function () {
     }); // end ajax
   }); // end form submit listener
 
-  $("#randomizer").click(function(event) {
+  $("#random").click(function(event) {
     event.preventDefault();
     var button = $(this);
     var url = button.prop("href");

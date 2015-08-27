@@ -6,21 +6,15 @@
         <div class="form-group form-inline">
           <%= text_field_tag(:q, nil, placeholder: "Search Artists", class: "form-control") %>
         </div>
-
         <%= submit_tag "Jam?", class: "btn btn-default" %>
       <% end %>
     </div>
     <div class="col-lg-6">
-      <span>...or &nbsp;</span><%= link_to "Jam Roulette", random_path, id: "randomizer", class: "btn btn-default" %>
+      <span>...or &nbsp;</span><%= link_to "Jam Roulette", random_path, id: "random", class: "btn btn-default" %>
     </div>
   </div>
 
 </div>
-
-
-
-
-
 
 <div class="jams-div">
 </div>
