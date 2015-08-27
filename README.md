@@ -30,15 +30,15 @@ Hi! For this project, let's use [This is My Jam](https://www.thisismyjam.com/) t
     Today’s most-loved jams.
 
 - __Breaking__
-  GET http://api.thisismyjam.com/1/explore/breaking.json
+  GET `http://api.thisismyjam.com/1/explore/breaking.json`
   Songs getting a lot of recent attention.
 
 - __Rare__
-  GET http://api.thisismyjam.com/1/explore/rare.json
+  GET `http://api.thisismyjam.com/1/explore/rare.json`
   Tracks we don’t hear that often.
 
 - __Chance__
-  GET http://api.thisismyjam.com/1/explore/chance.json
+  GET `http://api.thisismyjam.com/1/explore/chance.json`
   Jams at random.
 
 ## Bonus Fun
