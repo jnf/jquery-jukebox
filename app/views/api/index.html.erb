@@ -2,10 +2,10 @@
 
 <%= form_for search_path(:artist), html: { class: "search-form" } do |f| %>
   <%= f.label :jam, "Search for JamZ by Artist", class: "search-header" %><br>
-  <%= f.text_field :jam, :size => 50, placeholder: "artist", class: "artist", id: "artist" %>
+  <%= f.text_field :jam, :size => 50, placeholder: "artist", class: "artist" %>
   <%= button_tag("Search", type: 'submit', class: "btn-search") %>
 <% end %>
 
 <ul>
-  <!-- RESULTS HERE -->
+  <!-- RESULTS GO HERE -->
 </ul>
