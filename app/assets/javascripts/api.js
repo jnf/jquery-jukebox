@@ -1,34 +1,50 @@
-$(function() {
-// autoloads javascript into browser window for the rails window
+$(function() { // autoloads javascript into browser window for the rails window
 
  $('form').submit(function(event) {
-   event.preventDefault();
-   // overrides default behavior normally associated with choose button
+    $('#results').empty(); // clears result slate before querying API again
+    event.preventDefault();
+    // overrides default behavior normally associated with choose button
 
-   var formTag = $(this);
-   var textBox = $('input[type="text"]')
-   var artist = textBox.val()
+    var formTag = $(this);
+    var artist = $('input[type="text"]').val()
 
-   var url = formTag.attr('action') + "/" + artist;
-   var method = formTag.attr('method');
+    var url = formTag.attr('action') + "/" + artist;
+    var method = formTag.attr('method');
 
-   $.ajax(url, {
-     type: method,
-     success: function (data) {
-      // loop through each result
-      // for each key do something
-      // put in unordered list
+    $.ajax(url, {
+      type: method,
+      success: function (data) {
+        var list = $('<ul></ul>')
 
-      var anchor = $('<a></a>'); // new anchor element
-      anchor.text('text on the page');
-      anchor.prop('href', '/link/to/stuff');
-      $('body').append(anchor); // <a href="/link/to/stuff">Text on the page.</a>
-     }
+        if (data.length == 0) {
+          list.append();
+
+          do stuff;
+        } else {
+
+          for(var i = 0; i < data.length-1; i ++) {
+            var sourceUrl = data[i].url;
+            var title = data[i].title;
+            var artist = data[i].artist;
+
+            var anchor = $('<a></a>'); // new anchor element
+            anchor.text(data[i].via);
+            anchor.prop('href', sourceUrl);
+
+            var listItem = $('<li></li>'); // new list element
+            listItem.text(title + ", by: " + artist + " via "); // text within <li> tags
+            listItem.append(anchor[0]); // link
+
+            list.append(listItem);
+
+        }
+
+
+      } // for loop
+      $('#results').append(list)
+      $("li:odd").css("color", "#552601");
+
+    } // function
    });
-
-   // console.log(clubDiv);
-   // console.log(clubDiv.hasClass('club'));
  });
-
-
 }); // end
