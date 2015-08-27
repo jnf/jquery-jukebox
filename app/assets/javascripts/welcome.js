@@ -47,8 +47,19 @@ $(document).ready(function() {
       success: function (data) {
       clearPreviousResults();
       var songArray = data;
+      console.log(songArray);
       (songArray.length < 1) ? noResults() : console.log("");
       for (var i = 0; i < songArray.length; i++){
+        if (songArray[i].via == "youtube"){
+          songUrl = songArray[i].url;
+          var urlChunk = songUrl.split('=')[1];
+          console.log(urlChunk);
+          $('<iframe>',{
+            src: "https://www.youtube.com/embed/" + urlChunk,
+            frameborder: 0,
+            scrolling: 'no'
+          }).appendTo('body');
+        }
       var anchor = $('<a></a>');
        anchor.text(songArray[i].title + " by " + songArray[i].artist);
        anchor.prop('href', songArray[i].url);
