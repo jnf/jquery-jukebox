@@ -7,8 +7,11 @@
 @import "bootstrap";
 
 body {
-  background-color: rgb(42,3,46);
-  color: white;
+  background-color: rgb(65, 183, 97);
+}
+
+body, a, a:hover {
+  color: rgb(255, 255, 255);
 }
 
 iframe {

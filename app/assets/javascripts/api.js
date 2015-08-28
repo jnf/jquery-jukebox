@@ -20,14 +20,6 @@ $(function() {
     $(".container-fluid").append(iframeTemplate);
   }
 
-  // function soundcloudFactory(song) {
-  //   var iframeTemplate = $("<iframe class='soundcloud' width='500' height='166' src=''></iframe>");
-  //   var soundcloudURL = song.url;
-  //   var modifiedsoundcloudURL = soundcloudURL.replace("http://", "https://w.soundcloud.com/player/?url=http://");
-  //   iframeTemplate.attr("src", modifiedsoundcloudURL);
-  //   $(".container-fluid").append(iframeTemplate);
-  // }
-
   function linkFactory(song){
     var anchor = $("<a class='song-link' target='new'></a>");
     anchor.text(song.artist + " - " + song.title);
@@ -47,7 +39,7 @@ $(function() {
       }
     }
 
-    // Wrap it all up in a paragraph blanket
+    // Wrap each song in a paragraph blanket
     $(".song-link, .media-embed").wrap("<p class = 'song-separator'></p>");
   }
 
