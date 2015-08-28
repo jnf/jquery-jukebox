@@ -23,6 +23,7 @@ $(function() {
           "<iframe width='840' height='630' src='https://www.youtube.com/embed/" +
           rickRollVideoId + "?autoplay=1' frameborder='0' allowfullscreen></iframe>");
         }
+        else {
 
         for (var i = 0; i < data.length; i++)
         {
@@ -53,7 +54,7 @@ $(function() {
           }
 
           $("#searchResults").append("<br><br>");
-        }
+        }}
         console.log(data);
       }
     });
@@ -82,6 +83,8 @@ $(function() {
               rickRollVideoId + "?autoplay=1' frameborder='0' allowfullscreen></iframe>");
             }
 
+
+            else{
             for (var i = 0; i < data.length; i++)
             {
               $("#searchResults").append(data[i].artist + "<br>");
@@ -111,7 +114,7 @@ $(function() {
               }
 
               $("#searchResults").append("<br><br>");
-            }
+            }}
             console.log(data);
           }
         });
