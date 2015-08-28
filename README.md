@@ -1,3 +1,7 @@
+Jeri
+
+## Heroku Link: [Jeri's jQuery Jukebox](https://jerisjukebox.herokuapp.com/)
+
 # This Is My Jam: AJAX Playback Links
 Hi! For this project, let's use [This is My Jam](https://www.thisismyjam.com/) to find lots of links to music we like. :)
 
@@ -16,7 +20,7 @@ Hi! For this project, let's use [This is My Jam](https://www.thisismyjam.com/) t
 - At no point should the view refresh or the user be taken to another URL.
 
 ## Wave 2: Add a new endpoint
-- Utilize one of the API calls provided by TIMJ described below to create a new API endpoint in the `ApiController`. 
+- Utilize one of the API calls provided by TIMJ described below to create a new API endpoint in the `ApiController`.
 - Write tests for your endpoint.
 - The API endpoint should return JSON.
 - Add new functionality to your view/javascript to...
