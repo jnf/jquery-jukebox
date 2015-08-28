@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   controller :api do
     get '/search/:artist', action: 'search'
+    get '/breaking_jams', action: 'get_breaking_jams'
   end
 
   root 'home#index'

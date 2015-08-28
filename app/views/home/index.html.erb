@@ -1,14 +1,19 @@
-<div class="search-box">
-  <h1>Jookboqs</h1>
+<h1>Jookboqs</h1>
 
+<h3>What's the New Hotness?</h3>
+<%= button_to "Refresh The Hotness", '/breaking_jams', method: :get, class: "breaking_search"  %>
+
+<div class="results breaking_jams"></div>
+
+<hr>
+
+<div class="search-box">
   <label for="searchArtist">
-    Who do you want to listen to?
+    Search for a Specific Artist:
     <input type="text">
   </label>
 
   <%= button_to "Search", '/search/', method: :get, class: "submit"  %>
 </div>
 
-<div class="search-results">
-  <ul></ul>
-</div>
+<div class="results search"></div>

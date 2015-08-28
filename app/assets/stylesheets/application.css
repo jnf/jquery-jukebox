@@ -33,6 +33,17 @@ input[type="text"] {
 
 h1 {
   font-family: 'Codystar', cursive;
+  text-align: center;
+  font-size: 4em;
+}
+
+h3 {
+  text-align: center;
+}
+
+.button_to {
+  text-align: center;
+  display: block;
 }
 
 .search-box {
@@ -42,4 +53,50 @@ h1 {
 
 li {
   margin: 10px auto;
+}
+
+hr {
+  width: 70%;
+}
+/*
+.breaking_jams {
+  margin: 40px auto;
+  min-height: 204px;
+}
+
+.breaking_jams div {
+  width: 20%;
+  display: inline-block;
+  text-align: center;
+  font-size: 0.7em;
+  vertical-align: top;
+}
+
+.breaking_jams div img {
+  display: block;
+  margin: 0 auto;
+  width: 190px;
+}*/
+
+.breaking_jams {
+  min-height: 204px;
+}
+
+.results {
+  margin: 40px auto;
+}
+
+.results div {
+  width: 20%;
+  display: inline-block;
+  text-align: center;
+  font-size: 0.7em;
+  vertical-align: top;
+  margin: 20px auto;
+}
+
+.results div img {
+  display: block;
+  margin: 5px auto;
+  width: 190px;
 }
