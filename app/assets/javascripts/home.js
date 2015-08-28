@@ -29,9 +29,27 @@ $(function() {
   $("form.popular").submit(function(event) {
     event.preventDefault();
 
+    clearTextField();
     removeOldResults();
 
     var url = "/popular";
+
+    $.ajax(url, {
+        type: "GET",
+        success: function(data) {
+          var songs = data;
+          displaySongs(songs);
+        }
+      });
+  });
+
+  $("form.unpopular").submit(function(event) {
+    event.preventDefault();
+
+    clearTextField();
+    removeOldResults();
+
+    var url = "/unpopular";
 
     $.ajax(url, {
         type: "GET",
@@ -72,6 +90,10 @@ $(function() {
       $("ul").remove();
       $("p.result").remove();
     }
+  }
+
+  function clearTextField() {
+    $("#artist").val("");
   }
 
   function makeSongAnchor(song) {
