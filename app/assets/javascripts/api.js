@@ -18,7 +18,7 @@ $(function() { // autoloads javascript into browser window for the rails window
     $.ajax(url, {
       type: method,
       success: function (data) {
-        var list = $('<ul></ul>')
+        var list = $('<ul></ul>');
 
         if (data.length == 0) {
           defaultResult();
@@ -28,7 +28,7 @@ $(function() { // autoloads javascript into browser window for the rails window
         }
 
       } // for loop
-      $('#results').append(list)
+      $('#results').append(list);
       $("li:odd").css("color", "#552601");
 
     } // function
@@ -49,13 +49,12 @@ $(function() { // autoloads javascript into browser window for the rails window
     $.ajax(url, {
       type: method,
       success: function (data) {
-        var list = $('<ul></ul>')
+        var list = $('<ul></ul>');
 
         for(var i = 0; i < data.length-1; i ++) {
           result(i, data, list);
-
       } // for loop
-      $('#results').append(list)
+      $('#results').append(list);
       $("li:odd").css("color", "#f69649");
 
     } // function
@@ -105,7 +104,7 @@ $(function() { // autoloads javascript into browser window for the rails window
     anchor.text(data[i].via);
     anchor.prop('href', sourceUrl);
 
-    listItem.text(title + ", by: " + artist + " via " + via); // text within <li> tags
+    listItem.text(title + ", by: " + artist + " via "); // text within <li> tags
     listItem.append(anchor[0]); // link
     listItem.append(content)
     list.append(listItem);
@@ -122,11 +121,7 @@ $(function() { // autoloads javascript into browser window for the rails window
     var end = sourceUrl.length;
     var identity = sourceUrl.substr(start + 1)
     var video = "<iframe width='560' height='315' src='https://www.youtube.com/embed/" + identity + "' frameborder='0'></iframe>"
-    console.log(sourceUrl)
-    console.log(video)
     return video
-    // var thisVideo = $(lastIndexOf(sourceUrl));
-// <iframe width="560" height="315" src="https://www.youtube.com/embed/XeRSk_cpz2Y" frameborder="0" allowfullscreen>;
   }
 
 }); // end
