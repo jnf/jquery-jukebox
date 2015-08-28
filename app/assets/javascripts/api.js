@@ -3,6 +3,7 @@ $(function() {
   var noArtistMessage = "No one has heard of that artist! You must be the coolest!";
   var failedRandoMessage = "Our randomizer broke! Try again.";
   var errorMsg = "Something terrible has happened. Run for the hills.";
+  var startIndex = 1;
 
   function noData(message) {
     var frame = $("<iframe id='frame' width='640' height='360' src='' frameborder='0' autoplay='1' allowfullscreen></iframe>");
@@ -19,18 +20,53 @@ $(function() {
     frame.attr("src", url + "?rel=0&autoplay=1");
   }
 
+  function displayOne(result) {
+    var title = $('<h4 class="first-song"></h4>');
+    var anchor = $('<a></a>');
+    anchor.text(result.artist + ", " + result.title);
+    anchor.prop("href", result.url);
+    title.append(anchor);
+    $(".vid-frame").prepend(title);
+  }
+
   function displayTIMJdata(data) {
-    for (var i = 0; i < data.length; i++) {
+    for (var i = startIndex; i < data.length; i++) {
       var thisArtist = data[i];
-      var listItem = $('<li></li>');
-      var anchor = $('<a></a>');
+      var id = "song" + i;
+      var listItem = $('<div class="btn-group" id=' + id + ' role="group"><li></li></div>');
+      var anchor = $('<a type="button" class="btn btn-default"></a>');
 
       anchor.text(thisArtist.artist + ", " + thisArtist.title);
       anchor.prop("href", thisArtist.url);
       listItem.append(anchor);
+
+      var glyph = $('<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-play"></span></button><br>');
+      listItem.append(glyph);
+
       $('ul').append(listItem);
+
+      youtubeOnClick(thisArtist, id);
     }
   }
+
+  // On click, show youtube
+  function youtubeOnClick(song, id) {
+
+    $("#" + id).click(function(event) {
+      event.preventDefault();
+      if (song.via === "youtube") {
+        $("iframe").remove();
+        // showYoutube(song.url);
+
+        var frame = $("<iframe id='frame' width='448' height='252' src='' frameborder='0' allowfullscreen></iframe><br>");
+        $("#" + id).append(frame);
+        song.url = song.url.replace("watch?v=", "/embed/");
+        frame.attr("src", song.url + "?rel=0");
+      }
+    });
+  }
+
+  // show/hear first for other services
 
   $(".btn-search").click(function(event) {
     event.preventDefault();
@@ -38,15 +74,15 @@ $(function() {
     var url = ("/search/" + artist);
 
     $.getJSON(url, function(data) {
-      $("li, iframe, .message").remove();
+      $("li, iframe, .message, .first-song").remove();
       if (data.length === 0) {
         noData(noArtistMessage);
       } else {
         var firstResult = data[0];
+        displayOne(firstResult);
         if (firstResult.via === "youtube") {
           showYoutube(firstResult.url);
         }
-
         displayTIMJdata(data);
       }
     }).fail(function() {
@@ -60,12 +96,13 @@ $(function() {
     var url = ("/chance");
 
     $.getJSON(url, function(data) {
-      $("li, iframe, .message").remove();
+      $("li, iframe, .message, .first-song").remove();
 
       if (data.length === 0) {
         noData(failedRandoMessage);
       } else {
         var firstResult = data[0];
+        displayOne(firstResult);
         if (firstResult.via === "youtube") {
           showYoutube(firstResult.url);
         }
