@@ -11,6 +11,8 @@ $(function () {
     $.ajax(url, {
       type: method,
       success: function (data, textStatus, jqHXR) {
+        collectGarbage();
+
         if (jqHXR.status == 200) {
           var songs = data;
 
@@ -53,6 +55,8 @@ $(function () {
     $.ajax(url, {
       type: method,
       success: function (data, textStatus, jqHXR) {
+        collectGarbage();
+
         if (jqHXR.status == 200) {
           var songs = data;
 
@@ -85,6 +89,11 @@ $(function () {
       }
     });
   });
+
+  function collectGarbage() {
+    $(".some-text").empty();
+    $(".media").empty();
+  }
 
   function sendApology() {
     var apology = "There are no jamz for that artist, try this jam instead!";
@@ -146,8 +155,6 @@ $(function () {
       var song    = song_url;
       var videoId = song.match(regex);
       var url     = "https://player.vimeo.com/video/" + videoId[1];
-
-      console.log(videoId);
 
       return url;
     }
