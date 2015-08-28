@@ -11,6 +11,9 @@ $(function() {
       var modifiedMediaURL = mediaURL.replace("watch?v=", "embed/");
     } else if (mediaSource == "vimeo") {
       var modifiedMediaURL = mediaURL.replace("http://vimeo.com/", "https://player.vimeo.com/video/");
+    } else if (mediaSource == "soundcloud") {
+      var modifiedMediaURL = mediaURL.replace("http://", "https://w.soundcloud.com/player/?url=http://");
+      iframeTemplate.attr("height", "166");
     }
 
     iframeTemplate.attr("src", modifiedMediaURL);
@@ -36,7 +39,7 @@ $(function() {
     for (i = 0; i < songCollection.length; i++) {
       var song = songCollection[i];
       // YouTube or Vimeo Display
-      if (song.via == "youtube" || song.via == "vimeo") {
+      if (song.via == "youtube" || song.via == "vimeo" || song.via == "soundcloud") {
         mediaFactory(song, song.via );
       // Link Display
       } else {
