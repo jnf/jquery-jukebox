@@ -72,32 +72,27 @@ $(function() {
       var result = data[i]
       var listItem = $("<li></li>");
       var urlResult = result.url;
+      var iframe = $("<iframe></iframe>");
+      list.append(listItem);
       if (result.via == "youtube"){
-        var iframe = $("<iframe></iframe>");
         var youtubeId = urlResult.substr(urlResult.indexOf('=') + 1);
         var src = "http://www.youtube.com/embed/" + youtubeId;
         iframe.prop("src", src);
-        list.append(listItem);
         $("li:last").append(iframe);
       } else if (result.via == "vimeo"){
-          var iframe = $("<iframe></iframe>");
           var vimeoId = urlResult.substr(urlResult.lastIndexOf('/') + 1);
           var src = "http://player.vimeo.com/video/" + vimeoId;
           iframe.prop("src", src);
-          list.append(listItem);
           $("li:last").append(iframe);
       } else if (result.via == "soundcloud"){
-          var iframe = $("<iframe></iframe>");
           var sdclId = urlResult.substr(22);
           var src = "http://w.soundcloud.com/player/?url=https%3A//soundcloud.com/" + sdclId;
           iframe.prop("src", src);
-          list.append(listItem);
           $("li:last").append(iframe);
       } else {
         var anchor = $("<a></a>");
         anchor.text(result.artist + ": " + result.title);
         anchor.prop("href", result.url);
-        list.append(listItem);
         $("li:last").append(anchor);
       }
     };
