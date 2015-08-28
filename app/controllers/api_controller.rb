@@ -16,9 +16,14 @@ class ApiController < ApplicationController
   end
 
   def popular
-    resonse = HTTParty.get(HOT)
-    data = setup_data(response)
-    code = :ok
+    begin
+      response = HTTParty.get(HOT)
+      data = setup_data(response)
+      code = :ok
+    rescue
+      data = {"nope": "NOT WORKING"}
+      code = :no_content
+    end
     render json: data.as_json, code: code
   end
 
