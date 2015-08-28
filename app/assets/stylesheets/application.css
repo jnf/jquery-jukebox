@@ -14,7 +14,33 @@
  *= require_self
  */
 
-/*SO COOL*/
+html {
+  height: 100%;
+  background: -webkit-linear-gradient(0deg, #000000, #FF0000); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(0deg, #000000, #FF0000); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(0deg, #000000, #FF0000); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(0deg, #000000, #FF0000); /* Standard syntax */
+  background-repeat: no-repeat;
+  background-color: #000000;
+}
+
+div.wobsite {
+  width: 960px;
+  margin: auto;
+  padding-bottom: 20px;
+  font-family: fantasy;
+  text-align: center;
+  background-color: white;
+  border-color: black;
+  border-radius: 0.8em;
+}
+
+h1 {
+  padding-top: 5px;
+  font-size: 3em;
+}
+
+/*SO COOL THE ATTR/PROP */
 input[name=artist] {
   background-color: black;
   color: white;
@@ -30,35 +56,22 @@ input[type=submit] {
   text-decoration: none;
 }
 
-li {
-  list-style: none;
-  margin: 1em 0;
+input:focus {
+  outline-color: hsla(360, 100%, 50%, 1);
+}
+
+input {
+  display: block;
+  margin: 3px auto 7px auto;
 }
 
 ul {
   padding: 0;
 }
 
-body {
-  width: 960px;
-  margin: auto;
-  padding-bottom: 20px;
-  font-family: fantasy;
-  text-align: center;
-  background-color: white;
-}
-
-h1 {
-  padding-top: 5px;
-}
-
-html {
-  background-color: black;
-}
-
-input {
-  display: block;
-  margin: 3px auto 7px auto;
+li {
+  list-style: none;
+  margin: 1em 0;
 }
 
 /*li:nth-child(3n) {

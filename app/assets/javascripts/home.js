@@ -1,6 +1,6 @@
 $(function () {
-  // All the forms in the body. :D
-  var forms = $('body').children('form');
+  // All the forms in the div.wobsite. :D
+  var forms = $('div.wobsite').children('form');
 
   // WAS TESTING CREATING AN ATTRIBUTE IN JAVASCRIPT!
   var searchButton = $(forms[0]).children(':last-child');
@@ -73,24 +73,66 @@ $(function () {
       var listItem = $("<li></li>");
       listItem.html(anchor);
       insideList.append(listItem);
-
-      // To add the embeded YouTube video.
-      if (data[i].via == "youtube") {
-        var urlString = data[i].url,
-            iFrame = $("<iframe></iframe>");
-        urlString = urlString.replace("https", "http");
-        urlString = urlString.replace("watch?v=", "embed/");
-        urlString = urlString + "?enablejsapi=1";
-        iFrame.prop({
-          "id":"player",
-          "type":"text/html",
-          "width":"640",
-          "height":"390",
-          "src":urlString,
-          "frameborder":"0"
-        });
-        insideList.append(iFrame);
-      } // if
+      if (embedableMedia(data[i].via)) {
+        insideList.append(addingMedia(data[i]));
+      }
     } // for
   } // formatResults
+
+
+  function addingMedia(data, insideList) {
+    var iFrame = $("<iframe></iframe>");
+
+    switch(data.via) {
+      // To add the embeded YouTube video.
+      case "youtube":
+        iFrame.prop("src", addingYouTubeURL(data));
+        break;
+      case "vimeo":
+        iFrame.prop("src", addingVimeoURL(data));
+        break;
+      case "soundcloud":
+        iFrame.prop("src", addingSoundCloudURL(data));
+        break;
+    }
+
+    iFrame.prop({
+      "id":"player",
+      "type":"text/html",
+      "width":"640",
+      "height":"390",
+      "frameborder":"0"
+    });
+
+    return iFrame;
+  }
+
+  function addingYouTubeURL(data) {
+    var urlString = data.url;
+    urlString = urlString.replace("https", "http");
+    urlString = urlString.replace("watch?v=", "embed/");
+    urlString = urlString + "?enablejsapi=1";
+    return urlString;
+  }
+
+  function addingVimeoURL(data) {
+    var urlString = data.url;
+    urlString = urlString.replace("http://vimeo", "//player.vimeo");
+    urlString = urlString.replace(".com/", ".com/video/");
+    return urlString;
+  }
+
+  function addingSoundCloudURL(data) {
+    var urlString = data.url;
+    urlString = urlString.replace("https", "http");
+    urlString = urlString.replace("soundcloud", "w.soundcloud");
+    urlString = urlString.replace(".com/", ".com/player/?url=https%3A//soundcloud.com/")
+    urlString = urlString + "&amp;auto_play=false&amp;show_user=true&amp;visual=true";
+    return urlString;
+  }
+
+  function embedableMedia(data_via) {
+    return (data_via == "youtube" || data_via == "vimeo" || data_via == "soundcloud");
+  }
+
 });
