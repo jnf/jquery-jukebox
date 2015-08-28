@@ -5,6 +5,7 @@
 $(function() {
 
   $(".search").click(function(event) {
+
     event.preventDefault();
 
     var searchButton = $(this);
@@ -47,6 +48,8 @@ $(function() {
 
         // if the user decided to retrieve a random song
         if(url === "/rando") {
+          $( ".results" ).addClass( "jamz-background" );
+
           if ($('.results').is(':empty')) {
             displayData(data.sort( randOrd).slice(0,10));
           } else {
@@ -56,9 +59,11 @@ $(function() {
         // if the user searched for an artist & if there were no prior results
         } else if ( $('.results').is(':empty')) {
           displayData(data);
+          $( ".results" ).addClass( "jamz-background" );
         // this prevents new search results from appending on top of the old results
         } else {
           $('.results').empty().append(displayData(data));
+          $( ".results" ).addClass( "jamz-background" );
         }
       }
     });
