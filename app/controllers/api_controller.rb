@@ -22,7 +22,7 @@ class ApiController < ApplicationController
     begin
       response = HTTParty.get(RANDOM)
 
-      data = setup_data(response).sample(6)
+      data = setup_data(response).sample(9)
       code = data.any? ? :ok: :no_content
     rescue
       data = {}
@@ -36,7 +36,7 @@ class ApiController < ApplicationController
     begin
       response = HTTParty.get(POPULAR)
 
-      data = setup_data(response).sample(6)
+      data = setup_data(response).sample(9)
       code = data.any? ? :ok: :no_content
     rescue
       data = {}

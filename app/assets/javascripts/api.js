@@ -43,11 +43,6 @@ function displayResults(url)
 
         for (var i = 0; i < data.length; i++)
         {
-//          $("#searchResults").append(data[i].artist + "<br>");
-//          $("#searchResults").append(
-//            "<a href='" + data[i].url + "'>" + data[i].title + "</a><br>");
-          // $("#searchResults").append("(via " + data[i].via + ")<br><br>");
-
           if (data[i].via == "youtube")
           {
             var youtubeUrl = data[i].url;
@@ -69,9 +64,23 @@ function displayResults(url)
             vimeoVideoId + "' frameborder='0' allowfullscreen></iframe>");
           }
           else {
-            $("#searchResults").append(
-            "<a href='" + data[i].url + "'><img class='resultItem' width='" + height + "' height='" + height + "' src='" + data[i].albumArt +
-            "'/></a>");
+            if (data[i].url == "User uploaded") {
+              $("#searchResults").append(
+              "<img class='resultItem' width=" + height + "' height='" + height + "' src='" + data[i].albumArt +
+              "'/>");
+              $("#searchResults").append(data[i].artist);
+              $("#searchResults").append(
+                "<a href=\"javascript: void(0)\">" + data[i].title + "</a>");
+              }
+            else{
+              $("#searchResults").append(
+              "<a href='" + data[i].url + "'><img class='resultItem' width='" + height + "' height='" + height + "' src='" + data[i].albumArt +
+              "'/></a>");
+                console.log(data);
+              $("#searchResults").append(data[i].artist);
+              $("#searchResults").append(
+                "<a href='" + data[i].url + "'>" + data[i].title + "</a>");
+            }
           }
 
           //$("#searchResults").append("<br><br>");
