@@ -17,3 +17,9 @@ Hi! For this project, let's use [This is My Jam](https://www.thisismyjam.com/) t
 ## Bonus Fun
 - Instead of adding links to the view, try using the data to create embedded players for the specific service (i.e., embed the YouTube video, instead of linking to it).
 - If a user's search returns no results, suggest/embed/link to something for them instead.
+
+## Friday's Goals
+- Add some basic styles -- throw in some bootstrap
+- Get all results to show up as links/buttons
+  - For the youtube results, when you click on their link it'll drop down the youtube video
+  - When you click again on the link it will remove the youtube video
