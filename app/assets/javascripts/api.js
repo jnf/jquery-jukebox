@@ -11,33 +11,55 @@ $(function() {
   // handling for submitting the search form
   $("form").submit(function(event) {
     event.preventDefault(); // nopeing the form submit button's default behaviors
-    unpressButtons();
+    unpressButtons(); // unpress any buttons that were previously pressed!
+
     var searchField = $(":text"); // grabbing the form's text field
     var searchQuery = searchField.val(); // grabbing the value from the text field
     var form = $("form"); // grabbing the form
     var method = form.attr("method"); // grabbing the form's method
     var url = form.attr("action"); // grabbing the form's url
 
-    ajaxRequest(url, searchQuery, method);
+    ajaxRequest(url, searchQuery, method); // sending the url, search term, & method to the ajax request function
   });
 
-  $('#popular').click(function(event) {
-    unpressButtons("random");
-    
-    var popular = $('#popular');
-    pressButton(popular, "popular");
+  // handling for the user who clicks the little red button
+  $('div.popular').click(function(event) {
+    popular();
   });
 
-  $('#random').click(function(event) {
-    unpressButtons("popular");
-
-    var random = $('#random');
-    pressButton(random, "random");
+  // handling for rge user who clicks the little red button
+  $('div.random').click(function(event) {
+    rando();
   });
+
+  // handling for the user who clicks the link
+  $('a.random').click(function(event) {
+    event.preventDefault();
+    rando();
+  });
+
+  // handling for the user who clicks the link
+  $('a.popular').click(function(event) {
+    event.preventDefault();
+    popular();
+  });
+
+  function popular() {
+    unpressButtons("random"); // unpress the other button just in case
+    var popular = $('div.popular'); // grab popular
+    pressButton(popular, "popular"); // PRESS IT
+  }
+
+  function rando() {
+    unpressButtons("popular"); // unpress the other button just in case
+    var random = $('div.random'); // grab random
+    pressButton(random, "random"); // PRESS IT
+  }
+
 
   function unpressButtons(whichButton) {
-    var popular = $('#popular');
-    var random = $('#random');
+    var popular = $('div.popular');
+    var random = $('div.random');
     if (whichButton == "popular" || whichButton === undefined)
       unpress(popular);
     if (whichButton == "random" || whichButton === undefined)
@@ -63,8 +85,8 @@ $(function() {
   }
 
   function pressButton(button, buttonType) {
-    button.toggleClass('jukebox-button-inside-unpressed');
-    button.toggleClass('jukebox-button-inside-pressed');
+    button.removeClass('jukebox-button-inside-unpressed');
+    button.addClass('jukebox-button-inside-pressed');
 
     var buttonParent = button.parent(); // grab the div #button is inside
     var buttonLink = buttonParent.siblings('a'); // grab the link next to #button's parent
@@ -156,30 +178,35 @@ $(function() {
   function rickRoll(failedQuery) {
     // setting up a few dummy results
     var firstLink = { // the obligatory rickroll
+      via: "youtube",
       artist: "The Muppets",
       title: "Hilarious Muppet Bloopers!",
       url: "https://www.youtube.com/watch?v=3KANI2dpXLw"
     };
 
     var secondLink = { // a pretty sweet cover
+      via: "youtube",
       artist: "Chris Hadfield",
       title: "Space Oddity Cover",
       url: "https://www.youtube.com/watch?v=KaOC9danxNo"
     };
 
     var thirdLink = { // who can say no to Yohio? he made that dress himself!
+      via: "youtube",
       artist: "Seremedy",
       title: "NO ESCAPE",
       url: "https://www.youtube.com/watch?v=BbTAMzgC7uU"
     };
 
     var fourthLink = { // is k-punk a thing?
+      via: "youtube",
       artist: "No Brain",
       title: "넌 내게 반했어",
       url: "https://www.youtube.com/watch?v=u_CQB1scYuw"
     };
 
     var fifthLink = { // another pretty sweet cover
+      via: "youtube",
       artist: "Weird Al",
       title: "Foil",
       url: "https://www.youtube.com/watch?v=w-0TEJMJOhk"
