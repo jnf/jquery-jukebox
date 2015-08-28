@@ -7,6 +7,7 @@ body {
 }
 
 .inset {
+  top: 390px;
   position: absolute;
   display: block;
   width: 38px;
@@ -32,18 +33,16 @@ body {
 }
 
 .popular {
-  top: 385px;
   right: 595px;
 }
 
 .random {
-  top: 385px;
   right: 545px;
 }
 
 .search {
   position: absolute;
-  top: 208px;
+  top: 209px;
   left: 445px;
 }
 
@@ -71,7 +70,7 @@ iframe {
   overflow: scroll;
   top: 245px;
   left: 309px;
-  width: 477px;
+  width: 475px;
   height: 334px;
   border-radius: 15%;
 }
