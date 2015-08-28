@@ -1,4 +1,8 @@
 $(function () {
+    var media   = $(".media");
+    var message = $(".message")
+
+
   $(".chance").click(function () {
     event.preventDefault();
 
@@ -17,15 +21,15 @@ $(function () {
           var songs = data;
 
           for(i = 0; i < songs.length; i++) {
-            if (songs[i].via == "youtube") {
-              var media = makeEmbed(songs[i]);
+            if (songs[i].via == "youtube" || "vimeo") {
+              var video = makeEmbed(songs[i]);
 
-              $(".media").append(media);
+              media.append(video);
             }
             else {
               var link = makeSong(songs[i]);
 
-              $(".media").append(link);
+              media.append(link);
             }
           }
         }
@@ -46,11 +50,10 @@ $(function () {
     var body    = button.parents("body");
     var formDiv = button.parents(".form-block");
     var form    = button.parents("form");
+    var method  = form.attr("method");
     var artist  = $("#artist").val();
     var url     = "/search/" + artist;
-    var method  = form.attr("method");
 
-    console.log(form);
 
     $.ajax(url, {
       type: method,
@@ -63,19 +66,19 @@ $(function () {
           if (artist == "Madonna" || "Whitney Houston" || "Annie Lennox") {
             var affirm = sendAffirmation();
 
-            $(".some-text").html(affirm);
+            message.html(affirm);
           }
 
           for(i = 0; i < songs.length; i++) {
             if (songs[i].via == "youtube" || "vimeo") {
-              var media = makeEmbed(songs[i]);
+              var video = makeEmbed(songs[i]);
 
-              $(".media").append(media);
+              media.append(video);
             }
             else {
               var link = makeSong(songs[i]);
 
-              $(".media").append(link);
+              media.append(link);
             }
           }
         }
@@ -84,15 +87,15 @@ $(function () {
             var apology = sendApology();
             var song    = suggestArtist();
 
-            $(".some-text").append(apology, song);
+            message.append(apology, song);
         }
       }
     });
   });
 
   function collectGarbage() {
-    $(".some-text").empty();
-    $(".media").empty();
+    media.empty();
+    message.empty();
   }
 
   function sendApology() {
@@ -102,10 +105,12 @@ $(function () {
   }
 
   function sendAffirmation() {
+    var affirmHtml = $("<h3></h3>");
+    affirmHtml.addClass("text-center");
     var heartEyes = "&#x1F60D";
     var affirm    = heartEyes + " You have great taste! " + heartEyes;
 
-    return affirm;
+    return affirmHtml.html(affirm);;
   }
 
   function suggestArtist() {
@@ -133,12 +138,12 @@ $(function () {
   }
 
   function makeEmbed(song) {
-    var media = $("<iframe></iframe>");
+    var video = $("<iframe></iframe>");
     var url   = makeEmbedUrl(song.url, song.via);
 
-    media.prop("src", url);
+    video.prop("src", url);
 
-    return makeListItem(media);
+    return makeListItem(video);
   }
 
   function makeEmbedUrl(song_url, source) {
