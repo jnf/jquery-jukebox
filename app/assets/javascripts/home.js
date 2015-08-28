@@ -77,6 +77,13 @@ $(function() {
         }
 
         generateHTML(url, image_url, ref_num, via, caption, results_type);
+
+      };
+
+      if (results_type == "search") {
+        var scrollPoint = $('.search-box').position().top - 30;
+        console.log(scrollPoint);
+        $('body').animate({ scrollTop: scrollPoint }, 600);
       };
     };
   };
@@ -128,21 +135,14 @@ $(function() {
       iframe.attr("frameborder", 0);  
 
     } else {
-      var iframe = $('<h3>Sorry, this embedded video is not supported.</h3>');
+      var iframe = $('<h4>Sorry, this embedded video is not supported.</h4>');
     }
 
     $('.active_video').append(iframe);
+    $('.active_video').animate({ height:480 }, 500)
+
+    var scrollPoint = $('.active_video').position().top - 30;
+    $('body').animate({ scrollTop: scrollPoint }, 600);
   }
 
 })
-
-// Click on video image
-// add embedded video of image that was clicked on to .active_video div
-// .active-video div height transition to 400px slow
-
-// Vimeo iframe
-// <iframe src="https://player.vimeo.com/video/12345" width="500" height="375" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-
-// YouTube iframe
-//<iframe width="560" height="315" src="https://www.youtube.com/embed/CztT_pBFQv8" frameborder="0" allowfullscreen></iframe>
-
