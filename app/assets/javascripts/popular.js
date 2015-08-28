@@ -1,7 +1,7 @@
 $(function() {
-  $(".random").click(function(event) {
+  $(".popular").click(function(event) {
     event.preventDefault();
-    var url = "/randomizer"
+    var url = "/popular"
     $(".results").empty();
       $.ajax(url, {
        type: "get",

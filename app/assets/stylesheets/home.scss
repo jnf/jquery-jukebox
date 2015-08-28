@@ -12,13 +12,14 @@
   font-size: 4.6em;
   color: #A6256E;
 }
-a {
-  color: #0A204A;
-  font-size: 1.1rem;
+.link-style {
+  color: #8411F7;
+  font-size: 1.6rem;
+  font-weight: bold;
 }
 
-a:hover {
-  color: #777D22;
+.link-style:hover {
+  color: #02C218;
 }
 
 .search-form {
@@ -47,25 +48,44 @@ input[type="text"]:hover {
   border: solid 2px #E4DB05;
 }
 
-.random-api {
+.other-api {
   margin-top: 20px;
   margin-bottom: 10px;
+  margin-left: 30px;
 }
 
-.random-api button[type="submit"] {
+button[type="submit"].random {
   font-family: 'Lucida Sans Typewriter', 'Lucida Console';
   background-color: #4700B2;
   color: #FFB6C1;
   font-size: 1.6rem;
+  margin-left: 10px;
 }
 
-.random-api button[type="submit"]:hover {
+button[type="submit"].random:hover {
+  background-color: #de5200;
+   color: white;
+}
+
+button[type="submit"].popular {
+  font-family: 'Lucida Sans Typewriter', 'Lucida Console';
+  background-color: #09E60D;
+  color: #E60909;
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+button[type="submit"].popular:hover {
   background-color: #de5200;
    color: white;
 }
 
 .results {
   margin-top: 20px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #C2020F;
 }
 
 .giphy {

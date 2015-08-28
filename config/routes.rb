@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get '/search', action: 'search', as: "search"
     get '/search/:artist', action: "search"
     get "/randomizer", action: "randomizer"
+    get "/popular", action: "popular"
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

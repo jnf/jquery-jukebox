@@ -3,7 +3,6 @@ $(function() {
     event.preventDefault();
     var form_tag = $(this).parent("form");
     var method = form_tag.attr("method");
-    console.log(method);
     var search_field = $(this).siblings("input[type=text]").val();
     var url = form_tag.attr("action") + "/" + search_field;
     $(".results").empty();
@@ -12,6 +11,7 @@ $(function() {
       success: function (data) {
         if (data.length == 0) {
           $(".results").append("Uhh, what's that you wanted?");
+          $(".results").append("<br>");
           $('<iframe />');
           $('<iframe />', {
             class: 'giphy',
@@ -46,6 +46,7 @@ $(function() {
                           " via: " + data[i].via);
               anchor.prop("href", data[i].url); //look up diff between attr and prop
               anchor.attr('target','_blank');
+              anchor.addClass("link-style");
               $(".results").append(anchor);
             }
             $(".results").append(nextline);

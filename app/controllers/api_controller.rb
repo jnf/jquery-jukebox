@@ -1,6 +1,7 @@
 class ApiController < ApplicationController
   JAM = "http://api.thisismyjam.com/1/search/jam.json"
   RANDO = "http://api.thisismyjam.com/1/explore/chance.json"
+  POPULAR = "http://api.thisismyjam.com/1/explore/popular.json"
 
   def search
     begin
@@ -18,7 +19,20 @@ class ApiController < ApplicationController
   def randomizer
     begin
       response = HTTParty.get(RANDO)
-      data = setup_random(response)
+      data = setup_randpop(response)
+      code = :ok
+    rescue
+      data = {}
+      code = :no_content
+    end
+
+    render json: data.as_json, code: code
+  end
+
+  def popular
+    begin
+      response = HTTParty.get(POPULAR)
+      data = setup_randpop(response)
       code = :ok
     rescue
       data = {}
@@ -42,7 +56,7 @@ class ApiController < ApplicationController
     end
   end
 
-  def setup_random(response)
+  def setup_randpop(response)
     jams = response.fetch "jams"
     top = jams.first(10)
     top.map do |jam|
