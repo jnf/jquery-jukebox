@@ -65,23 +65,28 @@ function displayResults(url)
           }
           else {
             if (data[i].url == "User uploaded") {
-              $("#searchResults").append(
-              "<img class='resultItem' width=" + height + "' height='" + height + "' src='" + data[i].albumArt +
-              "'/>");
-              $("#searchResults").append(data[i].artist);
-              $("#searchResults").append(
-                "<a href=\"javascript: void(0)\">" + data[i].title + "</a>");
-              }
-            else {
 
-              var jam = $("<div> </div>");
+              var jam = $("<div class='album'> </div>");
+              var image = "<img class='resultItem' width='" + height + "' height='290px;' src='" + data[i].albumArt +
+                "'/>";
+              var caption = "<div>" + data[i].artist + " <a href=\"javascript: void(0)\">"  + data[i].title +  "</a></div>" ;
+
+              jam.append(image);
+              jam.append(caption);
+
+              $("#searchResults").append(jam);
+            }
+              // $("#searchResults").append(
+              //   "<a href=\"javascript: void(0)\">" + data[i].title + "</a>");
+              // }
+            else {
+              var jam = $("<div class='album'> </div>");
               var image = "<a href='" + data[i].url + "'><img class='resultItem' width='" + height + "' height='290px;' src='" + data[i].albumArt +
                 "'/></a>";
+              var caption = "<div>" + data[i].artist +  " <a href='" + data[i].url + "'>" + data[i].title + "</a></div>" ;
 
-              var caption = "<div>" + data[i].artist + "<a href='" + data[i].url + "'>" + data[i].title + "</a></div>" ;
-
-              jam.append(caption);
               jam.append(image);
+              jam.append(caption);
 
               $("#searchResults").append(jam);
 
