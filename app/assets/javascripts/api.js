@@ -32,25 +32,18 @@ $(function() {
 
   $('.popular').click(function(event){
     event.preventDefault();
-
     var button = $(this);
-    var formTag = button.parent();
-    var method = formTag.attr("method");
-    var url = formTag.attr("action");
-
-    $.ajax(url, {
-      type: method,
-      success: function(data){
-        showResults(data);
-      }
-    });
-
+    getJams(button);
   });
 
   $('.chance').click(function(event){
     event.preventDefault();
-
     var button = $(this);
+    getJams(button);
+  });
+
+
+  function getJams(button) {
     var formTag = button.parent();
     var method = formTag.attr("method");
     var url = formTag.attr("action");
@@ -61,8 +54,7 @@ $(function() {
         showResults(data);
       }
     });
-
-  });
+  };
 
   function showResults(data) {
     var list = $("<ul></ul>");
