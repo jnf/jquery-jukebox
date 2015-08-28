@@ -10,19 +10,14 @@ $(function() {
     var searchButton = $(this);
 
     var formTag = searchButton.parents(".form");
-    //console.log(formTag.hasClass("form"));
 
     var text_box = formTag.children(".text_box");
-    // console.log(text_box.hasClass("text_box"));
 
     var search_input = text_box.val();
 
     var url = "/search/" + search_input; // routes to controller then action which
 
     var method = formTag.attr("method");
-
-    //var last_child = $('body').children(".results");
-    // console.log(searchButton.children());
 
     ajax(url, method);
 
@@ -39,8 +34,6 @@ $(function() {
     var url = "/rando";
 
     var method = randoForm.attr("method");
-
-    //var last_child = $('body').children(".results");
 
     ajax(url, method);
 
@@ -82,11 +75,12 @@ $(function() {
         p_tag.append(anchor);
         $('.results').append(p_tag);
       }
-      return data; //return artist will have console.log(displayData(data)); inside success function to be only the artist
+      return data;
+      // for future ref: return artist will have console.log(displayData(data)); inside success function to be only the artist
     }
 
     // for making the results for a random song to actually be random
     function randOrd(){
       return (Math.round(Math.random())-0.5); }
-      
+
 });
