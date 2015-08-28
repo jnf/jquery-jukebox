@@ -262,4 +262,9 @@ $(function() {
     event.preventDefault(); // nope, you're not a real link anymore
     displayInstructions();
   })
+
+  // resize event for keeping the instructions at the bottom of the page
+  $(window).resize(function() {
+    if ($('p').length > 0) { showcaseJukebox(); };
+  });
 });
