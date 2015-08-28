@@ -89,7 +89,7 @@ $(function() {
       };
 
       if (results_type == "search") {
-        var scrollPoint = $('.search-box').position().top - 30;
+        var scrollPoint = $('.search-box').position().top - $('nav').outerHeight() - 30;
         $('body').animate({ scrollTop: scrollPoint }, 600);
       };
     };
@@ -148,7 +148,7 @@ $(function() {
     $('.active_video').append(iframe);
     $('.active_video').animate({ height:480 }, 500)
 
-    var scrollPoint = $('.active_video').position().top - 30;
+    var scrollPoint = $('.active_video').position().top - $('nav').outerHeight() - 30;
     $('body').animate({ scrollTop: scrollPoint }, 600);
   }
 
