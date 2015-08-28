@@ -8,7 +8,7 @@ $(function() {
     var searchTerm = textField.val();
     var message = "Some jams by or related to '" + searchTerm + "':";
 
-    var url = makeUrl(searchTerm);
+    var url = makeSearchUrl(searchTerm);
 
     if (url) {
       $.ajax(url, {
@@ -61,8 +61,8 @@ $(function() {
       for (i = 0; i < songs.length; i++) {
         if (songs[i].via == "youtube" || songs[i].via == "vimeo" ) {
           makeSongEmbed(songs[i]);
-        } else { // sources other than those above
-          makeSongAnchor(songs[i]);
+        } else { // unembeddable sources
+          makeSongLink(songs[i]);
         }
       };
       addYo();
@@ -77,7 +77,7 @@ $(function() {
     $("form.search").after(h3);
   }
 
-  function makeUrl(searchTerm) {
+  function makeSearchUrl(searchTerm) {
     if (searchTerm.length > 0) {
       var url = "/search/" + searchTerm;
       return url;
@@ -96,7 +96,7 @@ $(function() {
     $("#artist").val("");
   }
 
-  function makeSongAnchor(song) {
+  function makeSongLink(song) {
     makeLI();
     var anchor = $("<a></a>");
     anchor.text(song.title);
