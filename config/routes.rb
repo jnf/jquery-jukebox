@@ -5,5 +5,6 @@ Rails.application.routes.draw do
     get '/search/:artist', action: 'search'
     get '/popular', action: 'popular'
     get '/unpopular', action: 'unpopular'
+    get '/rando', action: 'rando'
   end
 end
