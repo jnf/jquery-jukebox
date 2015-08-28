@@ -146,7 +146,8 @@ $(function() {
     }
 
     $('.active_video').append(iframe);
-    $('.active_video').animate({ height:480 }, 500)
+    var vid_height = $('iframe').outerHeight() + 80;
+    $('.active_video').animate({ height: vid_height }, 500)
 
     var scrollPoint = $('.active_video').position().top - $('nav').outerHeight() - 30;
     $('body').animate({ scrollTop: scrollPoint }, 600);

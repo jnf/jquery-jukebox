@@ -1,25 +1,27 @@
-<nav>
-  <h1>Jookboqs</h1>
-</nav>
+<div class="container">
+  <nav>
+    <h1>Jookboqs</h1>
+  </nav>
 
-<h3 class="main-h3">What's the New Hotness?</h3>
-<%= button_to "Refresh The Hotness", '/breaking_jams', method: :get, class: "breaking_search"  %>
+  <h3 class="main-h3">What's the New Hotness?</h3>
+  <%= button_to "Refresh The Hotness", '/breaking_jams', method: :get, class: "breaking_search"  %>
 
-<div class="results breaking_jams"></div>
+  <div class="results breaking_jams"></div>
 
-<hr>
-<div class="active_video">
-  <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/CztT_pBFQv8" frameborder="0" allowfullscreen></iframe> -->
+  <hr>
+  <div class="active_video"></div>
+  <hr>
+
+  <div class="search-box">
+    <label for="searchArtist">
+      <h3>Search for a Specific Artist:</h3>
+      <input type="text">
+    </label>
+
+    <%= button_to "Search", '/search/', method: :get, class: "submit"  %>
+  </div>
+
+  <div class="results search"></div>
+
+  <hr>
 </div>
-<hr>
-
-<div class="search-box">
-  <label for="searchArtist">
-    <h3>Search for a Specific Artist:</h3>
-    <input type="text">
-  </label>
-
-  <%= button_to "Search", '/search/', method: :get, class: "submit"  %>
-</div>
-
-<div class="results search"></div>
