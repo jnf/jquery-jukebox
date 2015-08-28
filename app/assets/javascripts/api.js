@@ -69,7 +69,7 @@ $(function() {
 
             } else {
               // this adds a photo if invalid search term & no prior results
-              $( ".results" ).empty().addClass( "no-results-photo" );
+              $( ".results" ).empty().addClass( "no-results-photo" ).append("<h2>Oops. No jamz from that artist were found.</h2>");
 
             }
         // if there are prior results, this prevents new search results from appending on top of the old ones
@@ -81,7 +81,7 @@ $(function() {
             $( ".results" ).addClass( "jamz-background" );
           } else {
             // if there were prior results and the new data gave 0 results
-            $( ".results").empty().addClass( "no-results-photo");
+            $( ".results").empty().addClass( "no-results-photo").append("<h2>Oops. No jamz from that artist were found.</h2>");
 
           }
         }
