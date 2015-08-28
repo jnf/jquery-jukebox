@@ -44,10 +44,14 @@ class ApiController < ApplicationController
 
   def select_random(response)
     jams = response.fetch "jams", []
+    # prevents selecting a jam the js doesn't support
+    sources = ["soundcloud", "youtube", "vimeo"]
+    jams.delete_if { |jam| !sources.include?(jam["via"]) }
+
     random = jams.sample
 
     # has to be in an array 'cause the js function
-    # will assume it is and we want it to work for errythang
+    # will assume it is and we want that function to work for errythang
     jam = [{
       via: random.fetch("via", ""),
       url: random.fetch("viaUrl", ""),
