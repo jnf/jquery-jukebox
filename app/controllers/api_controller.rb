@@ -1,6 +1,6 @@
 class ApiController < ApplicationController
   JAM = "http://api.thisismyjam.com/1/search/jam.json"
-
+  GOLD = "http://api.thisismyjam.com/1/explore/rare.json"
   def home
   end
   
@@ -17,6 +17,18 @@ class ApiController < ApplicationController
     render json: data.as_json, code: code
   end
 
+  def mine
+    begin
+      response = HTTParty.get(GOLD)
+      data = rare_gold(response)
+      code = :ok
+    rescue
+      data = {}
+      code = :no_content
+    end 
+    render json: data.as_json, code: code
+  end
+
   private
 
   def setup_data(response)
@@ -30,24 +42,19 @@ class ApiController < ApplicationController
       }
     end
   end
+
+  def rare_gold(response)
+    jams = response.fetch "jams", {}
+    jams.map do |jam|
+      { nameTitle: jam.fetch("combinedTruncated",""),
+        postedBy:  jam.fetch("from",""),
+        caption:   jam.fetch("caption",""),
+        via:       jam.fetch("via",""),
+        url:       jam.fetch("url",""),
+        jamPhoto:  jam.fetch("jamvatarSmall","")
+      }
+  end
 end
-
-
-
-# def rare_gold(response)
-#   gold = response.fetch "gold", {}
-#   gold.map do |gold|
-#     { nameTitle: gold.fetch("combinedTruncated",""),
-#       postedBy:  gold.fetch("from",""),
-#       caption:   gold.fetch("caption",""),
-#       via:       gold.fetch("via",""),
-#       url:       gold.fetch("url",""),
-#       jamPhoto:  gold.fetch("jamvatarSmall","")
-
-
-
-#     }
-# end
 
 # "jams":[{"id":"afvy4mo",
 #   "from":"simonp","title":"Menton",
