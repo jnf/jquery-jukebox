@@ -26,79 +26,34 @@ $(function() {
     } else { // no search term entered
       apologize();
     }
+    clearTextField(); // after the results have rendered
   });
 
-  $("form.popular").submit(function(event) {
+  function connectApiCalltoButton(className, message) {
+    var element = "form." + className;
+    var url = "/" + className;
+
+    $(element).submit(function(event) {
     event.preventDefault();
 
-    clearTextField();
+    clearTextField(); // as soon as the button is clicked
     removeOldResults();
-
-    var url = "/popular";
 
     $.ajax(url, {
         type: "GET",
         success: function(data) {
           var songs = data;
-          displayMessage("Follow the herd, listen to these jams:");
+          displayMessage(message);
           displaySongs(songs);
         }
       });
   });
+  }
 
-  $("form.unpopular").submit(function(event) {
-    event.preventDefault();
-
-    clearTextField();
-    removeOldResults();
-
-    var url = "/unpopular";
-
-    $.ajax(url, {
-        type: "GET",
-        success: function(data) {
-          var songs = data;
-          displayMessage("Have some jams that few people like:");
-          displaySongs(songs);
-        }
-      });
-  });
-
-$("form.rando").submit(function(event) {
-    event.preventDefault();
-
-    clearTextField();
-    removeOldResults();
-
-    var url = "/rando";
-
-    $.ajax(url, {
-        type: "GET",
-        success: function(data) {
-          var songs = data;
-          displayMessage("Jams for the random state of mind:");
-          displaySongs(songs);
-        }
-      });
-  });
-
-$("form.breaking").submit(function(event) {
-    event.preventDefault();
-
-    clearTextField();
-    removeOldResults();
-
-    var url = "/breaking";
-
-    $.ajax(url, {
-        type: "GET",
-        success: function(data) {
-          var songs = data;
-          displayMessage("Freshly breaking jams:");
-          displaySongs(songs);
-        }
-      });
-  });
+  connectApiCalltoButton("popular", "Follow the herd, listen to these jams:");
+  connectApiCalltoButton("unpopular", "Have some jams that few people like:");
+  connectApiCalltoButton("rando", "Jams for the random state of mind:");
+  connectApiCalltoButton("breaking", "Freshly breaking jams:")
 
   function displaySongs(songs) {
     if (songs.length > 0) {
