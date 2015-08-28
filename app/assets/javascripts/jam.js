@@ -16,6 +16,7 @@ $(function () {
       type: method,
       data: {"artist": $("#q").val()},
       success: function(data) {
+        clearSearch();
         clearJams();
         if ($.isEmptyObject(data)) { // check empty response
           aggro();
@@ -82,6 +83,10 @@ $(function () {
 
   function clearJams() {
     $(".jams-div").html("");
+  }
+
+  function clearSearch() {
+    $("#q").val("");
   }
 
   function setupIframe(base_url, video_id) {
