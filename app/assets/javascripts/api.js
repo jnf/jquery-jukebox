@@ -44,6 +44,12 @@ $(function() {
     getJams(button);
   });
 
+  $('.rare').click(function(event){
+    event.preventDefault();
+    var button = $(this);
+    getJams(button);
+  });
+
 
   function getJams(button) {
     var formTag = button.parent();
