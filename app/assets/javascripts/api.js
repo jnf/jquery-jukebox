@@ -20,7 +20,7 @@ $(function() {
 
     event.preventDefault();
 
-    function setSearchVals(){
+    function searchAjaxValues(){
       var artistField = $("input#artist");
       var query = artistField.val();
       var formTag = $("form#search");
@@ -62,7 +62,7 @@ $(function() {
       });
     }
 
-    artistSearch(setSearchVals());
+    artistSearch(searchAjaxValues());
 
   });
 
@@ -71,7 +71,7 @@ $(function() {
 
     event.preventDefault();
 
-    function setPopularVals(){
+    function popAjaxValues(){
       var popularForm = $("form.button_to");
       var url = popularForm.attr("action");
       var method = popularForm.attr("method");
@@ -116,7 +116,7 @@ $(function() {
       });
     }
 
-    getPopularSongs(setPopularVals());
+    getPopularSongs(popAjaxValues());
 
   });
 });
