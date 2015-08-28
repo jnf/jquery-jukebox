@@ -122,7 +122,7 @@ $("form.breaking").submit(function(event) {
   function removeOldResults() {
     if ($("body").children(":last-child") != $("form")) {
       $("ul").remove();
-      $("p.result").remove();
+      $(".result").remove();
     }
   }
 
