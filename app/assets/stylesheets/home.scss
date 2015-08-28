@@ -1,15 +1,15 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-html {
+.container-fluid {
   background-color: #ADCACC;
   font-family: 'Lucida Sans Typewriter', 'Lucida Console', monaco, 'Bitstream Vera Sans Mono', monospace;
+  min-height: 1000px;
 }
 
-h1 {
-  margin: 10px;
+.eighties {
   font-family: 'Brush Script MT', cursive;
-  font-size: 4.4em;
+  font-size: 4.6em;
   color: #A6256E;
 }
 a {
@@ -30,7 +30,7 @@ a:hover {
 button[type="submit"] {
   font-family: 'Lucida Sans Typewriter', 'Lucida Console';
   background-color: #E4DB05;
-  font-size: 1.1rem;
+  font-size: 1.6rem;
 }
 
 button[type="submit"]:hover {
@@ -40,7 +40,7 @@ button[type="submit"]:hover {
 
 input[type="text"] {
   font-family: 'Lucida Sans Typewriter', 'Lucida Console';
-  font-size: 1.1rem;
+  font-size: 1.6rem;
 }
 
 input[type="text"]:hover {
@@ -48,15 +48,20 @@ input[type="text"]:hover {
 }
 
 .random-api {
-  margin-left: 90px;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 10px;
 }
 
 .random-api button[type="submit"] {
   font-family: 'Lucida Sans Typewriter', 'Lucida Console';
   background-color: #4700B2;
-  font-size: 1.2rem;
+  color: #FFB6C1;
+  font-size: 1.6rem;
+}
+
+.random-api button[type="submit"]:hover {
+  background-color: #de5200;
+   color: white;
 }
 
 .results {
