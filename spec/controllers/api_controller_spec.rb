@@ -22,7 +22,7 @@ RSpec.describe ApiController, type: :controller do
         it "has the right keys" do
           data = JSON.parse response.body
           
-          %w(title artist via url).each do |key|
+          %w(combinedTruncated image via url).each do |key|
             expect(data.map(&:keys).flatten.uniq).to include key
           end
         end
@@ -35,5 +35,34 @@ RSpec.describe ApiController, type: :controller do
         expect(response.status).to eq 204
       end
     end
+  end
+
+  describe "Retrieving 'Breaking Jams'" do
+    context "Got many results" do
+      before :each do
+        VCR.use_cassette 'fixtures/vcr_cassettes/get_breaking_jams' do
+          get :get_breaking_jams
+        end
+      end
+
+      it "should be successful" do
+        expect(response).to be_ok
+      end
+
+      it "should return a json response object" do
+        expect(response.header['Content-Type']).to include 'application/json'
+      end
+
+      context "the returned json object" do
+        it "has the right keys" do
+          data = JSON.parse response.body
+          
+          %w(combinedTruncated image via url).each do |key|
+            expect(data.map(&:keys).flatten.uniq).to include key
+          end
+        end
+      end
+    end
+
   end
 end
