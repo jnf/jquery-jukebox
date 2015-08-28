@@ -69,6 +69,26 @@ function removeResults(){
   old_results.remove();
 }
 
+function formatAudioEmbed(audioJam){
+  var url = "http://soundcloud.com/oembed";
+  var query = {};
+  query.format = "json";
+  query.url = audioJam.url;
+
+  var listItem = $("<li></li>");
+
+  $.ajax(url, {
+    type: "GET",
+    data: query,
+    success: function(data){
+      var iframeTag = data.html;
+      listItem.append(iframeTag);
+    }
+  });
+
+  return listItem;
+}
+
 function formatVideoEmbed(videoJam){
   // create a list item & iframe
   var listItem = $("<li></li>");
@@ -95,16 +115,14 @@ function formatVideoEmbed(videoJam){
 
 function formatMedia(data) {
   var formattedJamItems = [];
-  console.log(data);
 
   for(var i = 0; i < data.length; i++) {
-    var audioTypes = ["hypemachine", "soundcloud", "webaudio"];
+    var audioTypes = ["soundcloud"]; // ["hypemachine", "soundcloud", "webaudio"];
     var videoTypes = ["youtube", "vimeo"];
 
-    // if ($.inArray(data[i].via, audioTypes) > -1) {
-    //   formattedJamItems.push();
-    // } else
-    if ($.inArray(data[i].via, videoTypes) > -1) {
+    if ($.inArray(data[i].via, audioTypes) > -1) {
+      formattedJamItems.push(formatAudioEmbed(data[i]));
+    } else if ($.inArray(data[i].via, videoTypes) > -1) {
       formattedJamItems.push(formatVideoEmbed(data[i]));
     }
   }
