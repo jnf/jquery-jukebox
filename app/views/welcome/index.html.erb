@@ -1,0 +1,13 @@
+<div class="jumbotron">
+  <h1>Search UR Jams</h1>
+  <div>
+    <%= form_tag("/search/:artist", method: "get") do %>
+      <%= label_tag(:artist, "By Artist: ") %>
+      <%= text_field_tag(:artist) %>
+      <%= submit_tag("Search", class: "search btn btn-default") %>
+    <% end %>
+  </div>
+  <div class="random">
+    <%= button_tag "Discover", method: "get", class: "random btn btn-default", url: "/random" %>
+  </div>
+</div>
