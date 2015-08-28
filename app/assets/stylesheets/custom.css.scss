@@ -20,6 +20,10 @@
   margin: 30px auto;
 }
 
+.list-item {
+  font-size: 120%;
+}
+
 .vid-frame {
   margin-top: 20px;
   color: #F2008E;
@@ -33,4 +37,9 @@
 .btn.btn-chance:hover {
   background-color: #41DB99;
   border-color: #41DB99;
+}
+
+.btn.btn-play {
+  background-color: transparent;
+  border-color: transparent;
 }
