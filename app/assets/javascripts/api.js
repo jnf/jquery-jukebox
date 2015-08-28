@@ -72,18 +72,27 @@ function displayResults(url)
               $("#searchResults").append(
                 "<a href=\"javascript: void(0)\">" + data[i].title + "</a>");
               }
-            else{
-              $("#searchResults").append(
-              "<a href='" + data[i].url + "'><img class='resultItem' width='" + height + "' height='" + height + "' src='" + data[i].albumArt +
-              "'/></a>");
-                console.log(data);
-              $("#searchResults").append(data[i].artist);
-              $("#searchResults").append(
-                "<a href='" + data[i].url + "'>" + data[i].title + "</a>");
+            else {
+
+              var jam = $("<div> </div>");
+              var image = "<a href='" + data[i].url + "'><img class='resultItem' width='" + height + "' height='290px;' src='" + data[i].albumArt +
+                "'/></a>";
+
+              var caption = "<div>" + data[i].artist + "<a href='" + data[i].url + "'>" + data[i].title + "</a></div>" ;
+
+              jam.append(caption);
+              jam.append(image);
+
+              $("#searchResults").append(jam);
+
+              // $("#searchResults").append(
+              // "<a href='" + data[i].url + "'><img class='resultItem' width='" + height + "' height='290px;' src='" + data[i].albumArt +
+              // "'/></a>");
+              // $("#searchResults").prepend("<p>"+ data[i].artist + "</p>");
+              // $("#searchResults").prepend(
+              //   "<a href='" + data[i].url + "'>" + data[i].title + "</a>");
             }
           }
-
-          //$("#searchResults").append("<br><br>");
         }
       }
       console.log(data);
