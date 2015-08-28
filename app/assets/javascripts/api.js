@@ -48,37 +48,55 @@ $(function () {
     var url     = "/search/" + artist;
     var method  = form.attr("method");
 
+    console.log(form);
+
     $.ajax(url, {
       type: method,
       success: function (data, textStatus, jqHXR) {
         if (jqHXR.status == 200) {
           var songs = data;
 
+          if (artist == "Madonna" || "Whitney Houston" || "Annie Lennox") {
+            var affirm = sendAffirmation();
+
+            $(".some-text").html(affirm);
+          }
+
           for(i = 0; i < songs.length; i++) {
-            if (songs[i].via == "youtube") {
+            if (songs[i].via == "youtube" || "vimeo") {
               var media = makeEmbed(songs[i]);
+
               $(".media").append(media);
             }
             else {
               var link = makeSong(songs[i]);
+
               $(".media").append(link);
             }
           }
         }
 
         else if (jqHXR.status == 204) {
-            sendApology();
-            var song = suggestArtist();
-            formDiv.append(song);
+            var apology = sendApology();
+            var song    = suggestArtist();
+
+            $(".some-text").append(apology, song);
         }
       }
     });
   });
 
   function sendApology() {
-    apology = "There are no jamz for that artist, try this jam instead!";
+    var apology = "There are no jamz for that artist, try this jam instead!";
 
-    return form.after(apology);
+    return apology;
+  }
+
+  function sendAffirmation() {
+    var heartEyes = "&#x1F60D";
+    var affirm    = heartEyes + " You have great taste! " + heartEyes;
+
+    return affirm;
   }
 
   function suggestArtist() {
@@ -106,8 +124,8 @@ $(function () {
   }
 
   function makeEmbed(song) {
-    var media   = $("<iframe></iframe>");
-    var url     = makeEmbedUrl(song.url, song.via);
+    var media = $("<iframe></iframe>");
+    var url   = makeEmbedUrl(song.url, song.via);
 
     media.prop("src", url);
 
@@ -123,8 +141,15 @@ $(function () {
 
       return url;
     }
-    else {
-      return true;
+    else if (source == "vimeo") {
+      var regex   = /\b\/(.*)/;
+      var song    = song_url;
+      var videoId = song.match(regex);
+      var url     = "https://player.vimeo.com/video/" + videoId[1];
+
+      console.log(videoId);
+
+      return url;
     }
   }
 });
