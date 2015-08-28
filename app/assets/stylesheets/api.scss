@@ -1,3 +1,49 @@
+#results{
+
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;  
+
+    -webkit-column-gap: 40px; 
+    -moz-column-gap: 40px; 
+    column-gap: 40px;
+
+    -webkit-column-rule: 1px solid red; 
+    -moz-column-rule: 1px solid red; 
+    column-rule: 1px solid red;
+
+    -webkit-column-width: 100px; 
+    column-width: 100px;
+}
+
+body {
+  background-color: #A3C2C2;
+
+
+}
+
+.first {
+    text-align: center;
+    color: white;
+    display: block;
+    background-image: image-url("toulouse.gif");
+    background-size: 345px 135px;
+
+}
+
+.btn-primary {
+    background-color: #ccc;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:6px;
+    color: #fff;
+    font-family: 'Oswald';
+    font-size: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    border:none;
+}
+
 // Place all the styles related to the api controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/

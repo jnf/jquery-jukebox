@@ -1,5 +1,6 @@
 $(function (){
- $(".btn").click(function(event){
+
+ $(".search").click(function(event){
     event.preventDefault();
 
       var button = $(this);
@@ -15,7 +16,8 @@ $(function (){
         success: function(data){ 
         var jam = "";
           for (var i = 0; i < data.length;i++) {
-                  
+          jam += "<br>" ;
+          jam += "<img src="+ data[i].jamPhoto + ">";        
           jam += "<li>"+ data[i].artist + "</li>" ;
           jam += "<li>"+ "<a href="+ data[i].url + ">"+ data[i].title + "</a> "+ "</li>";
           jam += "<br>" ;
@@ -23,29 +25,40 @@ $(function (){
           }
 
           results.append(jam);
-
-//  var anchor = $('<a> </a>'); // new anchor element
-//  anchor.text('Text on the page.');
-//  anchor.prop('href', '/link/to/stuff');
-//  $('body').append(anchor); // <a href="/link/to/stuff">Text on the page.</a>
-        }        
-
-
-          // var "artist" = data[0]["artist"]
-          // var "title" = datatitle
-          // var "via" = data.via
-          // var "url" = data.url
-          // console.log(url)
-     
-
-
-
-
+      }
     });
+  }); 
 
- });
+ $(".gold").click(function(event){
+    event.preventDefault();
 
+      var button = $(this);
+      var form  = button.parent();
+      var method = form.attr("method");
+      var url = form.attr("action");
+      var results = $("#results");
+      results.text("");
+       
+      $.ajax(url,{
+        type: method,
+        success: function(data){ 
+        var gold = "";
+          for (var i = 0; i < data.length;i++) {
+          gold += "<br>";
+          gold += "<img src="+ data[i].jamPhoto + ">";        
+          gold += "<li>"+ "<a href="+ data[i].url + ">"+ data[i].nameTitle + "</a> "+ "</li>";
+          gold += "<li>"+ data[i].caption + "</li>" ;
+          gold += "<li>"+ data[i].postedBy + "</li>";
+          gold += "<br>" ;
+          gold += "<br>";
+          
+          }
 
+          results.append(gold);
+      } 
+    });       
+  });
+});
 
 // var anchor = $('<a> </a>'); // new anchor element
 //  anchor.text('Text on the page.');
@@ -74,7 +87,7 @@ $(function (){
 //         clubDiv.addClass("chosen");
 //         console.log(data);
 //   }
-  });
+
 
 // ajax: url -  the url from your form/view(search_path); if the button was working this is where you would go
         // method - the http restful method used to get the search_path
