@@ -1,0 +1,44 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  background-color: black;
+  background-image: url("audience.jpg");
+  height: 100%;
+  min-height: 100%;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.jumbotron {
+  margin-top: 1%;
+  background-color: rgba(255, 255, 255, .4);
+  color: black;
+  text-align: center;
+  font-size: 110%;
+  font-family: 'Amatic SC';
+  align-items: center;
+}
+
+.search-link {
+  display: block;
+}
+
+.media-body {
+  text-align: center;
+}
+
+.thumbnail {
+  background-color: rgba(255, 255, 255, .4);
+  color: black;
+  text-align: center;
+  font-family: 'Amatic SC';
+  align-items: center;
+  border: none;
+  padding-top: 15px;
+}
