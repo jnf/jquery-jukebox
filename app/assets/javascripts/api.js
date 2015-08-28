@@ -14,6 +14,7 @@ $(function() {
       success: function(data) {
         var results = data.forEach(displayResults)
         $('a').wrap( "<div class='result'></div>" );
+        $('iframe').wrap("<span class='result'></span>");
         // display no results found
         if (data.length == 0) {
           $('body').append("<div class='no-result'>no results found</div>");
@@ -37,7 +38,8 @@ $(function() {
       success: function(data) {
         data = data.slice(1, 10)
         var results = data.forEach(displayResults);
-        $('a').wrap( "<div class='result'></div>" );
+        $('a').wrap("<div class='result'></div>");
+        $('iframe').wrap("<span class='result'></span>");
       }
     });
   });
@@ -55,18 +57,36 @@ $(function() {
       type: method,
       dataType: "json",
       success: function(data) {
-        var result = data[0];
+        var result = data[Math.floor(Math.random() * data.length)];
         displayResults(result);
         $('a').wrap( "<div class='result'></div>" );
+        $('iframe').wrap("<span class='result'></span>");
       }
     });
   });
 });
 
-// display each result as a link
+// display each result as a video or link
 function displayResults(result) {
-  var anchor = $('<a></a>')
-  anchor.text(result.artist + ": " + result.title);
-  anchor.prop('href', result.url);
-  $('body').append(anchor);
+  var iframe = $('<iframe width="300" height="170"></iframe>')
+
+  if (result.via == 'youtube') {
+    var yt_video_id = result.url.slice(31)
+    var youtube = "//www.youtube.com/embed/"
+    var youtube_link = youtube + yt_video_id
+    iframe.prop("src", youtube_link)
+    $('body').append(iframe);
+  } else if (result.via == 'vimeo') {
+    var vim_video_id = result.url.slice(17)
+    var vimeo = "//player.vimeo.com/video/"
+    var vimeo_link = vimeo + vim_video_id
+    console.log(vimeo_link)
+    iframe.prop("src", vimeo_link)
+    $('body').append(iframe);
+  } else {
+    var anchor = $('<a></a>')
+    anchor.text(result.artist + ": " + result.title);
+    anchor.prop('href', result.url);
+    $('body').append(anchor);
+  }
 }
