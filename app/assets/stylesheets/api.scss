@@ -43,18 +43,13 @@ h1 {
 
 #rando {
   background: #FFFFFF url("easy.png");
-  color: blue;
+  color: black;
 }
 
 .button_to {
   display: inline;
 }
 
-img {
-  background-color: black;
-  -webkit-animation: spin-right 5s linear infinite;
-     -moz-animation: spin-right 5s linear infinite;
-      -ms-animation: spin-right 5s linear infinite;
-       -o-animation: spin-right 5s linear infinite;
-        animation: spin-right 5s linear infinite;
+.col-md-6 {
+  background-color: $pale-yellow;
 }
