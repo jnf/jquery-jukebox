@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-    get "/"  =>      'api#home',  as: 'home'
+    get "/"  =>      'api#home',   as: 'home'
     get "/search" => 'api#search', as: 'search'
-
+    get "/mine" =>   'api#mine'    as: 'mine' 
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
