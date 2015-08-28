@@ -1,26 +1,31 @@
 
 $(function() {
 
+
+
 // _______ Global Functions ________
 
+  function mediaFactory(song, mediaSource) {
+    var iframeTemplate = $("<iframe class='media-embed' type='text/html' width='500' height='304' src = '' ></iframe>");
+    var mediaURL = song.url;
 
-// <iframe src="https://player.vimeo.com/video/137208092" width="500" height="281" frameborder="0" ></iframe>
+    if (mediaSource == "youtube") {
+      var modifiedMediaURL = mediaURL.replace("watch?v=", "embed/");
+    } else if (mediaSource == "vimeo") {
+      var modifiedMediaURL = mediaURL.replace("http://vimeo.com/", "https://player.vimeo.com/video/");
+    }
 
-  function youtubeFactory(song){
-    var iframeTemplate = $("<iframe class='youtube' type='text/html' width='500' height='304' src = '' ></iframe>");
-    var youtubeURL = song.url;
-    var modifiedYoutubeUrl = youtubeURL.replace("watch?v=", "embed/");
-    iframeTemplate.attr("src", modifiedYoutubeUrl);
+    iframeTemplate.attr("src", modifiedMediaURL);
     $(".container-fluid").append(iframeTemplate);
   }
 
-  function vimeoFactory(song){
-    var iframeTemplate = $("<iframe class='vimeo' type='text/html' width='500' height='281' src = '' ></iframe>");
-    var vimeoURL = song.url;
-    var modifiedVimeoUrl = vimeoURL.replace("http://vimeo.com/", "https://player.vimeo.com/video/");
-    iframeTemplate.attr("src", modifiedVimeoUrl);
-    $(".container-fluid").append(iframeTemplate);
-  }
+  // function soundcloudFactory(song) {
+  //   var iframeTemplate = $("<iframe class='soundcloud' width='500' height='166' src=''></iframe>");
+  //   var soundcloudURL = song.url;
+  //   var modifiedsoundcloudURL = soundcloudURL.replace("http://", "https://w.soundcloud.com/player/?url=http://");
+  //   iframeTemplate.attr("src", modifiedsoundcloudURL);
+  //   $(".container-fluid").append(iframeTemplate);
+  // }
 
   function linkFactory(song){
     var anchor = $("<a class='song-link' target='new'></a>");
@@ -31,11 +36,10 @@ $(function() {
 
   function showResults(songCollection){
     for (i = 0; i < songCollection.length; i++) {
-      // YouTube Display
-      if (songCollection[i].via == "youtube") {
-        youtubeFactory(songCollection[i]);
-      } else if (songCollection[i].via == "vimeo") {
-        vimeoFactory(songCollection[i]);
+      var song = songCollection[i];
+      // YouTube or Vimeo Display
+      if (song.via == "youtube" || song.via == "vimeo") {
+        mediaFactory(song, song.via );
       // Link Display
       } else {
         linkFactory(songCollection[i]);
@@ -43,7 +47,7 @@ $(function() {
     }
 
     // Wrap it all up in a paragraph blanket
-    $(".song-link, .youtube").wrap("<p class = 'song-separator'></p>");
+    $(".song-link, .media-embed").wrap("<p class = 'song-separator'></p>");
   }
 
   // _______ Artist Search ________
