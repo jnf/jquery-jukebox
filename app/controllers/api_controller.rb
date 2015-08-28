@@ -17,21 +17,18 @@ class ApiController < ApplicationController
   end
 
   def randomizer
-    begin
-      response = HTTParty.get(RANDO)
-      data = setup_randpop(response)
-      code = :ok
-    rescue
-      data = {}
-      code = :no_content
-    end
-
-    render json: data.as_json, code: code
+    apiresponse(RANDO)
   end
 
   def popular
+    apiresponse(POPULAR)
+  end
+
+  private
+
+  def apiresponse(url)
     begin
-      response = HTTParty.get(POPULAR)
+      response = HTTParty.get(url)
       data = setup_randpop(response)
       code = :ok
     rescue
@@ -41,8 +38,6 @@ class ApiController < ApplicationController
 
     render json: data.as_json, code: code
   end
-
-  private
 
   def setup_data(response)
     jams = response.fetch "jams", {}
