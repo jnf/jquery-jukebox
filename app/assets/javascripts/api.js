@@ -8,14 +8,14 @@ $(function() {
     var youtubeURL = song.url;
     var modifiedYoutubeUrl = youtubeURL.replace("watch?v=", "embed/");
     iframeTemplate.attr("src", modifiedYoutubeUrl);
-    $(".search-results").append(iframeTemplate);
+    $("body").append(iframeTemplate);
   }
 
   function linkFactory(song){
     var anchor = $("<a class='song-link' target='new'></a>");
     anchor.text(song.artist + " - " + song.title);
     anchor.prop("href", song.url);
-    $(".search-results").append(anchor);
+    $("body").append(anchor);
   }
 
   function showResults(songCollection){
