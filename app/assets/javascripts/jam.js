@@ -1,40 +1,45 @@
 $(function () {
+
+  var YOUTUBE_EMBED = "https://www.youtube.com/embed/";
+  var VIMEO_EMBED = "https://player.vimeo.com/video/";
+
+  // searching jams
   $("form").submit(function(event) {
     event.preventDefault();
-    var button = $(":submit");
     var form = $("form");
-    var method = form.attr("method");
     var url = form.attr("action");
+    var method = form.attr("method");
     $.ajax(url, {
       type: method,
-      data: { "artist" : $("#q").val()},
+      data: {"artist": $("#q").val()},
       success: function(data) {
-        if ($.isEmptyObject(data)) {
-          unwantedSong();
+        clearJams();
+        if ($.isEmptyObject(data)) { // check empty response
+          unwantedSong(); // troll
         } else {
-          renderData(data);
+          renderJams(data);
         } // end if/else
       } // end success
     }); // end ajax
   }); // end form submit listener
 
+  // random jams
   $("#random").click(function(event) {
     event.preventDefault();
-    var button = $(this);
-    var url = button.prop("href");
+    var url = $(this).prop("href");
     $.ajax(url, {
       type: "get",
       success: function(data) {
-        renderData(data);
+        clearJams();
+        renderJams(data);
       } // end success
     }); // end ajax
   }); // end randomizer button listener
 
-  function renderData(data) {
-    $(".jams-div").html("");
+  function renderJams(data) {
     var list = $('<div>');
     list.addClass("list-group");
-    for (var i = 0; i < data.length; i++) {
+    for (var i = 0; i < data.length; i++) { // iterate through jams
       var jam = data[i];
       var artist = jam.artist;
       var title = jam.title;
@@ -43,26 +48,17 @@ $(function () {
       var anchor = $("<a>");
       anchor.addClass("list-group-item");
       if (via == "youtube") {
-        youtube_id = url.split("v=")[1];
+        youtube_id = getYoutubeId(url);
         var iframe = $("<iframe>");
-        iframe.prop("width", "300");
-        iframe.prop("height", "169");
-        iframe.prop("src", "https://www.youtube.com/embed/" + youtube_id);
-        iframe.prop("frameborder", "0");
+        setupIframe(iframe, YOUTUBE_EMBED, youtube_id);
         anchor.append(iframe);
         list.append(anchor);
       } else if (via == "vimeo") {
-        vimeo_id = url.split(".com/")[1];
+        vimeo_id = getVimeoId(url);
         var iframe = $("<iframe>");
-        iframe.prop("width", "300");
-        iframe.prop("height", "169");
-        iframe.prop("src", "https://player.vimeo.com/video/" + vimeo_id);
-        iframe.prop("frameborder", "0");
+        setupIframe(iframe, VIMEO_EMBED, vimeo_id);
         anchor.append(iframe);
         list.append(anchor);
-      // } else if (via == "soundcloud") {
-        // https://soundcloud.com/oriol-cervera/every-rose-has-its-thorn
-        // <iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/123664350&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
       } else {
         var listing = (artist + " - " + title + " (via " + via + ")");
         anchor.text(listing);
@@ -72,22 +68,40 @@ $(function () {
       } // end if/else youtube
       $('.jams-div').append(list);
     } // end for loop
-  } // end renderData
+  } // end renderJams
 
   function unwantedSong() {
-    $(".jams-div").html("");
     var list = $('<div>');
     list.addClass("list-group");
     var anchor = $("<a>");
     anchor.addClass("list-group-item");
     var iframe = $("<iframe>");
-    iframe.prop("width", "300");
-    iframe.prop("height", "169");
-    iframe.prop("src", "https://www.youtube.com/embed/-gPuH1yeZ08?autoplay=1");
-    iframe.prop("frameborder", "0");
+    setupIframe(iframe, YOUTUBE_EMBED, "-gPuH1yeZ08?autoplay=1");
     anchor.append(iframe);
     list.append(anchor);
     $(".jams-div").append(list);
   } // end unwantdSong
+
+  function clearJams() {
+    $(".jams-div").html("");
+  }
+
+  function setupIframe(iframe, base_url, video_id) {
+    iframe.prop("width", "300");
+    iframe.prop("height", "169");
+    iframe.prop("src", base_url + video_id);
+    iframe.prop("frameborder", "0");
+    return iframe;
+  }
+
+  function getVimeoId(url) {
+    var id = url.split(".com/")[1];
+    return id;
+  }
+
+  function getYoutubeId(url) {
+    var id = url.split("v=")[1];
+    return id;
+  }
 
 }); // end js file
