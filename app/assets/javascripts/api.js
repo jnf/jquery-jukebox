@@ -8,14 +8,14 @@ $(function() {
     var youtubeURL = song.url;
     var modifiedYoutubeUrl = youtubeURL.replace("watch?v=", "embed/");
     iframeTemplate.attr("src", modifiedYoutubeUrl);
-    $("body").append(iframeTemplate);
+    $(".container-fluid").append(iframeTemplate);
   }
 
   function linkFactory(song){
     var anchor = $("<a class='song-link' target='new'></a>");
     anchor.text(song.artist + " - " + song.title);
     anchor.prop("href", song.url);
-    $("body").append(anchor);
+    $(".container-fluid").append(anchor);
   }
 
   function showResults(songCollection){
@@ -30,7 +30,7 @@ $(function() {
     }
 
     // Wrap it all up in a paragraph blanket
-    $(".song-link, .youtube").wrap("<p></p>");
+    $(".song-link, .youtube").wrap("<p class = 'song-separator'></p>");
   }
 
   // _______ Artist Search ________

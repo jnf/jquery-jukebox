@@ -1,9 +1,9 @@
-<h1>Who's Your Jam?</h1>
+<h1><span class="glyphicon glyphicon-headphones"></span> Sounds Just Like...</h1>
+<h3>Discover Similar Artists</h3>
 
-<%= form_tag search_path, method: :get, id: "search" do %>
-  <%= label_tag :artist %>
-  <%= text_field_tag :artist %>
-  <%= submit_tag "RAWK", class: "search-btn" %>
+<%= form_tag search_path, method: :get, id: "search", class: "form-group" do %>
+  <%= text_field_tag :artist, nil, placeholder: "Artist", class: "field" %>
+  <%= submit_tag "RAWK", class: "search-btn btn btn-default" %>
 <% end %>
 
-<%= button_to "I'm blanking. What's popular today?", popular_path, method: :get, id: "popular-button", action: "/popular" %>
+<%= button_to "Popular Jams", popular_path, method: :get, id: "popular-button", class: "btn btn-info", action: "/popular" %>

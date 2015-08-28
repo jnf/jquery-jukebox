@@ -5,3 +5,26 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body {
+  background-color: rgb(42,3,46);
+  color: white;
+}
+
+iframe {
+  border: none;
+}
+
+.field {
+  color: #000;
+}
+.container-fluid {
+  text-align: center;
+  width: 70%;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-bottom: 2em;
+}
+
+.song-separator {
+  margin-top: 1em;
+}
