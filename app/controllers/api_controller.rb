@@ -1,3 +1,5 @@
+require 'pry'
+
 class ApiController < ApplicationController
   JAM = "http://api.thisismyjam.com/1/search/jam.json"
   RANDO = "http://api.thisismyjam.com/1/explore/chance.json"
@@ -29,7 +31,7 @@ class ApiController < ApplicationController
   def apiresponse(url)
     begin
       response = HTTParty.get(url)
-      data = setup_randpop(response)
+      data = setup_data(response)
       code = :ok
     rescue
       data = {}
@@ -40,21 +42,16 @@ class ApiController < ApplicationController
   end
 
   def setup_data(response)
-    jams = response.fetch "jams", {}
-    jams.map do |jam|
-      {
-        via: jam.fetch("via", ""),
-        url: jam.fetch("viaUrl", ""),
-        title: jam.fetch("title", ""),
-        artist: jam.fetch("artist", "")
-      }
-    end
-  end
 
-  def setup_randpop(response)
-    jams = response.fetch "jams"
-    top = jams.first(10)
-    top.map do |jam|
+    jams = response.fetch "jams", {}
+
+    if response["list"]["next"].nil?
+      return jams
+    else
+      jams = jams.first(10)
+    end
+    
+    jams.map do |jam|
       {
         via: jam.fetch("via", ""),
         url: jam.fetch("viaUrl", ""),
