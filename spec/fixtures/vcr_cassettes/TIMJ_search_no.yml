@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.thisismyjam.com/1/search/jam.json?by=artist&q=398572938doijfw
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.1.19
+      Date:
+      - Fri, 28 Aug 2015 22:37:51 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '73'
+      Connection:
+      - close
+      Set-Cookie:
+      - anon=55e0e2bf7bbb0; expires=Sat, 27-Aug-2016 22:37:51 GMT; path=/; domain=api.thisismyjam.com
+      Access-Control-Allow-Origin:
+      - "*"
+      Expires:
+      - Fri, 28 Aug 2015 23:37:51 GMT
+      Vary:
+      - Accept-Encoding
+      X-Cached:
+      - MISS
+    body:
+      encoding: ASCII-8BIT
+      string: '{"jams":[],"list":{"next":null,"hasMore":false}}'
+    http_version: 
+  recorded_at: Fri, 28 Aug 2015 22:37:51 GMT
+recorded_with: VCR 2.9.3
