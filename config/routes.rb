@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   controller :api do
     get '/search/:artist', action: 'search'
     get '/popular', action: 'popular'
-    # get '/soundcloud_embed', action: 'soundcloud_embed_html'
+    get '/unpopular', action: 'unpopular'
   end
 end
