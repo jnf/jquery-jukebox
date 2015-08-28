@@ -63,10 +63,10 @@ iframe {
 
 .fixed {
   overflow: scroll;
-  position: absolute;
   height: 400px;
   width: 100%;
   border: black solid;
   border-radius: 15px;
   background-color: white;
+  box-shadow: 2px 2px 2px 1px #E5E5D8;
 }
