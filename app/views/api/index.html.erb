@@ -1,11 +1,16 @@
+<div class="tv">
+  <%= image_tag("tv.png", class: 'center') %>
+</div>
+
 <%= form_tag search_path(:artist), method: :get, remote: true, class: "form-group" do %>
   <%= label_tag :artist, "Search for:" %>
-  <%= text_field_tag :artist %>
+  <%= text_field_tag :artist, nil, placeholder: "artist name" %>
   <%= submit_tag "Search", class: "btn btn-primary" %>
 <% end %>
 
-<%= button_to("Popular Jams", popular_path, 
-  method: :get, class: "btn btn-primary") %>
+<%= button_to("Popular", popular_path, 
+  method: :get, class: "inset") %>
   <br>
-<%= button_to("Random Jam", random_path, 
-  method: :get, class: "btn btn-primary") %>
+<%= button_to("Random", random_path, 
+  method: :get, class: "inset") %>
+

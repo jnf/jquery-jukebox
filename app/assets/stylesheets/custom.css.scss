@@ -1,2 +1,50 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url(//fonts.googleapis.com/css?family=Shadows+Into+Light+Two);
+
+body {
+  font-family: 'Shadows Into Light Two', cursive;
+/*  background: image-url("tv.jpg") no-repeat fixed center;
+*/}
+
+.inset {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  font-size: 11px;
+  color: #fff;
+  line-height: 45px;
+  text-shadow: 0 1px 0 #666;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 1px 1px 2px #000;
+  background: #000;
+  opacity: 0.95
+}
+
+.inset:hover {
+  color: #eee;
+  text-shadow: 0 0 1px #666;
+  text-decoration: none;
+  box-shadow: 0 0 4px #222 inset;
+  opacity: 1
+}
+
+.tv {
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  z-index: -1;
+}
+
+iframe {
+  position: absolute;
+  overflow: scroll;
+  top: 244px;
+  left: 309px;
+  width: 475px;
+  height: 333px;
+  border-radius: 15%;
+  z-index: 0;
+}

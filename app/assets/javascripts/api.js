@@ -23,7 +23,7 @@ $(function() {
     });
   });
 
-  $("input[value='Popular Jams']").click(function(event) {
+  $("input[value='Popular']").click(function(event) {
     event.preventDefault();
 
     var url = "/popular";
@@ -36,15 +36,15 @@ $(function() {
       type: method,
       dataType: "json",
       success: function(data) {
-        data = data.slice(1, 10)
-        var results = data.forEach(displayResults);
+        var result = data[Math.floor(Math.random() * data.length)];
+        displayResults(result);
         $('a').wrap("<div class='result'></div>");
         $('iframe').wrap("<span class='result'></span>");
       }
     });
   });
 
-  $("input[value='Random Jam']").click(function(event) {
+  $("input[value='Random']").click(function(event) {
     event.preventDefault();
 
     var url = "/random";
@@ -75,18 +75,18 @@ function displayResults(result) {
     var youtube = "//www.youtube.com/embed/"
     var youtube_link = youtube + yt_video_id
     iframe.prop("src", youtube_link)
-    $('body').append(iframe);
+    $('div').append(iframe);
   } else if (result.via == 'vimeo') {
     var vim_video_id = result.url.slice(17)
     var vimeo = "//player.vimeo.com/video/"
     var vimeo_link = vimeo + vim_video_id
     console.log(vimeo_link)
     iframe.prop("src", vimeo_link)
-    $('body').append(iframe);
+    $('div').append(iframe);
   } else {
     var anchor = $('<a></a>')
     anchor.text(result.artist + ": " + result.title);
     anchor.prop('href', result.url);
-    $('body').append(anchor);
+    $('div').append(anchor);
   }
 }
