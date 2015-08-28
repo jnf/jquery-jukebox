@@ -53,10 +53,6 @@ ul {
   margin: 20px auto;
 }
 
-ul, li {
-  border-color: black;
-}
-
 iframe {
   display: inherit;
   margin: 0 auto;
@@ -73,4 +69,5 @@ iframe {
   width: 100%;
   border: black solid;
   border-radius: 15px;
+  background-color: white;
 }
