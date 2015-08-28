@@ -90,9 +90,11 @@ $(function() {
     var iFrame = $("<iframe></iframe>");
     iFrame.addClass("embed-responsive-item");
     iFrame.prop("src", url);
+
     var div = $("<div></div>");
     div.addClass("embed-responsive embed-responsive-4by3");
     div.append(iFrame);
+
     var lastLI = $("li:last-child");
 
     lastLI.append(div);
@@ -137,13 +139,20 @@ $(function() {
   function apologize() {
     var p = $("<p></p>");
     p.addClass("result")
-    p.text("That is not anyone else's jam.");
+    p.text("That is not anyone's jam.");
     $("form.search").after(p);
+    addNo();
   }
 
   function addYo() {
     var span = $("<span></span>");
     span.text(" YO.");
+    $("p.subheading").append(span);
+  }
+
+  function addNo() {
+    var span = $("<span></span>");
+    span.text(" NO.");
     $("p.subheading").append(span);
   }
 });
