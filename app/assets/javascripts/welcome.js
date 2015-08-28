@@ -35,6 +35,14 @@ $(function () {
       }
     });
   });
+
+  $(document).on("click", ".click-for-video", function(event) {
+    event.preventDefault();
+    console.log("I worked!!!!");
+    var song = $(this);
+    $("iframe").remove();
+    $('.media-body').prepend(youtubeVideoStructure(song));
+  });
 });
 
 function removePreviousResults() {
@@ -49,14 +57,12 @@ function listAllSongs(data) {
 
 function printSong(element) {
   $('.media-body').append(songStructure(element));
-  // if (element.via == "youtube") {
-  //   $('.media-body').append(youtubeVideoStructure(element));
-  // }
 }
 
-function youtubeVideoStructure(element) {
+function youtubeVideoStructure(song) {
+  var url = song.attr("url");
   var iframe = $('<iframe width="640" height="360"></iframe>');
-  var urlCode = element.url.slice(-11, element.url.length);
+  var urlCode = url.slice(-11, url.length);
   var embedUrl = "http://www.youtube.com/embed/" + urlCode;
   iframe.prop("src", embedUrl);
   return iframe;
@@ -65,11 +71,22 @@ function youtubeVideoStructure(element) {
 function songStructure(element) {
     var colSizeDiv = $("<div class='col-md-3'></div>");
       var thumbnailDiv = $("<div class='thumbnail'></div>");
-        var link = $("<a>");
-        link.prop("href", element.url);
-          var img = $("<img>");
-          img.prop("src", element.thumbnail);
+        // if the media is youtube -> don't make a link, add a class that you can click on
+        // if the media is not youtube -> make a link
+        var img = $("<img>");
+        img.prop("src", element.thumbnail);
+
+        if (element.via == "youtube") {
+          img.addClass("click-for-video");
+          img.attr("url", element.url);
+          thumbnailDiv.append(img);
+        } else {
+          var link = $("<a>");
+          link.attr("href", element.url);
           link.append(img);
+          thumbnailDiv.append(link);
+        }
+
         var caption = $("<div class='caption'></div>");
           var title = $("<h3></h3>");
           title.text(element.title);
@@ -77,7 +94,6 @@ function songStructure(element) {
           artist.text(element.artist);
           caption.append(title);
           caption.append(artist);
-        thumbnailDiv.append(link);
         thumbnailDiv.append(caption);
       colSizeDiv.append(thumbnailDiv);
   return colSizeDiv;
