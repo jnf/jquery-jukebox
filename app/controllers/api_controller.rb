@@ -25,7 +25,6 @@ class ApiController < ApplicationController
       data = {}
       code = :no_content
     end
-    binding.pry
     render json: data.as_json, code: code
   end
 
@@ -45,6 +44,15 @@ class ApiController < ApplicationController
 
   def select_random(response)
     jams = response.fetch "jams", []
-    random_jam = jams.sample
+    random = jams.sample
+
+    # has to be in an array 'cause the js function
+    # will assume it is and we want it to work for errythang
+    jam = [{
+      via: random.fetch("via", ""),
+      url: random.fetch("viaUrl", ""),
+      title: random.fetch("title", ""),
+      artist: random.fetch("artist", "")
+    }]
   end
 end

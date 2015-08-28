@@ -27,19 +27,7 @@ $(function(){
         var list = $("<ul></ul>");
         list.css("list-style-type", "none");
 
-        var formattedJamItems = [];
-        // format each result based on its media source
-        for(i = 0; i < data.length; i++) {
-          var audioTypes = ["hypemachine", "soundcloud", "webaudio"];
-          var videoTypes = ["youtube", "vimeo"];
-
-          // if ($.inArray(data[i].via, audioTypes) > -1) {
-          //   formattedJamItems.push();
-          // } else
-          if ($.inArray(data[i].via, videoTypes) > -1) {
-            formattedJamItems.push(formatVideoEmbed(data[i]));
-          }
-        }
+        var formattedJamItems = formatMedia(data);
 
         // add each of the embed list items to the list
         for(i = 0; i < formattedJamItems.length; i++) {
@@ -58,15 +46,26 @@ $(function(){
       type: "GET",
       success: function(data){
         removeResults();
-        console.log(data);
+
+        // create the list for the results
+        var list = $("<ul></ul>");
+        list.css("list-style-type", "none");
+
+        var formattedJamItems = formatMedia(data);
+
+        // add each of the embed list items to the list
+        for(i = 0; i < formattedJamItems.length; i++) {
+          list.append(formattedJamItems[i]);
+        }
+
+        $("#results").append(list);
       }
     });
   });
 });
 
 function removeResults(){
-  var old_results = $("#results").children("a");
-  old_results.append($("#results").children("br"));
+  var old_results = $("#results").children("ul");
   old_results.remove();
 }
 
@@ -92,4 +91,23 @@ function formatVideoEmbed(videoJam){
   listItem.append(iframeTag);
 
   return listItem;
+}
+
+function formatMedia(data) {
+  var formattedJamItems = [];
+  console.log(data);
+
+  for(var i = 0; i < data.length; i++) {
+    var audioTypes = ["hypemachine", "soundcloud", "webaudio"];
+    var videoTypes = ["youtube", "vimeo"];
+
+    // if ($.inArray(data[i].via, audioTypes) > -1) {
+    //   formattedJamItems.push();
+    // } else
+    if ($.inArray(data[i].via, videoTypes) > -1) {
+      formattedJamItems.push(formatVideoEmbed(data[i]));
+    }
+  }
+
+  return formattedJamItems;
 }
