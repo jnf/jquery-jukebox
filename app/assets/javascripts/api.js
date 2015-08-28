@@ -1,6 +1,8 @@
 
 $(function() {
 
+// _______ Global Functions ________
+
   function youtubeFactory(song){
     var iframeTemplate = $("<iframe class='youtube' type='text/html' width='640' height='390' src = '' ></iframe>");
     var youtubeURL = song.url;
@@ -31,7 +33,8 @@ $(function() {
     $(".song-link, .youtube").wrap("<p></p>");
   }
 
-  // When you search for an artist...
+  // _______ Artist Search ________
+
   $(".search").click(function(event){
 
     event.preventDefault();
@@ -58,11 +61,8 @@ $(function() {
         success: function (data) {
           // Clear old results
           $("a, iframe").remove();
-
           var songCollection = data;
-
           showResults(songCollection);
-
         }
       });
     }
@@ -71,7 +71,8 @@ $(function() {
 
   });
 
-  // When you look for popular tracks...
+  // _______ Popular Tracks ________
+
   $("#popular-button").click(function(event){
 
     event.preventDefault();
@@ -88,17 +89,14 @@ $(function() {
     }
 
     function getPopularSongs(popularValues){
-
       $.ajax(popularValues.url, {
         type: popularValues.method,
         success: function (data) {
           // Clear old results
           $("a, iframe").remove();
-
           var songCollection = data;
 
           showResults(songCollection);
-
         }
       });
     }
