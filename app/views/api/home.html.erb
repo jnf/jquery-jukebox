@@ -1,5 +1,7 @@
 <div class="container-fluid">
   <div class="row">
+    <div class='col-md-6 col-md-offset-3'>
+
     <h1>Search for Your Jam</h1>
       <%= text_field_tag :artist %>
       <%= button_to "Start Jammin'", search_path,
@@ -11,9 +13,10 @@
     <%= button_to "Take a Chance", rando_path,
      method: :get, class: "btn btn-info", id: "rando"
     %>
+    </div>
   </div>
   <div class='row'>
-    <div class="col-md-6" id="results">
+    <div class="col-md-6 col-md-offset-3" id="results">
     </div>
   </div>
 </div>

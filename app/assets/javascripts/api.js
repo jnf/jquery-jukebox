@@ -35,7 +35,7 @@ $(function() { // autoloads javascript into browser window for the rails window
    });
  });
 
- var breaking = $('input[id="breaking"]').parent()
+ var breaking = $('#breaking').parent()
 
  $(breaking).submit(function(event) {
     $('#results').empty(); // clears result slate before querying API again
@@ -62,7 +62,10 @@ $(function() { // autoloads javascript into browser window for the rails window
    });
  });
 
- $("#rando").parent().submit(function(event) {
+ var random = $('#rando').parent()
+
+
+ $(random).submit(function(event) {
    $('#results').empty(); // clears result slate before querying API again
    event.preventDefault();
    // overrides default behavior normally associated with choose button
@@ -106,6 +109,21 @@ $(function() { // autoloads javascript into browser window for the rails window
     var listItem = $('<li></li>'); // new list element
     var anchor = $('<a></a>'); // new anchor element
     list.append('<iframe width="420" height="315" src="https://www.youtube.com/embed/KmtzQCSh6xk" frameborder="0" allowfullscreen></iframe>');
+  }
+
+  function animateButton() {
+    var chance = $;
+  var angle = 0, lastTime = null;
+  function animate(time) {
+    if (lastTime != null)
+      angle += (time - lastTime) * 0.001;
+    lastTime = time;
+    chance.style.top = (Math.sin(angle) * 20) + "px";
+    chance.style.left = (Math.cos(angle) * 200) + "px";
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+
   }
 
 }); // end
