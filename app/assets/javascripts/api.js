@@ -52,7 +52,7 @@ $(function() {
 
 
   function link(data) {
-    var anchor =  $("<a></a><br>");
+    var anchor =  $("<a></a><br><br>");
     anchor.text(data.title);
     anchor.prop("href",data.url);
     $("body").append(anchor);
@@ -65,18 +65,21 @@ $(function() {
   }
 
   function embeded(url){
+    var code;
+    var link;
       if(url.match("youtube")) {
-        var code = url.split("").slice(-11).join("");
-        var link = "https://www.youtube.com/embed/" + code;
+        code = url.split("").slice(-11).join("");
+        link = "https://www.youtube.com/embed/" + code;
       }else if (url.match("vimeo")){
-        var code = url.split("").slice(-8).join("");
-        var link = "https://player.vimeo.com/video/" + code;
+        code = url.split("").slice(-8).join("");
+        link = "https://player.vimeo.com/video/" + code;
         // console.log(url);
-      }else {
-        console.log("Hello");
+      }else if (url.match("soundcloud")){
+        // code = url.split("").slice(-8).join("");
+        console.log(url);
+        // var link = "https://w.soundcloud.com/player/" + code;
+        link = "https://w.soundcloud.com/player/" + code;
       }
-      return link
-
+      return link;
   }
-//<iframe src="https://player.vimeo.com/video/95331809" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="https://vimeo.com/95331809">AFTERGLOW</a> from <a href="https://vimeo.com/user5987554">ELI RUSSELL LINNETZ</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
-});
+  });
