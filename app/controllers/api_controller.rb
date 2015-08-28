@@ -21,20 +21,21 @@ class ApiController < ApplicationController
   end
 
   def popular
-    begin
-      response = HTTParty.get(JAM_EXPLORE + "popular.json")
-      data = setup_data(response)
-      data = data.sample(10)
-      code = :ok
-    rescue
-      data = {}
-      code = :no_content
-    end
+    data = api_call("popular.json")
 
-    render json: data.as_json, code: code
+    render json: data[0].as_json, code: data[1]
   end
 
   def rando
+    data = api_call("chance.json")
+
+    render json: data[0].as_json, code: data[1]
+  end
+
+
+  private
+
+  def api_call(url)
     begin
       response = HTTParty.get(JAM_EXPLORE + "chance.json")
       data = setup_data(response)
@@ -44,12 +45,8 @@ class ApiController < ApplicationController
       data = {}
       code = :no_content
     end
-
-    render json: data.as_json, code: code
+    return [data, code]
   end
-
-
-  private
 
   def setup_data(response)
     jams = response.fetch "jams", {}
