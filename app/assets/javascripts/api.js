@@ -35,11 +35,12 @@ $(function() {
       };
     }
 
-    function executeSearch(searchValues){
+    function artistSearch(searchValues){
       $.ajax(searchValues.url, {
         type: searchValues.method,
         data: searchValues.params,
         success: function (data) {
+          // Clear old results
           $("a, iframe").remove();
 
           var songCollection = data;
@@ -61,48 +62,61 @@ $(function() {
       });
     }
 
-    executeSearch(setSearchVals());
+    artistSearch(setSearchVals());
 
   });
 
   // Popular Tracks
   $("#popular-button").click(function(event){
+
     event.preventDefault();
-    var popularForm = $("form.button_to")
-    var url = popularForm.attr("action");
-    var method = popularForm.attr("method");
 
+    function setPopularVals(){
+      var popularForm = $("form.button_to");
+      var url = popularForm.attr("action");
+      var method = popularForm.attr("method");
 
-    $.ajax(url, {
-      type: method,
-      success: function (data) {
+      return {
+        url : url,
+        method: method
+      };
+    }
 
-        var artistArray = data; // Renamed for clarity
+    function getPopularSongs(popularValues){
 
-        // Removing the previous results
-        $("a, iframe").remove();
+      $.ajax(popularValues.url, {
+        type: popularValues.method,
+        success: function (data) {
+          // Clear old results
+          $("a, iframe").remove();
 
-        // For each search result
-        for (i = 0; i < artistArray.length; i++) {
+          var artistArray = data;
 
-          // YouTube embed
-          if (artistArray[i].via == "youtube") {
-            var iframeTemplate = $("<iframe class='other-media' type='text/html' width='640' height='390' src = '' ></iframe>");
-            var youtubeURL = artistArray[i].url;
-            var modifiedYoutubeUrl = youtubeURL.replace("watch?v=", "embed/");
-            iframeTemplate.attr("src", modifiedYoutubeUrl);
-            $(".search-results").append(iframeTemplate);
-          } else {
-            //  Link Version
-            var anchor = $("<a class='song-link' target='new'></a>");
-            anchor.text(artistArray[i].artist + " - " + artistArray[i].title);
-            anchor.prop("href", artistArray[i].url);
-            $(".search-results").append(anchor);
+          // For each result
+          for (i = 0; i < artistArray.length; i++) {
+
+            // YouTube embed
+            if (artistArray[i].via == "youtube") {
+              var iframeTemplate = $("<iframe class='other-media' type='text/html' width='640' height='390' src = '' ></iframe>");
+              var youtubeURL = artistArray[i].url;
+              var modifiedYoutubeUrl = youtubeURL.replace("watch?v=", "embed/");
+              iframeTemplate.attr("src", modifiedYoutubeUrl);
+              $(".search-results").append(iframeTemplate);
+            } else {
+              //  Link Version
+              var anchor = $("<a class='song-link' target='new'></a>");
+              anchor.text(artistArray[i].artist + " - " + artistArray[i].title);
+              anchor.prop("href", artistArray[i].url);
+              $(".search-results").append(anchor);
+            }
           }
-        }
 
-        $(".song-link").wrap("<p></p>");
-      }
-    });
+          $(".song-link").wrap("<p></p>");
+        }
+      });
+    }
+
+    getPopularSongs(setPopularVals());
+
   });
 });
