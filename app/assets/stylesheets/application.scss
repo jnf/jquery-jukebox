@@ -34,6 +34,11 @@ header {
   height: 10em;
 }
 
+h1 {
+  font-family: 'Frijole', cursive;
+  font-size: 50px;
+}
+
 ul {
   background-color: rgba(153, 204, 255, .8);
   margin-left: auto;
@@ -41,6 +46,8 @@ ul {
   width: 935px;
   padding: 1em;
 }
+
+
 
 
 li {
@@ -55,7 +62,23 @@ li {
 }
 
 .search_form {
+  display: inline;
+}
 
+.search {
+  padding: 7px;
+  display: inline;
+  background-color: #B8E68A;
+}
+
+.popular input {
+  display: inline;
+  padding: 7px;
+  background-color: #B8E68A;
+}
+
+.popular {
+  display: inline;
 }
 
 .song {
@@ -63,11 +86,7 @@ li {
   overflow: hidden;
 }
 
-.popular {
-  float: right;
-  clear: right;
-}
-
 iframe {
   margin: auto;
+  margin-left: 25px;
 }

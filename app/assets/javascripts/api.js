@@ -18,13 +18,11 @@ $(function() {
         result_array = data;
         clear();
 
-        result_array.length == 0 ? failed_search() : display(result_array);
+        display(result_array);
 
-        }
+      }
     });
-
   });
-
 
   $(".popular").click(function(event){
     event.preventDefault();
@@ -37,7 +35,7 @@ $(function() {
       type: method,
       success: function (data) {
         result_array = data;
-        result_array.length == 0 ? failed_search() : display(result_array);
+        display(result_array);
       }
     })
   });
@@ -47,23 +45,33 @@ $(function() {
     var list = $('<ul></ul>')
     list.addClass('list-group')
 
-    for(i = 0; i < result_array.length; i++) {
-      var listItem = $('<li></li>');
-      listItem.addClass('list-group-item')
-            if (result_array[i].via == 'youtube'){
-                iframe = embed_youtube(result_array[i].url);
-                $(listItem).append(iframe);
-            } else if (result_array[i].via == 'vimeo') {
-                iframe = embed_vimeo(result_array[i].url);
-                $(listItem).append(iframe);
-            } else  {
-                anchor = makeLink(result_array[i]);
-                $(listItem).append(anchor);
-            }
-      list.append(listItem);
-    }
+    //Displays if no results are found. Try to refactor to not repeat code
+    if (result_array.length == 0) {
+        var listItem = $('<li></li>');
+        listItem.addClass('list-group-item');
+        iframe = failed_search();
+        $(listItem).append(iframe);
+        list.append(listItem);
 
-    $('div').append(list);
+    } else {
+      for(i = 0; i < result_array.length; i++) {
+        var listItem = $('<li></li>');
+        listItem.addClass('list-group-item')
+          if (result_array[i].via == 'youtube'){
+              iframe = embed_youtube(result_array[i].url);
+              $(listItem).append(iframe);
+          } else if (result_array[i].via == 'vimeo') {
+              iframe = embed_vimeo(result_array[i].url);
+              $(listItem).append(iframe);
+          } else  {
+              anchor = makeLink(result_array[i]);
+              $(listItem).append(anchor);
+          }
+        list.append(listItem);
+    }
+  }
+
+   $('div').append(list);
   }
 
   function clear(){
@@ -102,7 +110,7 @@ $(function() {
   function failed_search(){
     var iframe = $('<iframe width="560" height="315" src="https://www.youtube.com/embed/-WvmuqggTmY" frameborder="0" allowfullscreen></iframe>')
 
-    $('div').append(iframe);
+    return iframe
   }
 
 });
