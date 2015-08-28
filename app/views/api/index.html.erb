@@ -3,13 +3,11 @@
 <%= form_tag search_path, method: "get" do %>
   <%= label_tag(:artist) %>
   <%= text_field_tag(:artist) %>
-  <%= submit_tag("Search Jams", class: "search") %>
+  <%= submit_tag("Search Jams", class: "search btn btn-default") %>
 <% end %>
 <br>
-<%= button_to "Popular Jams", popular_path, method: :get, class: "popular" %>
-<br>
-<%= button_to "Random Jams", chance_path, method: :get, class: "chance" %>
-<br>
-<%= button_to "Rare Jams", rare_path, method: :get, class: "rare" %>
+<%= button_to "Popular Jams", popular_path, method: :get, class: "popular btn btn-default" %>
+<%= button_to "Random Jams", chance_path, method: :get, class: "chance btn btn-default" %>
+<%= button_to "Rare Jams", rare_path, method: :get, class: "rare btn btn-default" %>
 <br>
 <div class="results"></div>
