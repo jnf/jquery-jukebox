@@ -1,10 +1,18 @@
-<h1>Find my jam</h1>
+<div class="jumbotron">
+  <div class="container">
+    <h1 class=jumbo-search>Find my groove</h1>
+    <div class="form-group">
+      <%= form_tag('/search', method: "get", class: "form-inline") do %>
+        <%= text_field_tag :artist %>
+        <%= submit_tag "Search", class: "artist-search btn btn-default" %>
+        <% end %>
+      </div>
+  </div>
+</div>
 
-<%= form_tag('/search', method: "get") do %>
-    <%= text_field_tag :artist %>
-    <%= submit_tag "Search", class: "artist-search" %>
-<% end %>
-
-
-<h1>Hot and New</h1>
-<%= button_to "FIRE!", "/popular", method: "get", class: "hot-songs" %>
+<div class="container">
+  <div class="col-md-4 new-grooves">
+    <h3>Hot and New</h3>
+    <%= button_to "FIRE!", "/popular", method: "get", class: "hot-songs btn btn-default" %>
+  </div>
+</div>

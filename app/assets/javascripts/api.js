@@ -20,9 +20,6 @@ $(function() {
       type: method,
       data: artist_params,
       success: function (data) {
-        // console.log(data[0].title);
-        // console.log(data.length);
-        //function searchResults(data) {
           for (var i = 0; i < data.length; i++){
             var anchor = $('<a></a>'); // new anchor element
             anchor.text("'" + data[i].title + "'" + '   by: ' + data[i].artist);
@@ -31,9 +28,7 @@ $(function() {
             anchor.append(br);
             $('body').append(anchor); // <a href="/link/to/stuff">Text on the page.</a>
                   }
-                //};
         }
-        // searchResults(data);
       });
     });
 
@@ -49,22 +44,35 @@ $(function() {
     var method = formTag.attr("method");
     // console.log(method);
 
+    // <iframe width="420" height="315"
+    // src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=1">
+    // </iframe>
+
     $.ajax(url, {
       type: method,
       success: function (data) {
         //function searchResults(data) {
           for (var i = 0; i < data.length; i++){
-            var anchor = $('<a></a>'); // new anchor element
-            anchor.text("'" + data[i].title + "'" + '   by: ' + data[i].artist);
-            anchor.prop('href', data[i].url);
-            var br = document.createElement("br");
-            anchor.append(br);
-            $('body').append(anchor); // <a href="/link/to/stuff">Text on the page.</a>
+            if (data[i].via == "youtube"){
+              var startCode = data[i].url.indexOf("=");
+              var videoCode = "http://www.youtube.com/embed/" + data[i].url.substring(startCode + 1);
+              var embedCode = document.createElement('iframe');
+              embedCode.src = videoCode;
+              var br = document.createElement("br");
+              $('body').append(embedCode); // <a href="/link/to/stuff">Text on the page.</a>
+            } else if (data[i].via == "") {
+
+            } else {
+              var anchor = $('<a></a>');
+              anchor.text("'" + data[i].title + "'" + '   by: ' + data[i].artist );
+              anchor.prop('href', data[i].url);
+              var br = document.createElement("br");
+              anchor.append(br);
+              $('body').append(anchor); // <a href="/link/to/stuff">Text on the page.</a>
+            }
           }
-        //};
       }
       });
-    // searchResults(data);
   });
 
 });
