@@ -83,6 +83,9 @@ function displayTIMJdata(data) {
     } else if (thisArtist.via === "soundcloud") {
       var soundcloudIcon = $('<button class="btn btn-play" id=' + id + '><i class="fa fa-soundcloud fa-lg"></i></button>');
       listItem.append(soundcloudIcon);
+    } else {
+      var linkIcon = $('<a href=' + thisArtist.url + ' class="link-icon"><i class="fa fa-link fa-lg"></i></a>');
+        $(listItem).append(linkIcon);
     }
 
     $('ul').append(listItem);
