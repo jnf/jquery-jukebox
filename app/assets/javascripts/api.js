@@ -1,9 +1,7 @@
 
 $(function() {
 
-
-
-// _______ Global Functions ________
+  // _______ Global Functions ________
 
   function mediaFactory(song, mediaSource) {
     var iframeTemplate = $("<iframe class='media-embed' type='text/html' width='500' height='304' src = '' ></iframe>");
