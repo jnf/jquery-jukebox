@@ -6,13 +6,13 @@ class ApiController < ApplicationController
     begin
       response = HTTParty.get(JAM, query: { "by" => "artist", "q" => params[:artist] })
       data = setup_data(response)
-      code = :ok
+      code = data.any? ? :ok : :no_content
     rescue
       data = {}
       code = :no_content
     end
 
-    render json: data.as_json, code: code
+    render json: data.as_json, status: code
   end
 
   def random

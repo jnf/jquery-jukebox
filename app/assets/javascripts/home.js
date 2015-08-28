@@ -22,8 +22,19 @@ $(function () {
     $(".results").empty(); // empties the previous results
     $.ajax(url, {
       type: method,
-      success: function (data) {
-        formatResults(data);
+      // success: function (data) {
+      //   formatResults(data);
+      // }
+      statusCode: {
+        200: function(data) {
+          formatResults(data);
+        },
+        204: function() {
+          var noResults = $("<p></p>");
+          var results = $('.results');
+          noResults.text("NO RESULTS FOUND");
+          results.append(noResults);
+        }
       }
     });
   });
@@ -85,14 +96,14 @@ $(function () {
 
     switch(data.via) {
       // To add the embeded YouTube video.
+      case "soundcloud":
+        iFrame.prop("src", addingSoundCloudURL(data));
+        break;
       case "youtube":
         iFrame.prop("src", addingYouTubeURL(data));
         break;
       case "vimeo":
         iFrame.prop("src", addingVimeoURL(data));
-        break;
-      case "soundcloud":
-        iFrame.prop("src", addingSoundCloudURL(data));
         break;
     }
 
@@ -127,7 +138,7 @@ $(function () {
     urlString = urlString.replace("https", "http");
     urlString = urlString.replace("soundcloud", "w.soundcloud");
     urlString = urlString.replace(".com/", ".com/player/?url=https%3A//soundcloud.com/")
-    urlString = urlString + "&amp;auto_play=false&amp;show_user=true&amp;visual=true";
+    urlString = urlString + "&auto_play=false&show_user=true&visual=true";
     return urlString;
   }
 

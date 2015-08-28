@@ -63,6 +63,7 @@ input:focus {
 input {
   display: block;
   margin: 3px auto 7px auto;
+  text-align: center;
 }
 
 ul {
