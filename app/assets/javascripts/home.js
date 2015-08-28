@@ -141,16 +141,9 @@ $("form.breaking").submit(function(event) {
   }
 
   function makeSongEmbed(song) {
-    makeLI();
     var url = makeEmbedUrl(song.url, song.via);
-    var iFrame = $("<iframe></iframe>");
-    iFrame.addClass("embed-responsive-item");
-    iFrame.prop("src", url);
-
-    var div = $("<div></div>");
-    div.addClass("embed-responsive embed-responsive-4by3");
-    div.append(iFrame);
-
+    makeLI();
+    var div = makeIframe(url);
     var lastLI = $("li:last-child");
 
     lastLI.append(div);
@@ -192,12 +185,50 @@ $("form.breaking").submit(function(event) {
     $("ul").append(listItem);
   }
 
+  // function apologize() {
+  //   var p = $("<p></p>");
+  //   p.addClass("result")
+  //   p.text("That is not anyone's jam.");
+  //   $("form.search").after(p);
+  //   $("ul").before(p);
+  //   addNo();
+  //   suggestSong();
+  // }
+
   function apologize() {
-    var p = $("<p></p>");
-    p.addClass("result")
-    p.text("That is not anyone's jam.");
-    $("form.search").after(p);
+    var panel = $("<div class='panel panel-default result'></div>");
+    var panelHeading = $("<div class='panel-heading'></div>");
+    var panelTitle = $("<h3 class='panel-heading'></h3>");
+    panelTitle.text("That is not anyone's jam. How about this, instead?");
+    panel.append(panelHeading);
+    panelHeading.append(panelTitle);
+
+    var panelBody = $("<div class='panel-body'></div>");
+    var div = suggestSong();
+    panelBody.append(div);
+
+    panel.append(panelBody);
+    $("form.search").after(panel);
+
     addNo();
+  }
+
+  function suggestSong() {
+    var funSongUrl = "https://www.youtube.com/embed/Z4xc3dXDE5I"
+    var div = makeIframe(funSongUrl);
+    return div;
+  }
+
+  function makeIframe(url) {
+    var iFrame = $("<iframe></iframe>");
+    iFrame.addClass("embed-responsive-item");
+    iFrame.prop("src", url);
+
+    var div = $("<div></div>");
+    div.addClass("embed-responsive embed-responsive-4by3");
+    div.append(iFrame);
+
+    return div;
   }
 
   function addYo() {
