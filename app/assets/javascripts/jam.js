@@ -60,8 +60,6 @@ $(function () {
         iframe.prop("frameborder", "0");
         anchor.append(iframe);
         list.append(anchor);
-        // https://vimeo.com/68587392
-        // <iframe src="https://player.vimeo.com/video/68587392" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
       } else {
         var listing = (artist + " - " + title + " (via " + via + ")");
         anchor.text(listing);
@@ -79,11 +77,12 @@ $(function () {
     list.addClass("list-group");
     var anchor = $("<a>");
     anchor.addClass("list-group-item");
-    var url = "https://www.youtube.com/watch?v=-gPuH1yeZ08";
-    var unwanted_song = "That's no one's jam. Maybe this is your jam?";
-    anchor.text(unwanted_song);
-    anchor.prop("href", url);
-    anchor.prop("target", "_blank");
+    var iframe = $("<iframe>");
+    iframe.prop("width", "500");
+    iframe.prop("height", "281");
+    iframe.prop("src", "https://www.youtube.com/embed/-gPuH1yeZ08?autoplay=1");
+    iframe.prop("frameborder", "0");
+    anchor.append(iframe);
     list.append(anchor);
     $(".jams-div").append(list);
   } // end unwantdSong
