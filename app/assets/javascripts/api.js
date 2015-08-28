@@ -42,7 +42,7 @@ $(function() {
       $(listItem).append(anchor);
 
       if (thisArtist.via === "youtube") {
-        var glyph = $('<button class="col-sm-1 btn btn-play" id=' + id + '><span class="glyphicon glyphicon-play"></span></button>');
+        var glyph = $('<button class="btn btn-play" id=' + id + '><span class="glyphicon glyphicon-play"></span></button>');
         listItem.append(glyph);
       }
       $('ul').append(listItem);
