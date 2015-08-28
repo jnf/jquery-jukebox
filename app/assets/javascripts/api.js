@@ -1,12 +1,8 @@
 $(function() {
-  // set the container's minimum height based on the window's size
-  var container = $('.container');
-  var windowHeight = $(window).height();
-  container.css({ "min-height": windowHeight + 'px' });
+  // note: this function definition is at the bottom with the page title click event handling
+  displayInstructions(); // give the user some helpful instructions
 
-  // set default form padding based on window size, too
-  var header = $('header');
-  header.css({ "margin-bottom": windowHeight - 360 + 'px' });
+  //----------------- Searching for Jams by Artist -----------------------------
 
   // handling for submitting the search form
   $("form").submit(function(event) {
@@ -22,58 +18,9 @@ $(function() {
     ajaxRequest(url, searchQuery, method); // sending the url, search term, & method to the ajax request function
   });
 
-  // handling for the user who clicks the little red button
-  $('div.popular').click(function(event) {
-    popular();
-  });
-
-  // handling for rge user who clicks the little red button
-  $('div.random').click(function(event) {
-    rando();
-  });
-
-  // handling for the user who clicks the link
-  $('a.random').click(function(event) {
-    event.preventDefault();
-    rando();
-  });
-
-  // handling for the user who clicks the link
-  $('a.popular').click(function(event) {
-    event.preventDefault();
-    popular();
-  });
-
-  function popular() {
-    unpressButtons("random"); // unpress the other button just in case
-    var popular = $('div.popular'); // grab popular
-    pressButton(popular, "popular"); // PRESS IT
-  }
-
-  function rando() {
-    unpressButtons("popular"); // unpress the other button just in case
-    var random = $('div.random'); // grab random
-    pressButton(random, "random"); // PRESS IT
-  }
-
-
-  function unpressButtons(whichButton) {
-    var popular = $('div.popular');
-    var random = $('div.random');
-    if (whichButton == "popular" || whichButton === undefined)
-      unpress(popular);
-    if (whichButton == "random" || whichButton === undefined)
-      unpress(random);
-  }
-
-  function unpress(button) {
-    button.removeClass('jukebox-button-inside-pressed');
-    button.addClass('jukebox-button-inside-unpressed');
-  }
-
   function ajaxRequest(url, searchQuery, method) {
     $.ajax(url, { // opening the ajax request and passing in said url
-      type: method || "get", // passing in the method
+      type: method || "get", // passing in the method (or using default GET)
       data: {'artist': searchQuery}, // passing in the query
       success: function(data) { // defining a function to call on successful form submission
         if (data && data.length > 0)
@@ -84,18 +31,9 @@ $(function() {
     });
   }
 
-  function pressButton(button, buttonType) {
-    button.removeClass('jukebox-button-inside-unpressed');
-    button.addClass('jukebox-button-inside-pressed');
-
-    var buttonParent = button.parent(); // grab the div #button is inside
-    var buttonLink = buttonParent.siblings('a'); // grab the link next to #button's parent
-    var buttonUrl = buttonLink.attr('href'); // grab the url from the link
-    ajaxRequest(buttonUrl, buttonType); // ajax that url
-  }
-
   function displayResults(data) {
     // oh hey! if we're displaying results, we don't need to see the jukebox anymore.
+    var header = $('header');
     header.css({ "margin-bottom": 25 + 'px' });
     // goodbye, jukebox. ;_;
 
@@ -135,23 +73,16 @@ $(function() {
     results.append(list);
   }
 
-  function displayMessage(message) {
-    // creating the message list item
-    var messageListItem = $("<li></li>");
-    messageListItem.addClass("message");
-    messageListItem.addClass("list-group-item");
-
-    // creating the message inside an h3
-    var header = $("<h3></h3>");
-    header.append(message);
-
-    // moving the message into the list item
-    messageListItem.append(header);
-
-    // grabbing the results list & moving the message in at the top
-    var results = $('ul');
-    results.prepend(messageListItem);
-  }
+  function embedVideo(url) {
+    // setting up the iframe
+    var output = '<iframe width="560" height="315" src="';
+    // throwing in the modified url
+    output += embedUrl(url);
+    // finishing the iframe code
+    output += '" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>';
+    // sending it back to its origin
+    return output;
+  };
 
   function embedUrl(url) {
     // swapping in a more secure protocol, which vimeo and youtube prefer
@@ -164,19 +95,8 @@ $(function() {
     return url; // get out of here, url. go back from whence you came!
   }
 
-  function embedVideo(url) {
-    // setting up the iframe
-    var output = '<iframe width="560" height="315" src="';
-    // throwing in the modified url
-    output += embedUrl(url);
-    // finishing the iframe code
-    output += '" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>';
-    // sending it back to its origin
-    return output;
-  };
-
   function rickRoll(failedQuery) {
-    // setting up a few dummy results
+    //--- setting up a few dummy results ---
     var firstLink = { // the obligatory rickroll
       via: "youtube",
       artist: "The Muppets",
@@ -212,7 +132,7 @@ $(function() {
       url: "https://www.youtube.com/watch?v=w-0TEJMJOhk"
     };
 
-    // sending the dummy results to the display function
+    //--- sending the dummy results to the display function ---
     var weirdLinks = [firstLink, secondLink, thirdLink, fourthLink, fifthLink];
     displayResults(weirdLinks);
 
@@ -221,4 +141,129 @@ $(function() {
     explanationText += "Perhaps you will enjoy one of these musical selections:";
     displayMessage(explanationText);
   }
+
+  //----------------- Popular & Random Tracks ----------------------------------
+
+  // handling for the user who clicks the little red button
+  $('div.popular').click(function(event) {
+    popular();
+    console.log("div.popular");
+  });
+
+  // handling for the user who clicks the little red button
+  $('div.random').click(function(event) {
+    rando();
+    console.log("div.random");
+  });
+
+  // handling for the user who clicks the link
+  $('a.popular').click(function(event) {
+    event.preventDefault();
+    popular();
+    console.log("a.popular");
+  });
+
+  // handling for the user who clicks the link
+  $('a.random').click(function(event) {
+    event.preventDefault();
+    rando();
+    console.log("a.random");
+  });
+
+  function popular() {
+    unpressButtons("random"); // unpress the other button just in case
+    var popular = $('div.popular'); // grab popular
+    pressButton(popular, "popular"); // PRESS IT
+  }
+
+  function rando() {
+    unpressButtons("popular"); // unpress the other button just in case
+    var random = $('div.random'); // grab random
+    pressButton(random, "random"); // PRESS IT
+  }
+
+  function unpressButtons(whichButton) {
+    var popular = $('div.popular');
+    var random = $('div.random');
+    if (whichButton == "popular" || whichButton === undefined)
+      unpress(popular);
+    if (whichButton == "random" || whichButton === undefined)
+      unpress(random);
+  }
+
+  function unpress(button) {
+    button.removeClass('jukebox-button-inside-pressed');
+    button.addClass('jukebox-button-inside-unpressed');
+  }
+
+  function pressButton(button, buttonType) {
+    button.removeClass('jukebox-button-inside-unpressed');
+    button.addClass('jukebox-button-inside-pressed');
+
+    var buttonParent = button.parent(); // grab the div #button is inside
+    var buttonLink = buttonParent.siblings('a'); // grab the link next to #button's parent
+    var buttonUrl = buttonLink.attr('href'); // grab the url from the link
+    ajaxRequest(buttonUrl, buttonType); // ajax that url
+  }
+
+  function displayMessage(message) {
+    // creating the message list item
+    var messageListItem = $("<li></li>");
+    messageListItem.addClass("message");
+    messageListItem.addClass("list-group-item");
+
+    // creating the message inside an h3
+    var header = $("<h3></h3>");
+    header.append(message);
+
+    // moving the message into the list item
+    messageListItem.append(header);
+
+    // grabbing the results list & moving the message in at the top
+    var results = $('ul');
+    results.prepend(messageListItem);
+  }
+
+  //----------------- Clicking the Page Title ----------------------------------
+
+  function showcaseJukebox() {
+    // set the container's minimum height based on the window's size
+    var container = $('.container');
+    var windowHeight = $(window).height();
+    container.css({ "min-height": windowHeight + 'px' });
+
+    // set default header margin based on window size, too
+    var happyJukeboxAdjustment = 360;
+    var header = $('header');
+    header.css({ "margin-bottom": windowHeight - happyJukeboxAdjustment + 'px' });
+  }
+
+  function displayInstructions() {
+    // oh hey! if we're displaying the instructions, bring us the jukebox! BRING US THAT THING.
+    showcaseJukebox();
+    // hi, jukebox. n_n
+
+    var results = $('#results'); // grabbing the results div
+    if ($('ul')) { $('ul').remove(); }; // removing any old results
+    var list = $('<ul></ul>'); // making a new list to hold the results
+    list.addClass('list-group');
+
+    var listItem = $('<li></li>'); // creating a list item to hold the instructions
+    listItem.addClass('list-group-item');
+
+    // build up instructions
+    var instructions = "<p>Search for your favorite artist in the box above!</p>";
+    instructions += "<p>Find out what other people think is their best song.</p>";
+    instructions += "<!-- shout out to source API -->";
+    instructions += '<p>This service is powered by <a id="jam" href="https://www.thisismyjam.com/">This Is My Jam</a>.</p>'
+
+    listItem.append(instructions); // move instructions into list item
+    list.append(listItem); // move listItem into list
+    results.append(list); // move list into the results div on the page
+  }
+
+  $('#title h1 a').click(function(event) {
+    event.preventDefault(); // nope, you're not a real link anymore
+    displayInstructions();
+  })
 });

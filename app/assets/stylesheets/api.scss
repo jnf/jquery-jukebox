@@ -41,8 +41,9 @@ header#title {
   margin: 10px; // keep stuff away from the bubble
   text-align: center; // center everything
 
-  h1 {
+  h1 a {
     color: #fec; // make text a nice orangeiness
+    text-decoration: none;
   }
 
   //--- now to start the craziness --- // 12% overcomplicated, reduce complication by 10%
@@ -71,6 +72,7 @@ header#title {
     margin: 0;
     font-weight: bold;
     color: #420; // slightly orangey dark brown
+    text-decoration: none;
   }
 
   form { // keep the jukebox choices a little away from the jukebox search
