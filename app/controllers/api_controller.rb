@@ -6,75 +6,25 @@ class ApiController < ApplicationController
   BREAKING = "http://api.thisismyjam.com/1/explore/breaking.json"
 
   def search
-    begin
-      response = HTTParty.get(SEARCH, query: { "by" => "artist", "q" => params[:artist] })
-      data = setup_data(response)
-      code = data.any? ? :ok : :no_content
-    rescue
-      data = {}
-      code = :no_content
-    end
-
-    render json: data.as_json, status: code
+    options_hash = { query: { "by" => "artist", "q" => params[:artist] } }
+    makeApiCall(SEARCH, options_hash)
   end
 
   def popular
-    begin
-      response = HTTParty.get(POPULAR)
-      data = setup_data(response)
-      code = data.any? ? :ok : :no_content
-      data = data[0..9] if code == :ok
-    rescue
-      data = {}
-      code = :no_content
-    end
-
-    render json: data.as_json, status: code
+    makeApiCall(POPULAR)
   end
 
   def unpopular
-    begin
-      response = HTTParty.get(UNPOPULAR)
-      data = setup_data(response)
-      code = data.any? ? :ok : :no_content
-      data = data[0..4] if code == :ok
-    rescue
-      data = {}
-      code = :no_content
-    end
-
-    render json: data.as_json, status: code
+    makeApiCall(UNPOPULAR)
   end
 
   def rando
-    begin
-      response = HTTParty.get(RANDO)
-      data = setup_data(response)
-      code = data.any? ? :ok : :no_content
-      data = data[0..4] if code == :ok
-    rescue
-      data = {}
-      code = :no_content
-    end
-
-    render json: data.as_json, status: code
+    makeApiCall(RANDO)
   end
 
   def breaking
-    begin
-      response = HTTParty.get(BREAKING)
-      data = setup_data(response)
-      code = data.any? ? :ok : :no_content
-      data = data[0..4] if code == :ok
-    rescue
-      data = {}
-      code = :no_content
-    end
-
-    render json: data.as_json, status: code
+    makeApiCall(BREAKING)
   end
-
-  private
 
   def setup_data(response)
     jams = response.fetch "jams", {}
@@ -86,5 +36,19 @@ class ApiController < ApplicationController
         artist: jam.fetch("artist", "")
       }
     end
+  end
+
+  def makeApiCall(url, options_hash={})
+    begin
+      response = HTTParty.get(url, options_hash)
+      data = setup_data(response)
+      code = data.any? ? :ok : :no_content
+      data = data[0..9] if code == :ok
+    rescue
+      data = {}
+      code = :no_content
+    end
+
+    render json: data.as_json, status: code
   end
 end
