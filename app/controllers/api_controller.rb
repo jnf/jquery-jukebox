@@ -20,8 +20,8 @@ class ApiController < ApplicationController
   def random
     begin
       response = HTTParty.get(RANDOM)
-      data = data.sample(5)
-      data = setup_data(response)
+
+      data = setup_data(response).sample(5)
       # code = data.any? ? :ok: :no_content
        code = :ok
     rescue
