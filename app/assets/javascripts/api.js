@@ -35,6 +35,7 @@ $(function() {
 
   function formatData(data) {
     $('ul').empty();
+    // if no results
     if (data.length == 0) {
       var listItem = $('<li></li>');
       listItem.addClass('empty');
@@ -47,7 +48,6 @@ $(function() {
 
     } else {
       for (var i = 0; i < data.length; i++) {
-
         var anchor = $('<a></a>');
         anchor.text(data[i].artist + " - " + data[i].title);
         anchor.prop('href', data[i].url);
