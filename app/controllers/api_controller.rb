@@ -6,6 +6,7 @@ class ApiController < ApplicationController
 
   end
 
+  # TO DO - refactor code to not repeat
   def search
     begin
       response = HTTParty.get(JAM, query: { "by" => "artist", "q" => params[:artist] })
