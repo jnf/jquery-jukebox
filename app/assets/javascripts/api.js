@@ -69,6 +69,7 @@ function removeResults(){
   old_results.remove();
 }
 
+// only works for soundcloud
 function formatAudioEmbed(audioJam){
   var url = "http://soundcloud.com/oembed";
   var query = {};
@@ -117,7 +118,7 @@ function formatMedia(data) {
   var formattedJamItems = [];
 
   for(var i = 0; i < data.length; i++) {
-    var audioTypes = ["soundcloud"]; // ["hypemachine", "soundcloud", "webaudio"];
+    var audioTypes = ["soundcloud"]; // ["hypemachine", "webaudio"];
     var videoTypes = ["youtube", "vimeo"];
 
     if ($.inArray(data[i].via, audioTypes) > -1) {
