@@ -31,6 +31,17 @@ input[type="text"] {
   font-weight: 400;
 }
 
+input[type="submit"] {
+  border: 1px solid black;
+  background-color: #E2DDD1;
+  border-radius: 50px;
+
+}
+
+input[type="submit"]:hover {
+  background-color: #C0B6A5;
+}
+
 h1 {
   font-family: 'Codystar', cursive;
   text-align: center;
@@ -39,6 +50,7 @@ h1 {
 
 h3 {
   text-align: center;
+  font-size: 1.5em;
 }
 
 .button_to {
@@ -51,32 +63,9 @@ h3 {
   margin: 50px auto;
 }
 
-li {
-  margin: 10px auto;
-}
-
 hr {
   width: 70%;
 }
-/*
-.breaking_jams {
-  margin: 40px auto;
-  min-height: 204px;
-}
-
-.breaking_jams div {
-  width: 20%;
-  display: inline-block;
-  text-align: center;
-  font-size: 0.7em;
-  vertical-align: top;
-}
-
-.breaking_jams div img {
-  display: block;
-  margin: 0 auto;
-  width: 190px;
-}*/
 
 .breaking_jams {
   min-height: 204px;
@@ -99,4 +88,18 @@ hr {
   display: block;
   margin: 5px auto;
   width: 190px;
+  border-radius: 200px;
+}
+
+.active_video {
+  height: 0px;
+  /* transition height to 480px on click */
+  overflow: hidden;
+}
+
+iframe {
+  height: 400px;
+  width: 500px;
+  display: block;
+  margin: 40px auto;
 }
