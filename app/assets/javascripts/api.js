@@ -29,19 +29,7 @@ $(function() { // autoloads javascript into browser window for the rails window
         } else {
 
           for(var i = 0; i < data.length-1; i ++) {
-            var sourceUrl = data[i].url;
-            var title = data[i].title;
-            var artist = data[i].artist;
-            var listItem = $('<li></li>'); // new list element
-            var anchor = $('<a></a>'); // new anchor element
-
-            anchor.text(data[i].via);
-            anchor.prop('href', sourceUrl);
-
-            listItem.text(title + ", by: " + artist + " via "); // text within <li> tags
-            listItem.append(anchor[0]); // link
-
-            list.append(listItem);
+            result(i, data, list);
         }
 
       } // for loop
@@ -70,19 +58,7 @@ $(function() { // autoloads javascript into browser window for the rails window
         var list = $('<ul></ul>')
 
         for(var i = 0; i < data.length-1; i ++) {
-          var sourceUrl = data[i].url;
-          var title = data[i].title;
-          var artist = data[i].artist;
-          var listItem = $('<li></li>'); // new list element
-          var anchor = $('<a></a>'); // new anchor element
-
-          anchor.text(data[i].via);
-          anchor.prop('href', sourceUrl);
-
-          listItem.text(title + ", by: " + artist + " via "); // text within <li> tags
-          listItem.append(anchor[0]); // link
-
-          list.append(listItem);
+          result(i, data, list);
 
       } // for loop
       $('#results').append(list)
@@ -91,7 +67,6 @@ $(function() { // autoloads javascript into browser window for the rails window
     } // function
    });
  });
-
 
  $("#rando").parent().submit(function(event) {
    $('#results').empty(); // clears result slate before querying API again
@@ -109,19 +84,7 @@ $(function() { // autoloads javascript into browser window for the rails window
        var list = $('<ul></ul>')
 
        for(var i = 0; i < data.length-1; i ++) {
-         var sourceUrl = data[i].url;
-         var title = data[i].title;
-         var artist = data[i].artist;
-         var listItem = $('<li></li>'); // new list element
-         var anchor = $('<a></a>'); // new anchor element
-
-         anchor.text(data[i].via);
-         anchor.prop('href', sourceUrl);
-
-         listItem.text(title + ", by: " + artist + " via "); // text within <li> tags
-         listItem.append(anchor[0]); // link
-
-         list.append(listItem);
+         result(i, data, list);
 
      } // for loop
      $('#results').append(list)
@@ -130,5 +93,20 @@ $(function() { // autoloads javascript into browser window for the rails window
    } // function
   });
 });
+
+  function result(i, data, list) {
+    var sourceUrl = data[i].url;
+    var title = data[i].title;
+    var artist = data[i].artist;
+    var listItem = $('<li></li>'); // new list element
+    var anchor = $('<a></a>'); // new anchor element
+
+    anchor.text(data[i].via);
+    anchor.prop('href', sourceUrl);
+
+    listItem.text(title + ", by: " + artist + " via "); // text within <li> tags
+    listItem.append(anchor[0]); // link
+    list.append(listItem);
+  };
 
 }); // end
