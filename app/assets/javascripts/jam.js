@@ -2,6 +2,7 @@ $(function () {
 
   var YOUTUBE_EMBED = "https://www.youtube.com/embed/";
   var VIMEO_EMBED = "https://player.vimeo.com/video/";
+  var AGGRO = "-gPuH1yeZ08?autoplay=1";
 
   // searching jams
   $("form").submit(function(event) {
@@ -50,20 +51,17 @@ $(function () {
       var url = jam.url;
       var via = jam.via;
       var anchor = setupAnchor();
-      if (via == "youtube") {
+      if (via == "youtube") { // embed youtube
         var youtube_id = getYoutubeId(url);
         var iframe = setupIframe(YOUTUBE_EMBED, youtube_id);
         addVideoToList(iframe, anchor, list);
-      } else if (via == "vimeo") {
+      } else if (via == "vimeo") { // embed vimeo
         var vimeo_id = getVimeoId(url);
         var iframe = setupIframe(VIMEO_EMBED, vimeo_id);
         addVideoToList(iframe, anchor, list);
-      } else {
-        var listing = (artist + " - " + title + " (via " + via + ")");
-        anchor.text(listing);
-        anchor.prop("href", url);
-        anchor.prop("target", "_blank");
-        list.append(anchor);
+      } else { // create text link
+        var text_listing = setupText(artist, title, via);
+        createListingLink(text_listing, url, anchor, list);
       } // end if/else embed video
       addJamsToPage(list);
     } // end for loop
@@ -73,7 +71,7 @@ $(function () {
   function aggro() {
     var list = setupList();
     var anchor = setupAnchor();
-    var iframe = setupIframe(YOUTUBE_EMBED, "-gPuH1yeZ08?autoplay=1");
+    var iframe = setupIframe(YOUTUBE_EMBED, AGGRO);
     addVideoToList(iframe, anchor, list);
     addJamsToPage(list);
   } // end aggro
@@ -111,6 +109,18 @@ $(function () {
     var anchor = $("<a>");
     anchor.addClass("list-group-item");
     return anchor;
+  }
+
+  function setupText(artist, title, via) {
+    var text = artist + " - " + title + " (via " + via + ")";
+    return text;
+  }
+
+  function createListingLink(text_listing, url, anchor, list) {
+    anchor.text(text_listing);
+    anchor.prop("href", url);
+    anchor.prop("target", "_blank");
+    list.append(anchor);
   }
 
   function addVideoToList(iframe, anchor, list) {
