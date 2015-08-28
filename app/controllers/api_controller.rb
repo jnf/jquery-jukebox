@@ -2,9 +2,7 @@ class ApiController < ApplicationController
   JAM = "http://api.thisismyjam.com/1/search/jam.json"
   JAM_EXPLORE = "http://api.thisismyjam.com/1/explore/"
 
-  def index
-
-  end
+  def index; end
 
   # TO DO - refactor code to not repeat
   def search
