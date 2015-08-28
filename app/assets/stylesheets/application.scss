@@ -68,6 +68,10 @@ li {
 .search {
   padding: 7px;
   display: inline;
+  background-color: #B8E68A;
+}
+
+.search:hover {
   background-color: #FFE270;
 }
 
@@ -81,6 +85,10 @@ li {
   display: inline;
 }
 
+.popular input:hover {
+  background-color: #B8E68A;
+}
+
 .rando input {
   display: inline;
   padding: 7px;
@@ -91,7 +99,7 @@ li {
   display: inline;
 }
 
-.selected {
+.rando input:hover {
   background-color: #B8E68A;
 }
 

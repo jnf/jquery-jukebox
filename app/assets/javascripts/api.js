@@ -15,12 +15,10 @@ $(function() {
       type: method,
       data: query,
       success: function (data) {
-        button.toggleClass("selected");
         result_array = data;
         clear();
 
         display(result_array);
-
       }
     });
   });
@@ -29,7 +27,6 @@ $(function() {
     event.preventDefault();
 
     var button = $(this);
-    var input = button.children('input');
     var method = this.method;
     var url = this.action;
     clear();
@@ -37,7 +34,6 @@ $(function() {
     $.ajax(url, {
       type: method,
       success: function (data) {
-        input.addClass("selected");
         result_array = data;
         display(result_array);
       }
@@ -48,7 +44,6 @@ $(function() {
     event.preventDefault();
 
     var button = $(this);
-    var input = button.children('input');
     var method = this.method;
     var url = this.action;
     clear();
@@ -56,7 +51,6 @@ $(function() {
     $.ajax(url, {
       type: method,
       success: function (data) {
-        input.addClass("selected");
         result_array = data;
         display(result_array);
       }
@@ -64,7 +58,6 @@ $(function() {
   });
 
   function display(result_array){
-
     var list = $('<ul></ul>')
     list.addClass('list-group')
 
@@ -88,7 +81,7 @@ $(function() {
               $(listItem).append(iframe);
           } else  {
               anchor = makeLink(result_array[i]);
-              $(listItem).append('Click the link to listen -> ');
+              $(listItem).append('Click to listen -> ');
               $(listItem).append(anchor);
           }
         list.append(listItem);
@@ -98,6 +91,7 @@ $(function() {
    $('div').append(list);
   }
 
+  //clears results of old searchs or API calls
   function clear(){
     $('a').remove();
     $('br').remove();
