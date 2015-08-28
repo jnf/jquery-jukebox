@@ -4,6 +4,14 @@ $(function() {
     getBreakingJams();
   });
 
+  $(window).bind('scroll', function() {
+    if ($(window).scrollTop() > 0) {
+      $('nav').addClass('scroll_border');
+    } else {
+      $('nav').removeClass('scroll_border');
+    }
+  });
+
   // Update breaking jams feed on button click
   $('.breaking_search').click(function(event) {
     event.preventDefault();
@@ -82,7 +90,6 @@ $(function() {
 
       if (results_type == "search") {
         var scrollPoint = $('.search-box').position().top - 30;
-        console.log(scrollPoint);
         $('body').animate({ scrollTop: scrollPoint }, 600);
       };
     };
