@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+iframe {
+  padding: 15px;
+}
+
+ul.result {
+  list-style: none;
+}
+
+li {
+  padding-top: 20px;
+}
+
+div.panel {
+  margin-top: 20px;
+}

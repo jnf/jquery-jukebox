@@ -6,7 +6,6 @@ Hi! For this project, let's use [This is My Jam](https://www.thisismyjam.com/) t
 - An api endpoint to search the [TIMJ API](https://www.thisismyjam.com/developers/docs) by Artist.
 - Rspec setup with a couple of simple tests
 
-
 ## Wave 1: You need to create
 - A view with a form that will use jQuery's AJAX functionality to GET from the API endpoint
 - One or many js functions to...
@@ -16,33 +15,34 @@ Hi! For this project, let's use [This is My Jam](https://www.thisismyjam.com/) t
 - At no point should the view refresh or the user be taken to another URL.
 
 ## Wave 2: Add a new endpoint
-- Utilize one of the API calls provided by TIMJ described below to create a new API endpoint in the `ApiController`. 
-- Write tests for your endpoint.
-- The API endpoint should return JSON.
-- Add new functionality to your view/javascript to...
-  - Let the user determine what functionality they would like to use
-  - Hit your new endpoint using Ajax
-  - Render results in the browser without reloading the page at any point.
+- DONE Utilize one of the API calls provided by TIMJ described below to create a new API endpoint in the `ApiController`. 
+- DONE Write tests for your endpoint.
+- DONE The API endpoint should return JSON.
+- DONE Add new functionality to your view/javascript to...
+  - DONE Let the user determine what functionality they would like to use
+  - DONE Hit your new endpoint using Ajax
+  - DONE Render results in the browser without reloading the page at any point.
 
 ### Wave 2 TIMJ API Calls - Choose at least one to implement
-- __Popular__
+- DONE __Popular__
     GET `http://api.thisismyjam.com/1/explore/popular.json`
     Today’s most-loved jams.
 
-- __Breaking__
+- DONE __Breaking__
   GET http://api.thisismyjam.com/1/explore/breaking.json
   Songs getting a lot of recent attention.
 
-- __Rare__
+- DONE __Rare__
   GET http://api.thisismyjam.com/1/explore/rare.json
   Tracks we don’t hear that often.
 
-- __Chance__
+- DONE __Chance__
   GET http://api.thisismyjam.com/1/explore/chance.json
   Jams at random.
 
 ## Bonus Fun
+
 - Instead of adding links to the view, try using the data to create embedded players for the specific service (i.e., embed the YouTube video, instead of linking to it).
   - __HINT:__ YouTube and Vimeo use html `iframe` elements to do video embedding.
   - __MOAR HINT:__ Don't use "embedly"
-- If a user's search returns no results, suggest/embed/link to something for them instead.
+- DONE If a user's search returns no results, suggest/embed/link to something for them instead.

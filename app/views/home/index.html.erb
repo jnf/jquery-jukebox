@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="jumbotron">
+    <h1>It's JAM time!</h1>
+    <p class="subheading">YO.</p>
+  </div>
+</div>
+
+<p>
+  <%= form_tag "/", class: "popular" do %>
+    <%= submit_tag "Popular jams", class: "btn btn-success" %>
+  <% end %>
+</p>
+
+<p>
+  <%= form_tag "/", class: "unpopular" do %>
+    <%= submit_tag "UN-Popular jams", class: "btn btn-danger" %>
+  <% end %>
+</p>
+
+<p>
+  <%= form_tag "/", class: "rando" do %>
+    <%= submit_tag "Rando jams", class: "btn btn-warning" %>
+  <% end %>
+</p>
+
+<p>
+  <%= form_tag "/", class: "breaking" do %>
+    <%= submit_tag "Breaking jams", class: "btn btn-info" %>
+  <% end %>
+</p>
+
+<%= form_tag "/", class: "form form-inline search" do %>
+  <%= submit_tag "Search for an artist", class: "btn btn-primary" %>
+  <%= text_field_tag :artist, nil, 
+    placeholder: "search...", class: "form-control" %>
+<% end %>
