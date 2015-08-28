@@ -14,30 +14,61 @@
  *= require_self
  */
 
- .result {
-   font-family: "Palatino Linotype";
- }
+.result {
+ font-family: "Palatino Linotype";
+}
 
 .rare {
   display: block;
-  margin-bottom: 25px;
-  background-color: #FF69B4;
+  margin: auto;
+  /*background-color: #FF69B4;
   color: #fff;
   font-size: 14px;
   border: 3px solid #ffb4d9;
-  border-left: 50px;
+  border-left: 50px;*/
 }
 
- form {
-   margin-bottom: 25px;
- }
+.content {
+  max-width: 40%;
+  margin: auto;
+  margin-top: 75px;
+  padding: 10px;
+  background-color: rgba(255,255,255,0.75);
+  text-align: center;
+  border-radius: 25px;
+}
 
- h3 {
-   font-size: 24px;
-   color: purple;
- }
+html {
+  background-image: url('purplesparkle.jpg');
+}
 
- iframe {
-   margin-top: 25px;
-   margin-bottom: 25px;
- }
+form {
+ margin-bottom: 25px;
+}
+
+h1, h3 {
+ color: purple;
+ font-family: 'Audiowide';
+}
+
+h1 {
+  font-size: 50px;
+}
+
+h3 {
+  font-size: 28px;
+}
+
+img {
+  width: 150px;
+  margin: auto;
+}
+
+iframe {
+ margin-top: 15px;
+}
+
+a {
+  color: #AA0078;
+  text-decoration: none;
+}

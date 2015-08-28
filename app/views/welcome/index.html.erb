@@ -1,6 +1,10 @@
-<h3>Search for jams by artist:</h3>
+<div class = "content">
+<h1>JAM OUT</h1>
+<%= image_tag('lamb.png') %>
+<h3>with your lamb out</h3>
 <%= form_tag("/search/:artist", method: "get") do %>
   <%= text_field_tag :artist %>
   <%= submit_tag "Search", class: "search" %>
 <% end %>
 <%= button_tag "These Jams Need Love <3", method: "get", action: "lookingForLove", controller: "api", class: "rare" %>
+</div>
