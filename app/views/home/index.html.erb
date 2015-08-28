@@ -17,6 +17,12 @@
   <% end %>
 </p>
 
+<p>
+  <%= form_tag "/", class: "rando" do %>
+    <%= submit_tag "Rando jams", class: "btn btn-warning" %>
+  <% end %>
+</p>
+
 <%= form_tag "/", class: "form form-inline search" do %>
   <%= submit_tag "Search for an artist", class: "btn btn-primary" %>
   <%= text_field_tag :artist, nil, 
