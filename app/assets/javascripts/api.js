@@ -42,15 +42,17 @@ $(function() {
       } else {
         var firstResult = data[0];
         displayOne(firstResult);
-        if (firstResult.via === "youtube") {
-          showYoutube(firstResult.url);
-        }
+        if (firstResult.via === "youtube") { showYoutube(firstResult.url); }
+        if (firstResult.via === "vimeo") { showVimeo(firstResult.url); }
+        if (firstResult.via === "soundcloud") { hearSoundcloud(firstResult.url); }
+
         displayTIMJdata(data);
       }
     }).fail(function() {
       alert(errorMsg);
     });
   });
+
 });
 
 function noData(message) {
@@ -78,11 +80,15 @@ function displayTIMJdata(data) {
     } else if (thisArtist.via === "vimeo") {
       var vimeoIcon = $('<button class="btn btn-play" id=' + id + '><i class="fa fa-vimeo-square fa-lg"></i></button>');
       listItem.append(vimeoIcon);
+    } else if (thisArtist.via === "soundcloud") {
+      var soundcloudIcon = $('<button class="btn btn-play" id=' + id + '><i class="fa fa-soundcloud fa-lg"></i></button>');
+      listItem.append(soundcloudIcon);
     }
 
     $('ul').append(listItem);
     youtubeOnClick(thisArtist, id);
     vimeoOnClick(thisArtist, id);
+    soundcloudOnClick(thisArtist, id);
   }
 }
 
@@ -98,12 +104,14 @@ function youtubeOnClick(song, id) {
   $("#" + id).click(function(event) {
     event.preventDefault();
 
-      $("iframe").remove();
+      if (song.via === "youtube") {
+        $("iframe").remove();
 
-      var frame = $("<iframe id='frame' width='448' height='252' src='' frameborder='0' allowfullscreen></iframe><br>");
-      $("#" + id).append(frame);
-      song.url = song.url.replace("watch?v=", "/embed/");
-      frame.attr("src", song.url + "?rel=0");
+        var frame = $("<iframe id='frame' width='448' height='252' src='' frameborder='0' allowfullscreen></iframe><br>");
+        $("#" + id).append(frame);
+        song.url = song.url.replace("watch?v=", "/embed/");
+        frame.attr("src", song.url + "?rel=0");
+      }
   });
 }
 
@@ -118,6 +126,7 @@ function showVimeo(url) {
 function vimeoOnClick(song, id) {
   $("#" + id).click(function(event) {
     event.preventDefault();
+    if (song.via === "vimeo") {
 
       $("iframe").remove();
 
@@ -125,16 +134,32 @@ function vimeoOnClick(song, id) {
       $("#" + id).append(frame);
       song.url = song.url.replace("http://vimeo.com", "https://player.vimeo.com/video");
       frame.attr("src", song.url);
+    }
   });
 }
 
 function hearSoundcloud(url) {
-  var frame = $("<iframe id='frame' width='80%' scrolling='no' src=''></iframe>");
+  var frame = $("<iframe id='frame' width='100%' scrolling='no' src=''></iframe>");
   // TODO: rename vid-frame
   $(".vid-frame").prepend(frame);
   url = url.replace("http:", "https://w.soundcloud.com/player/?url=https%3A");
   frame.attr("src", url);
+}
 
+// On click, show soundcloud player
+function soundcloudOnClick(song, id) {
+  $("#" + id).click(function(event) {
+    event.preventDefault();
+    if (song.via === "soundcloud") {
+
+      $("iframe").remove();
+
+      var frame = $("<iframe id='frame' width='450' scrolling='no' src=''></iframe><br>");
+      $("#" + id).append(frame);
+      song.url = song.url.replace("http:", "https://w.soundcloud.com/player/?url=https%3A");
+      frame.attr("src", song.url);
+    }
+  });
 }
 
 function displayOne(result) {
