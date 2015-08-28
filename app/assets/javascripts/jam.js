@@ -37,26 +37,22 @@ $(function () {
   }); // end randomizer button listener
 
   function renderJams(data) {
-    var list = $('<div>');
-    list.addClass("list-group");
+    var list = setupList();
     for (var i = 0; i < data.length; i++) { // iterate through jams
       var jam = data[i];
       var artist = jam.artist;
       var title = jam.title;
       var url = jam.url;
       var via = jam.via;
-      var anchor = $("<a>");
-      anchor.addClass("list-group-item");
+      var anchor = setupAnchor();
       if (via == "youtube") {
         youtube_id = getYoutubeId(url);
-        var iframe = $("<iframe>");
-        setupIframe(iframe, YOUTUBE_EMBED, youtube_id);
+        var iframe = setupIframe(YOUTUBE_EMBED, youtube_id);
         anchor.append(iframe);
         list.append(anchor);
       } else if (via == "vimeo") {
         vimeo_id = getVimeoId(url);
-        var iframe = $("<iframe>");
-        setupIframe(iframe, VIMEO_EMBED, vimeo_id);
+        var iframe = setupIframe(VIMEO_EMBED, vimeo_id);
         anchor.append(iframe);
         list.append(anchor);
       } else {
@@ -71,12 +67,9 @@ $(function () {
   } // end renderJams
 
   function unwantedSong() {
-    var list = $('<div>');
-    list.addClass("list-group");
-    var anchor = $("<a>");
-    anchor.addClass("list-group-item");
-    var iframe = $("<iframe>");
-    setupIframe(iframe, YOUTUBE_EMBED, "-gPuH1yeZ08?autoplay=1");
+    var list = setupList();
+    var anchor = setupAnchor();
+    var iframe = setupIframe(YOUTUBE_EMBED, "-gPuH1yeZ08?autoplay=1");
     anchor.append(iframe);
     list.append(anchor);
     $(".jams-div").append(list);
@@ -86,7 +79,8 @@ $(function () {
     $(".jams-div").html("");
   }
 
-  function setupIframe(iframe, base_url, video_id) {
+  function setupIframe(base_url, video_id) {
+    var iframe = $("<iframe>");
     iframe.prop("width", "300");
     iframe.prop("height", "169");
     iframe.prop("src", base_url + video_id);
@@ -102,6 +96,18 @@ $(function () {
   function getYoutubeId(url) {
     var id = url.split("v=")[1];
     return id;
+  }
+
+  function setupList() {
+    var list = $('<div>');
+    list.addClass("list-group");
+    return list;
+  }
+
+  function setupAnchor() {
+    var anchor = $("<a>");
+    anchor.addClass("list-group-item");
+    return anchor;
   }
 
 }); // end js file
