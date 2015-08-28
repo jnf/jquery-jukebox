@@ -6,16 +6,18 @@ $(function () {
   // searching jams
   $("form").submit(function(event) {
     event.preventDefault();
+
     var form = $("form");
     var url = form.attr("action");
     var method = form.attr("method");
+
     $.ajax(url, {
       type: method,
       data: {"artist": $("#q").val()},
       success: function(data) {
         clearJams();
         if ($.isEmptyObject(data)) { // check empty response
-          unwantedSong(); // troll
+          aggro();
         } else {
           renderJams(data);
         } // end if/else
@@ -26,7 +28,9 @@ $(function () {
   // random jams
   $("#random").click(function(event) {
     event.preventDefault();
+
     var url = $(this).prop("href");
+
     $.ajax(url, {
       type: "get",
       success: function(data) {
@@ -36,6 +40,7 @@ $(function () {
     }); // end ajax
   }); // end randomizer button listener
 
+  // render jams
   function renderJams(data) {
     var list = setupList();
     for (var i = 0; i < data.length; i++) { // iterate through jams
@@ -46,34 +51,32 @@ $(function () {
       var via = jam.via;
       var anchor = setupAnchor();
       if (via == "youtube") {
-        youtube_id = getYoutubeId(url);
+        var youtube_id = getYoutubeId(url);
         var iframe = setupIframe(YOUTUBE_EMBED, youtube_id);
-        anchor.append(iframe);
-        list.append(anchor);
+        addVideoToList(iframe, anchor, list);
       } else if (via == "vimeo") {
-        vimeo_id = getVimeoId(url);
+        var vimeo_id = getVimeoId(url);
         var iframe = setupIframe(VIMEO_EMBED, vimeo_id);
-        anchor.append(iframe);
-        list.append(anchor);
+        addVideoToList(iframe, anchor, list);
       } else {
         var listing = (artist + " - " + title + " (via " + via + ")");
         anchor.text(listing);
         anchor.prop("href", url);
         anchor.prop("target", "_blank");
         list.append(anchor);
-      } // end if/else youtube
-      $('.jams-div').append(list);
+      } // end if/else embed video
+      addJamsToPage(list);
     } // end for loop
   } // end renderJams
 
-  function unwantedSong() {
+  // aggro
+  function aggro() {
     var list = setupList();
     var anchor = setupAnchor();
     var iframe = setupIframe(YOUTUBE_EMBED, "-gPuH1yeZ08?autoplay=1");
-    anchor.append(iframe);
-    list.append(anchor);
-    $(".jams-div").append(list);
-  } // end unwantdSong
+    addVideoToList(iframe, anchor, list);
+    addJamsToPage(list);
+  } // end aggro
 
   function clearJams() {
     $(".jams-div").html("");
@@ -108,6 +111,15 @@ $(function () {
     var anchor = $("<a>");
     anchor.addClass("list-group-item");
     return anchor;
+  }
+
+  function addVideoToList(iframe, anchor, list) {
+    anchor.append(iframe);
+    list.append(anchor);
+  }
+
+  function addJamsToPage(list) {
+    $(".jams-div").append(list);
   }
 
 }); // end js file
