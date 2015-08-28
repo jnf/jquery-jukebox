@@ -51,5 +51,9 @@ a:hover {
   margin: 20px auto;
   padding: 20px;
 
+}
 
+.no-results-photo {
+  background: image-url("uh-oh.png")no-repeat center;
+  height: 500px;
 }

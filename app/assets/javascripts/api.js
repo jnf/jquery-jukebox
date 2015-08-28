@@ -49,6 +49,7 @@ $(function() {
         // if the user decided to retrieve a random song
         if(url === "/rando") {
           $( ".results" ).addClass( "jamz-background" );
+          $('.results').removeClass("no-results-photo");
 
           if ($('.results').is(':empty')) {
             displayData(data.sort( randOrd).slice(0,10));
@@ -56,14 +57,33 @@ $(function() {
             // '.empty().append()' prevents new calls for random songs to be appended on top of the old list
             $('.results').empty().append(displayData(data.sort(randOrd).slice(0,10)));
           }
-        // if the user searched for an artist & if there were no prior results
+
+
+        // if there were no prior results
         } else if ( $('.results').is(':empty')) {
-          displayData(data);
-          $( ".results" ).addClass( "jamz-background" );
-        // this prevents new search results from appending on top of the old results
+            if (data.length > 0) {
+
+              displayData(data);
+              $( ".results" ).addClass( "jamz-background" );
+              $('.results').removeClass("no-results-photo");
+
+            } else {
+              // this adds a photo if invalid search term & no prior results
+              $( ".results" ).empty().addClass( "no-results-photo" );
+
+            }
+        // if there are prior results, this prevents new search results from appending on top of the old ones
         } else {
-          $('.results').empty().append(displayData(data));
-          $( ".results" ).addClass( "jamz-background" );
+          // if the new data gave results
+          if (data.length > 0) {
+            $('.results').removeClass("no-results-photo");
+            $('.results').empty().append(displayData(data));
+            $( ".results" ).addClass( "jamz-background" );
+          } else {
+            // if there were prior results and the new data gave 0 results
+            $( ".results").empty().addClass( "no-results-photo");
+
+          }
         }
       }
     });
@@ -94,6 +114,7 @@ $(function() {
 
     // for making the results for a random song to actually be random
     function randOrd(){
-      return (Math.round(Math.random())-0.5); }
+      return (Math.round(Math.random())-0.5);
+    }
 
 });
