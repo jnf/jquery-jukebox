@@ -1,7 +1,9 @@
+<h1>SP@CE JAM</h1>
+
 <%= form_tag("/", method: "get", class: "form") do |f| %>
-    <%= label_tag(:artist, "Search JAMz by Artist")%><br>
-    <%= text_field_tag(:artist, params[:artist], class: "text_box") %>
+    <h2><%= label_tag(:artist, "Find JAMz by Artist or Get a Random JAM")%></h2><br>
+    <%= text_field_tag(:artist, params[:artist], size: 30, class: "text_box") %><br><br>
     <%= submit_tag("Search", class: "search") %>
   <% end %>
-<%= button_to "RANDO SONG", rando_path, class: "rando btn btn-success", method: :get  %>
+<%= button_to "RANDO", rando_path, class: "rando btn btn-success", method: :get  %>
 <div class="results"></div>

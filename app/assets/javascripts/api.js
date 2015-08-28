@@ -66,13 +66,21 @@ $(function() {
 
     function displayData(data) {
       for (var i = 0; i < data.length; i++) {
+
         artist_title = data[i].artist + ": " + data[i].title;
+
         url = data[i].url;
+
         var anchor = $('<a></a>');
+
         anchor.text(artist_title);
+
         anchor.prop('href', url);
+
         var p_tag = $('<p></p>');
+
         p_tag.append(anchor);
+
         $('.results').append(p_tag);
       }
       return data;
