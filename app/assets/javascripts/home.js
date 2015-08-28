@@ -60,6 +60,24 @@ $(function() {
       });
   });
 
+$("form.rando").submit(function(event) {
+    event.preventDefault();
+
+    clearTextField();
+    removeOldResults();
+
+    var url = "/rando";
+
+    $.ajax(url, {
+        type: "GET",
+        success: function(data) {
+          var songs = data;
+          displaySongs(songs);
+        }
+      });
+  });
+
+
   function displaySongs(songs) {
     if (songs.length > 0) {
       makeUL();
