@@ -58,10 +58,7 @@ $(function() {
               var videoCode = "http://www.youtube.com/embed/" + data[i].url.substring(startCode + 1);
               var embedCode = document.createElement('iframe');
               embedCode.src = videoCode;
-              var br = document.createElement("br");
-              $('body').append(embedCode); // <a href="/link/to/stuff">Text on the page.</a>
-            } else if (data[i].via == "") {
-
+              $('body').append(embedCode).append('<br></br>'); // <a href="/link/to/stuff">Text on the page.</a>
             } else {
               var anchor = $('<a></a>');
               anchor.text("'" + data[i].title + "'" + '   by: ' + data[i].artist );
