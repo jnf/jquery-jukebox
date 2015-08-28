@@ -6,6 +6,7 @@ $(function() {
 
     var textField = $("#artist");
     var searchTerm = textField.val();
+    var message = "Some jams by or related to '" + searchTerm + "':";
 
     var url = makeUrl(searchTerm);
 
@@ -17,6 +18,7 @@ $(function() {
             apologize();
           } else {
             var songs = data;
+            displayMessage(message);
             displaySongs(songs);
           }
         }
@@ -38,6 +40,7 @@ $(function() {
         type: "GET",
         success: function(data) {
           var songs = data;
+          displayMessage("Follow the herd, listen to these jams:");
           displaySongs(songs);
         }
       });
@@ -55,6 +58,7 @@ $(function() {
         type: "GET",
         success: function(data) {
           var songs = data;
+          displayMessage("Have some jams that few people like:");
           displaySongs(songs);
         }
       });
@@ -72,6 +76,7 @@ $("form.rando").submit(function(event) {
         type: "GET",
         success: function(data) {
           var songs = data;
+          displayMessage("Jams for the random state of mind:");
           displaySongs(songs);
         }
       });
@@ -89,6 +94,7 @@ $("form.breaking").submit(function(event) {
         type: "GET",
         success: function(data) {
           var songs = data;
+          displayMessage("Freshly breaking jams:");
           displaySongs(songs);
         }
       });
@@ -110,6 +116,12 @@ $("form.breaking").submit(function(event) {
     };
   }
 
+  function displayMessage(text) {
+    var h3 = $("<h3 class='result message'></h3>");
+    h3.text(text);
+    $("form.search").after(h3);
+  }
+
   function makeUrl(searchTerm) {
     if (searchTerm.length > 0) {
       var url = "/search/" + searchTerm;
@@ -121,7 +133,6 @@ $("form.breaking").submit(function(event) {
 
   function removeOldResults() {
     if ($("body").children(":last-child") != $("form")) {
-      $("ul").remove();
       $(".result").remove();
     }
   }
@@ -175,25 +186,15 @@ $("form.breaking").submit(function(event) {
   }
 
   function makeUL() {
-    var list = $("<ul></ul>");
-    list.addClass("results");
-    $("form.search").after(list);
+    var list = $("<ul class='result'></ul>");
+    // $("form.search").after(list);
+    $(".message").after(list);
   }
 
   function makeLI() {
     var listItem = $("<li></li>");
     $("ul").append(listItem);
   }
-
-  // function apologize() {
-  //   var p = $("<p></p>");
-  //   p.addClass("result")
-  //   p.text("That is not anyone's jam.");
-  //   $("form.search").after(p);
-  //   $("ul").before(p);
-  //   addNo();
-  //   suggestSong();
-  // }
 
   function apologize() {
     var panel = $("<div class='panel panel-default result'></div>");
