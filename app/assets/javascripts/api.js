@@ -35,7 +35,7 @@ $(function() {
 
   // _______ Artist Search ________
 
-  $(".search").click(function(event){
+  $(".search-btn").click(function(event){
 
     event.preventDefault();
 
