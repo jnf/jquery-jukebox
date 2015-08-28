@@ -2,6 +2,7 @@ require 'HTTParty'
 class ApiController < ApplicationController
   JAM = "http://api.thisismyjam.com/1/search/jam.json"
   RANDOM = "http://api.thisismyjam.com/1/explore/chance.json"
+  POPULAR = "http://api.thisismyjam.com/1/explore/popular.json"
 
   def search
     begin
@@ -21,9 +22,8 @@ class ApiController < ApplicationController
     begin
       response = HTTParty.get(RANDOM)
 
-      data = setup_data(response).sample(5)
-      # code = data.any? ? :ok: :no_content
-       code = :ok
+      data = setup_data(response).sample(6)
+      code = data.any? ? :ok: :no_content
     rescue
       data = {}
       code = :no_content
@@ -31,6 +31,21 @@ class ApiController < ApplicationController
 
     render json: data.as_json, status: code
   end
+
+  def popular
+    begin
+      response = HTTParty.get(POPULAR)
+
+      data = setup_data(response).sample(6)
+      code = data.any? ? :ok: :no_content
+    rescue
+      data = {}
+      code = :no_content
+    end
+
+    render json: data.as_json, status: code
+  end
+
   private
 
   def setup_data(response)
@@ -40,7 +55,8 @@ class ApiController < ApplicationController
         via: jam.fetch("via", ""),
         url: jam.fetch("viaUrl", ""),
         title: jam.fetch("title", ""),
-        artist: jam.fetch("artist", "")
+        artist: jam.fetch("artist", ""),
+        albumArt: jam.fetch("jamvatarLarge", "")
       }
     end
   end

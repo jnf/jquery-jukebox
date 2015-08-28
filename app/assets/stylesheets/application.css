@@ -21,6 +21,7 @@
 body {
   margin: 50px auto;
   text-align: center;
+  background-color: #FFEEAA;
 }
 
 input[type="text"]{
@@ -32,16 +33,29 @@ input[type="text"]{
   font-size: 17px;
 }
 
-#left {
+.left {
   display: inline-block;
   width: 30%;
   height: 100px;
 }
 
-#right {
+.right {
   display: inline-block;
   vertical-align: top;
-  padding-top: 15px;
   width: 30%;
   height: 100px;
+}
+
+.button_to {
+    display: inline;
+}
+
+.fancyButton {
+  background-color: white;
+  height: 30px;
+}
+
+.resultItem {
+  vertical-align: top;
+  margin: 10px;
 }

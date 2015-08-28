@@ -1,5 +1,6 @@
-<h1> Let's Jam! </h1>
-  <div id="left">
+<span style="font-size:100px">🎵🎶🎵🎶🎵🎶🎵</span>
+<h1>Let's Jam! </h1>
+  <div class="left">
 
       <label for="searchArtist">
         Artist:
@@ -7,11 +8,15 @@
       </label>
       <!-- The URL and method are ignored because the click behavior
            of the button is going to be overridden in JavaScript -->
-      <%= button_to "Search", "/search/", method: :get, class: "find" %>
+      <%= button_to "🎤 Search", "/search/", method: :get, class: "find fancyButton" %>
   </div>
 
-    <div id="right">
-      <%= button_to "🎵 Pick 5 Random Jams!", "/explore/chance", method: :get, class: "random" %>
+    <div class="right">
+      <%= button_to "🎵 Pick Random Jams!", "/explore/chance", method: :get, class: "random fancyButton" %>
+    </div>
+
+    <div class="right">
+      <%= button_to "🎵 Show Popular Jams!", "/explore/popular", method: :get, class: "popular fancyButton" %>
     </div>
 
     <div id="searchResults" style="margin:12px">
