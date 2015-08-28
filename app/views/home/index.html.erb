@@ -11,6 +11,12 @@
   <% end %>
 </p>
 
+<p>
+  <%= form_tag "/", class: "unpopular" do %>
+    <%= submit_tag "UN-Popular jams", class: "btn btn-danger" %>
+  <% end %>
+</p>
+
 <%= form_tag "/", class: "form form-inline search" do %>
   <%= submit_tag "Search for an artist", class: "btn btn-primary" %>
   <%= text_field_tag :artist, nil, 
