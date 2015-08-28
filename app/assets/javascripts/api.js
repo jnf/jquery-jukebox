@@ -3,11 +3,22 @@ $(function() {
 
 // _______ Global Functions ________
 
+
+// <iframe src="https://player.vimeo.com/video/137208092" width="500" height="281" frameborder="0" ></iframe>
+
   function youtubeFactory(song){
-    var iframeTemplate = $("<iframe class='youtube' type='text/html' width='640' height='390' src = '' ></iframe>");
+    var iframeTemplate = $("<iframe class='youtube' type='text/html' width='500' height='304' src = '' ></iframe>");
     var youtubeURL = song.url;
     var modifiedYoutubeUrl = youtubeURL.replace("watch?v=", "embed/");
     iframeTemplate.attr("src", modifiedYoutubeUrl);
+    $(".container-fluid").append(iframeTemplate);
+  }
+
+  function vimeoFactory(song){
+    var iframeTemplate = $("<iframe class='vimeo' type='text/html' width='500' height='281' src = '' ></iframe>");
+    var vimeoURL = song.url;
+    var modifiedVimeoUrl = vimeoURL.replace("http://vimeo.com/", "https://player.vimeo.com/video/");
+    iframeTemplate.attr("src", modifiedVimeoUrl);
     $(".container-fluid").append(iframeTemplate);
   }
 
@@ -23,6 +34,8 @@ $(function() {
       // YouTube Display
       if (songCollection[i].via == "youtube") {
         youtubeFactory(songCollection[i]);
+      } else if (songCollection[i].via == "vimeo") {
+        vimeoFactory(songCollection[i]);
       // Link Display
       } else {
         linkFactory(songCollection[i]);
