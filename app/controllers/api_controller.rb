@@ -1,7 +1,7 @@
 class ApiController < ApplicationController
   SEARCH =  "http://api.thisismyjam.com/1/search/jam.json"
   POPULAR = "http://api.thisismyjam.com/1/explore/popular.json"
-  SOUNDCLOUD_OEMBED_URI = "http://soundcloud.com/oembed?url="
+  UNPOPULAR = "http://api.thisismyjam.com/1/explore/rare.json"
 
   def search
     begin
@@ -30,11 +30,19 @@ class ApiController < ApplicationController
     render json: data.as_json, status: code
   end
 
-  # def soundcloud_embed_html
-  #   link = params[:link]
-  #   response = HTTParty.get(SOUNDCLOUD_OEMBED_URI + link)
-  #   return response["html"]
-  # end
+  def unpopular
+    begin
+      response = HTTParty.get(UNPOPULAR)
+      data = setup_data(response)
+      code = data.any? ? :ok : :no_content
+      data = data[0..4] if code == :ok
+    rescue
+      data = {}
+      code = :no_content
+    end
+
+    render json: data.as_json, status: code
+  end
 
   private
 
