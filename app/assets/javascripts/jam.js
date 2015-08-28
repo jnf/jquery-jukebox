@@ -44,6 +44,7 @@ $(function () {
   // render jams
   function renderJams(data) {
     var list = setupList();
+
     for (var i = 0; i < data.length; i++) { // iterate through jams
       var jam = data[i];
       var artist = jam.artist;
@@ -51,30 +52,33 @@ $(function () {
       var url = jam.url;
       var via = jam.via;
       var anchor = setupAnchor();
+
       if (via == "youtube") { // embed youtube
         var youtube_id = getYoutubeId(url);
         var iframe = setupIframe(YOUTUBE_EMBED, youtube_id);
         addVideoToList(iframe, anchor, list);
+
       } else if (via == "vimeo") { // embed vimeo
         var vimeo_id = getVimeoId(url);
         var iframe = setupIframe(VIMEO_EMBED, vimeo_id);
         addVideoToList(iframe, anchor, list);
+
       } else { // create text link
         var text_listing = setupText(artist, title, via);
         createListingLink(text_listing, url, anchor, list);
       } // end if/else embed video
+
       addJamsToPage(list);
     } // end for loop
   } // end renderJams
 
-  // aggro
   function aggro() {
     var list = setupList();
     var anchor = setupAnchor();
     var iframe = setupIframe(YOUTUBE_EMBED, AGGRO);
     addVideoToList(iframe, anchor, list);
     addJamsToPage(list);
-  } // end aggro
+  }
 
   function clearJams() {
     $(".jams-div").html("");
