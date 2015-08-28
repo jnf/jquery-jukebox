@@ -16,6 +16,24 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.jumbotron {
+  background-color: white;
+  background-image: url(http://static1.squarespace.com/static/53b2a727e4b0aa7a7f58698d/53bdf835e4b0df8239128dea/53be778ee4b0dd89ea289fd5/1404991377741/jam_MG_4704.jpg?format=1000w);
+  background-size: 650px;
+  background-position: right;
+  background-repeat: no-repeat;
+}
+
+.page-header {
+  padding: 0;
+  margin-bottom: -60px;
+  margin-left: -30px;
+  border-bottom: none;
+}
+
+.main {
+  margin-top: 25px;
+}
 
 .chance {
   margin-bottom: 2rem;
