@@ -1,11 +1,11 @@
 <div class="tv">
-  <%= image_tag("tv.png", class: 'center') %>
+  <%= image_tag("tv.png") %>
 </div>
 
-<%= form_tag search_path(:artist), method: :get, remote: true, class: "form-group" do %>
-  <%= label_tag :artist, "Search for:" %>
-  <%= text_field_tag :artist, nil, placeholder: "artist name" %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
+<%= form_tag search_path(:artist), method: :get, remote: true, class: "search" do %>
+  <%= label_tag :artist, "" %>
+  <%= text_field_tag :artist, nil, placeholder: "artist name", class: "text-field" %>
+  <%= submit_tag "Search", class: "btn btn-default" %>
 <% end %>
 
 <%= button_to("Hot", popular_path, 

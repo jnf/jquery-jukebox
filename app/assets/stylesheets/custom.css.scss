@@ -4,8 +4,7 @@
 
 body {
   font-family: 'Shadows Into Light Two', cursive;
-/*  background: image-url("tv.jpg") no-repeat fixed center;
-*/}
+}
 
 .inset {
   position: absolute;
@@ -42,16 +41,29 @@ body {
   right: 545px;
 }
 
+.search {
+  position: absolute;
+  top: 208px;
+  left: 445px;
+}
+
+.text-field {
+  height: 23px;
+}
+
+.btn {
+  height: 25px;
+  font-size: 11px;
+  text-align: center;
+  font-weight: bold;
+}
+
 .tv {
   position: absolute;
   width: 100%;
   text-align: center;
   z-index: -2;
   background-color: transparent;
-}
-
-img {
-
 }
 
 iframe {
@@ -62,5 +74,4 @@ iframe {
   width: 477px;
   height: 334px;
   border-radius: 15%;
-  /*z-index: -2;*/
 }
