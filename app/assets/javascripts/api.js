@@ -147,27 +147,23 @@ $(function() {
   // handling for the user who clicks the little red button
   $('div.popular').click(function(event) {
     popular();
-    console.log("div.popular");
   });
 
   // handling for the user who clicks the little red button
   $('div.random').click(function(event) {
     rando();
-    console.log("div.random");
   });
 
   // handling for the user who clicks the link
   $('a.popular').click(function(event) {
     event.preventDefault();
     popular();
-    console.log("a.popular");
   });
 
   // handling for the user who clicks the link
   $('a.random').click(function(event) {
     event.preventDefault();
     rando();
-    console.log("a.random");
   });
 
   function popular() {
