@@ -1,10 +1,10 @@
 <div class="jumbotron text-center">
   <h1>jQuery Jukebox</h1>
 
-  <br><br>
+  <br><br><br>
 
   <nav class="center-block col-sm-8 no-float">
-    <div class="col-sm-5">
+    <div class="search col-sm-5">
       <%= form_tag(search_path(:artist), method: :get) do %>
         <%= label_tag :artist, "Find Jams by Artist" %>
         <%= text_field_tag :artist, nil, class: "form-control center-text" %>
@@ -13,12 +13,12 @@
       <% end %>
     </div>
 
-    <div class="col-sm-2">
+    <div class="or col-sm-2">
       <h4>&mdash; OR &mdash;</h4>
     </div>
 
-    <div class="col-sm-5 center-text">
-      <%= button_tag "I'm Feelin' Lucky", class: "btn btn-default", id: "random" %>
+    <div class="buttons col-sm-5 center-text">
+      <%= button_tag "Get Random", class: "btn btn-default", id: "random" %>
     </div>
   </nav>
 </div>

@@ -18,3 +18,24 @@ input {
 iframe {
   border: 0;
 }
+
+.search {
+  padding-top: 17px;
+}
+
+.or, .buttons {
+  position: relative;
+  height: 100%;
+}
+
+.or h4, .buttons button {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.buttons button {
+  width: 70%;
+}
