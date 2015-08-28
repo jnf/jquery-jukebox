@@ -3,6 +3,7 @@ class ApiController < ApplicationController
   POPULAR = "http://api.thisismyjam.com/1/explore/popular.json"
   UNPOPULAR = "http://api.thisismyjam.com/1/explore/rare.json"
   RANDO = "http://api.thisismyjam.com/1/explore/chance.json"
+  BREAKING = "http://api.thisismyjam.com/1/explore/breaking.json"
 
   def search
     begin
@@ -48,6 +49,20 @@ class ApiController < ApplicationController
   def rando
     begin
       response = HTTParty.get(RANDO)
+      data = setup_data(response)
+      code = data.any? ? :ok : :no_content
+      data = data[0..4] if code == :ok
+    rescue
+      data = {}
+      code = :no_content
+    end
+
+    render json: data.as_json, status: code
+  end
+
+  def breaking
+    begin
+      response = HTTParty.get(BREAKING)
       data = setup_data(response)
       code = data.any? ? :ok : :no_content
       data = data[0..4] if code == :ok
