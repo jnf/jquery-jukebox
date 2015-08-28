@@ -6,5 +6,6 @@ Rails.application.routes.draw do
     get '/popular', action: 'popular'
     get '/unpopular', action: 'unpopular'
     get '/rando', action: 'rando'
+    get '/breaking', action: 'breaking'
   end
 end
