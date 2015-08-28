@@ -1,0 +1,28 @@
+<div class="jumbotron text-center">
+  <h1>jQuery Jukebox</h1>
+
+  <br><br><br>
+
+  <nav class="center-block col-sm-8 no-float">
+    <div class="search col-sm-5">
+      <%= form_tag(search_path(:artist), method: :get) do %>
+        <%= label_tag :artist, "Find Jams by Artist" %>
+        <%= text_field_tag :artist, nil, class: "form-control center-text" %>
+        <br>
+        <%= submit_tag "Search", id: 'search', class: "btn btn-default" %>
+      <% end %>
+    </div>
+
+    <div class="or col-sm-2">
+      <h4>&mdash; OR &mdash;</h4>
+    </div>
+
+    <div class="buttons col-sm-5 center-text">
+      <%= button_tag "Random", class: "btn btn-default", id: "random" %>
+    </div>
+  </nav>
+</div>
+
+<div id="results" class="center-block col-sm-6 no-float">
+  <!-- js will handle posting here -->
+</div>
