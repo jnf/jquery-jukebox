@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
 
 .chance {
   margin-bottom: 2rem;
@@ -24,4 +27,11 @@ li {
 
 #iframe {
   border-style: none;
+
+}
+
+iframe {
+  height: 450px;
+  width: 700px;
+
 }

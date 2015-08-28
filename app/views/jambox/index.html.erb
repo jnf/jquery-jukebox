@@ -1,16 +1,25 @@
-<h1>Jukebox Jams</h1>
+<div class="container-fluid">
+  <div class="jumbotron col-sm-10 col-sm-offset-1">
+    <div class="page-header">
+      <h1>Jam Finder</h1>
+    </div>
+  </div>
+  <div class="col-sm-10 col-sm-offset-1 vertical-align">
+    <div class="chance-block">
+      <%= button_to("Get Random Jamz", chance_path, method: :get, class: "chance btn btn-primary") %>
+    </div>
 
-<div class="chance-block">
-<%= button_to("Get Random Jamz", chance_path, method: :get, class: "chance") %>
-</div>
+    <div class="input-group form-block">
+      <%= form_tag(root_path, method: :get) do %>
+      <%= label_tag("Find Jams by Artist") %>
+      <%= text_field_tag(:artist, nil, placeholder: "search", class: "form-control")%>
+      <span class="input-group-btn">
+        <%= submit_tag("Search", class: "button btn btn-default") %>
+      </span>
+      <% end %>
+    </div>
+    <div class="media text-center">
 
-<div class="form-block">
-<%= form_tag(root_path, method: :get) do %>
-  <%= label_tag("Search for artist") %>
-  <%= text_field_tag(:artist) %>
-  <%= submit_tag("Search", class: "button") %>
+    </div>
+  </div>
 </div>
-<div class="media">
-  <iframe id="iframe" width="300" height="200"></iframe>
-</div>
-<% end %>

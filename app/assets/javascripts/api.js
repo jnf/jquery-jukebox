@@ -12,15 +12,19 @@ $(function () {
       type: method,
       success: function (data, textStatus, jqHXR) {
         if (jqHXR.status == 200) {
-          console.log(data);
+          var songs = data;
 
-          var songs    = data;
           for(i = 0; i < songs.length; i++) {
-            var link = makeSong(songs[i]);
-            console.log(link);
-            formDiv.append(link);
-            // var media = makeEmbed(songs[i]);
-            // $(".media").append(media);
+            if (songs[i].via == "youtube") {
+              var media = makeEmbed(songs[i]);
+
+              $(".media").append(media);
+            }
+            else {
+              var link = makeSong(songs[i]);
+
+              $(".media").append(link);
+            }
           }
         }
 
@@ -48,16 +52,17 @@ $(function () {
       type: method,
       success: function (data, textStatus, jqHXR) {
         if (jqHXR.status == 200) {
-          console.log(data);
-          form.after("Results:");
+          var songs = data;
 
-          var songs    = data;
           for(i = 0; i < songs.length; i++) {
-            var link = makeSong(songs[i]);
-            formDiv.append(link);
-
-            // var media = makeEmbed(songs[i]);
-            // $(".media").append(media);
+            if (songs[i].via == "youtube") {
+              var media = makeEmbed(songs[i]);
+              $(".media").append(media);
+            }
+            else {
+              var link = makeSong(songs[i]);
+              $(".media").append(link);
+            }
           }
         }
 
@@ -85,7 +90,6 @@ $(function () {
   }
 
   function makeListItem(link) {
-    console.log(link)
     var li = $("<li></li>");
     li.html(link);
 
@@ -94,15 +98,33 @@ $(function () {
 
   function makeSong(song) {
     var anchor = $("<a></a>");
+
     anchor.text(song.title);
     anchor.prop("href", song.url);
 
     return makeListItem(anchor);
   }
 
-  // function makeEmbed(song) {
-  //   var media = $("#frame");
-  //   media.prop("src", song.url);
-  //   return makeListItem(media);
-  // }
+  function makeEmbed(song) {
+    var media   = $("<iframe></iframe>");
+    var url     = makeEmbedUrl(song.url, song.via);
+
+    media.prop("src", url);
+
+    return makeListItem(media);
+  }
+
+  function makeEmbedUrl(song_url, source) {
+    if (source == "youtube") {
+      var regex   = /\?v=(.*)/;
+      var song    = song_url;
+      var videoId = song.match(regex);
+      var url     = "http://www.youtube.com/embed/" + videoId[1];
+
+      return url;
+    }
+    else {
+      return true;
+    }
+  }
 });
