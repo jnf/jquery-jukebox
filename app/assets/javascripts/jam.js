@@ -54,12 +54,15 @@ $(function () {
       } else if (via == "vimeo") {
         vimeo_id = url.split(".com/")[1];
         var iframe = $("<iframe>");
-        iframe.prop("width", "500");
-        iframe.prop("height", "281");
+        iframe.prop("width", "300");
+        iframe.prop("height", "169");
         iframe.prop("src", "https://player.vimeo.com/video/" + vimeo_id);
         iframe.prop("frameborder", "0");
         anchor.append(iframe);
         list.append(anchor);
+      } else if (via == "soundcloud") {
+        // https://soundcloud.com/oriol-cervera/every-rose-has-its-thorn
+        // <iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/123664350&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
       } else {
         var listing = (artist + " - " + title + " (via " + via + ")");
         anchor.text(listing);
@@ -78,8 +81,8 @@ $(function () {
     var anchor = $("<a>");
     anchor.addClass("list-group-item");
     var iframe = $("<iframe>");
-    iframe.prop("width", "500");
-    iframe.prop("height", "281");
+    iframe.prop("width", "300");
+    iframe.prop("height", "169");
     iframe.prop("src", "https://www.youtube.com/embed/-gPuH1yeZ08?autoplay=1");
     iframe.prop("frameborder", "0");
     anchor.append(iframe);
