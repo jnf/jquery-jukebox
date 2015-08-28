@@ -1,5 +1,6 @@
 class ApiController < ApplicationController
   JAM = "http://api.thisismyjam.com/1/search/jam.json"
+  JAM_EXPLORE = "http://api.thisismyjam.com/1/explore/"
 
   def index
 
@@ -20,9 +21,9 @@ class ApiController < ApplicationController
 
   def popular
     begin
-      response = HTTParty.get("http://api.thisismyjam.com/1/explore/popular.json")
+      response = HTTParty.get(JAM_EXPLORE + "popular.json")
       data = setup_data(response)
-      data = data[0..10]
+      data = data.sample(10)
       code = :ok
     rescue
       data = {}
@@ -31,6 +32,21 @@ class ApiController < ApplicationController
 
     render json: data.as_json, code: code
   end
+
+  def rando
+    begin
+      response = HTTParty.get(JAM_EXPLORE + "chance.json")
+      data = setup_data(response)
+      data = data.sample(5)
+      code = :ok
+    rescue
+      data = {}
+      code = :no_content
+    end
+
+    render json: data.as_json, code: code
+  end
+
 
   private
 

@@ -15,6 +15,7 @@ $(function() {
       type: method,
       data: query,
       success: function (data) {
+        button.toggleClass("selected");
         result_array = data;
         clear();
 
@@ -27,6 +28,8 @@ $(function() {
   $(".popular").click(function(event){
     event.preventDefault();
 
+    var button = $(this);
+    var input = button.children('input');
     var method = this.method;
     var url = this.action;
     clear();
@@ -34,6 +37,26 @@ $(function() {
     $.ajax(url, {
       type: method,
       success: function (data) {
+        input.addClass("selected");
+        result_array = data;
+        display(result_array);
+      }
+    })
+  });
+
+  $(".rando").click(function(event){
+    event.preventDefault();
+
+    var button = $(this);
+    var input = button.children('input');
+    var method = this.method;
+    var url = this.action;
+    clear();
+
+    $.ajax(url, {
+      type: method,
+      success: function (data) {
+        input.addClass("selected");
         result_array = data;
         display(result_array);
       }
@@ -65,6 +88,7 @@ $(function() {
               $(listItem).append(iframe);
           } else  {
               anchor = makeLink(result_array[i]);
+              $(listItem).append('Click the link to listen -> ');
               $(listItem).append(anchor);
           }
         list.append(listItem);

@@ -68,17 +68,31 @@ li {
 .search {
   padding: 7px;
   display: inline;
-  background-color: #B8E68A;
+  background-color: #FFE270;
 }
 
 .popular input {
   display: inline;
   padding: 7px;
-  background-color: #B8E68A;
+  background-color: #FFE270;
 }
 
 .popular {
   display: inline;
+}
+
+.rando input {
+  display: inline;
+  padding: 7px;
+  background-color: #FFE270;
+}
+
+.rando {
+  display: inline;
+}
+
+.selected {
+  background-color: #B8E68A;
 }
 
 .song {

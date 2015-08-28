@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 TIMJ_SEARCH = { cassette_name: "TIMJ_search", record: :new_episodes }
+TIMJ_POPULAR = { cassette_name: "TIMJ_popular", record: :new_episodes }
 
 RSpec.describe ApiController, type: :controller do
   describe "interacting with the This Is My Jam API", vcr: TIMJ_SEARCH do
@@ -27,7 +28,7 @@ RSpec.describe ApiController, type: :controller do
     end
   end
 
-  describe "interacting with the This Is My Jam API"H do
+  describe "interacting with the This Is My Jam API", vcr: TIMJ_POPULAR do
     before :each do
       get :popular
     end
