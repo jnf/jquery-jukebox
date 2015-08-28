@@ -2,7 +2,16 @@
 $results-width: 600px;
 $results-width-plus: 700px;
 
-//--------------------- styling body & header ----------------------------------
+//--- jukebox colors ---
+$jukebox-gold: rgba(255, 240, 200, 0.8);
+$jukebox-brown: rgba(200, 150, 100, 0.8);
+$jukebox-grey: rgba(200, 200, 200, 1.0);
+$jukebox-transparent-grey: rgba(200, 200, 200, 0.7);
+$jukebox-button-red: rgba(200, 0, 0, 1.0);
+$jukebox-button-white: rgba(255, 240, 240, 0.8);
+$jukebox-button-brown: rgba(150, 100, 50, 0.6);
+
+//--------------------- styling body & main ------------------------------------
 
 body {
   padding: 0;
@@ -20,22 +29,106 @@ main.container {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-h1#title {
-  margin: 10px;
-  padding: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 20%;
-  color: #ffe;
-  display: inline-block;
-  text-align: center;
+//--------------------- styling header bubble ----------------------------------
+
+header#title {
+  // make a bubble
+  padding: 20px 40px;
+  border-radius: 50%;
+
+  background-color: rgba(0, 0, 0, 0.5); // lemme see dat jukebox behind
+  display: inline-block; // don't extend all the way to the sides, bubble
+  margin: 10px; // keep stuff away from the bubble
+  text-align: center; // center everything
+
+  h1 {
+    color: #fec; // make text a nice orangeiness
+  }
+
+  //--- now to start the craziness ---
+
+  div.jukebox-choice, .jukebox-choice div, {
+    // make everything display inline & not extend to edges
+    display: inline-block;
+  }
+
+  // colorize jukebox choices & search text field
+  div.jukebox-choice, input[name=artist] {
+    background: -webkit-linear-gradient(left, $jukebox-brown, $jukebox-gold, $jukebox-brown); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(left, $jukebox-brown, $jukebox-gold, $jukebox-brown); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(left, $jukebox-brown, $jukebox-gold, $jukebox-brown); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, $jukebox-brown, $jukebox-gold, $jukebox-brown); /* Standard syntax (must be last) */
+  }
+
+  div.jukebox-choice {
+    margin: 2px;
+    height: 22px;
+    padding: 0 10px 0 0; // extend to right!
+    border-radius: 15%; // round at right!
+  }
+
+  div.jukebox-choice a, .jukebox-button-outside, input[name=artist], input[type=submit] {
+    margin: 0;
+    font-weight: bold;
+    color: #420; // slightly orangey dark brown
+  }
+
+  form { // keep the jukebox choices a little away from the jukebox search
+    margin-bottom: 5px;
+  }
+
+  input[type=submit] {
+    background-color: $jukebox-transparent-grey;
+    color: $jukebox-button-red;
+  }
+
+  .jukebox-button-outside {
+    background-color: $jukebox-grey;
+    width: 22px;
+    height: 22px;
+  }
+
+  .jukebox-button-inside-unpressed, .jukebox-button-inside-pressed {
+    border: 1px solid $jukebox-button-white;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+  }
+
+  .jukebox-button-inside-unpressed {
+    margin-top: 6px;
+    margin-left: 1px;
+
+    //--- hint of shiny ---
+    background: -webkit-linear-gradient(160deg, $jukebox-button-red, $jukebox-button-white); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(160deg, $jukebox-button-red, $jukebox-button-white); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(160deg, $jukebox-button-red, $jukebox-button-white); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(160deg, $jukebox-button-red, $jukebox-button-white); /* Standard syntax (must be last) */
+
+    //--- hint of shadow --
+    -webkit-box-shadow: -2px -2px 3px 0px $jukebox-button-brown;
+    -moz-box-shadow: -2px -2px 3px 0px $jukebox-button-brown;
+    box-shadow: -2px -2px 3px 0px $jukebox-button-brown;
+  }
+
+  .jukebox-button-inside-pressed {
+    margin-top: 6px;
+    margin-left: 1px;
+
+    //--- no shiny to see here, move along folks ---
+    background-color: $jukebox-button-red;
+
+    //--- hint of shadow --
+    -webkit-box-shadow: -1px -1px 3px 0px $jukebox-button-brown;
+    -moz-box-shadow: -1px -1px 3px 0px $jukebox-button-brown;
+    box-shadow: -1px -1px 3px 0px $jukebox-button-brown;
+  }
 }
 
 //--------------------- styling results ----------------------------------------
 
 #results {
-
   //--- just the #results div ---
-
   padding-top: 20px;
   margin: auto;
   width: $results-width;
@@ -43,7 +136,6 @@ h1#title {
   min-width: $results-width;
 
   //--- all the links ---
-
   a, a:link, a:visited, a:hover, a:active {
     font-size: 1.5rem;
     font-weight: bold;
@@ -61,7 +153,6 @@ h1#title {
   }
 
   //--- schmancy rainbowy effect ---
-
   li:nth-of-type(4n) {
     background: rgba(255, 150, 255, 0.9);
   }

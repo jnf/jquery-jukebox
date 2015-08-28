@@ -5,33 +5,76 @@ $(function() {
   container.css({ "min-height": windowHeight + 'px' });
 
   // set default form padding based on window size, too
-  var form = $('form');
-  form.css({ "margin-bottom": windowHeight - 270 + 'px' });
+  var header = $('header');
+  header.css({ "margin-bottom": windowHeight - 360 + 'px' });
 
   // handling for submitting the search form
   $("form").submit(function(event) {
     event.preventDefault(); // nopeing the form submit button's default behaviors
+    unpressButtons();
     var searchField = $(":text"); // grabbing the form's text field
     var searchQuery = searchField.val(); // grabbing the value from the text field
     var form = $("form"); // grabbing the form
     var method = form.attr("method"); // grabbing the form's method
     var url = form.attr("action"); // grabbing the form's url
 
+    ajaxRequest(url, searchQuery, method);
+  });
+
+  $('#popular').click(function(event) {
+    unpressButtons("random");
+    
+    var popular = $('#popular');
+    pressButton(popular, "popular");
+  });
+
+  $('#random').click(function(event) {
+    unpressButtons("popular");
+
+    var random = $('#random');
+    pressButton(random, "random");
+  });
+
+  function unpressButtons(whichButton) {
+    var popular = $('#popular');
+    var random = $('#random');
+    if (whichButton == "popular" || whichButton === undefined)
+      unpress(popular);
+    if (whichButton == "random" || whichButton === undefined)
+      unpress(random);
+  }
+
+  function unpress(button) {
+    button.removeClass('jukebox-button-inside-pressed');
+    button.addClass('jukebox-button-inside-unpressed');
+  }
+
+  function ajaxRequest(url, searchQuery, method) {
     $.ajax(url, { // opening the ajax request and passing in said url
-      type: method, // passing in the method
-      data: { 'artist': searchQuery }, // mimicking the form params
+      type: method || "get", // passing in the method
+      data: {'artist': searchQuery}, // passing in the query
       success: function(data) { // defining a function to call on successful form submission
-        if (data.length > 0)
+        if (data && data.length > 0)
           displayResults(data); // calling display results on the results-- if there are results
         else
           rickRoll(searchQuery); // rickrolling the user if there aren't results
       }
     });
-  });
+  }
+
+  function pressButton(button, buttonType) {
+    button.toggleClass('jukebox-button-inside-unpressed');
+    button.toggleClass('jukebox-button-inside-pressed');
+
+    var buttonParent = button.parent(); // grab the div #button is inside
+    var buttonLink = buttonParent.siblings('a'); // grab the link next to #button's parent
+    var buttonUrl = buttonLink.attr('href'); // grab the url from the link
+    ajaxRequest(buttonUrl, buttonType); // ajax that url
+  }
 
   function displayResults(data) {
     // oh hey! if we're displaying results, we don't need to see the jukebox anymore.
-    form.css({ "margin-bottom": 25 + 'px' });
+    header.css({ "margin-bottom": 25 + 'px' });
     // goodbye, jukebox. ;_;
 
     var results = $('#results'); // grabbing the results div
@@ -56,7 +99,7 @@ $(function() {
       listItem.append(link);
 
       // grabbing the code to embed a video if the url matches a supported provider
-      if (result.url.includes("youtube") || result.url.includes("vimeo")) {
+      if (result.via == ("youtube") || result.via == ("vimeo")) {
         // moving the embedded video into the list item
         listItem.append("<br />");
         listItem.append(embedVideo(result.url));
@@ -71,7 +114,6 @@ $(function() {
   }
 
   function displayMessage(message) {
-    console.log(message); // !T test code, remove before PR
     // creating the message list item
     var messageListItem = $("<li></li>");
     messageListItem.addClass("message");
@@ -94,11 +136,8 @@ $(function() {
     url = url.replace("http://", "https://");
 
     // making some other substitutions in the url to switch from a link to a video to the embedded video resource
-    if (url.includes("youtube")) {
-      url = url.replace("watch?v=", "embed/");
-    } else if (url.includes("vimeo")) {
-      url = url.replace("/vimeo.com/", "/player.vimeo.com/video/");
-    };
+    url = url.replace("youtube.com/watch?v=", "youtube.com/embed/");
+    url = url.replace("/vimeo.com/", "/player.vimeo.com/video/");
 
     return url; // get out of here, url. go back from whence you came!
   }
@@ -151,7 +190,8 @@ $(function() {
     displayResults(weirdLinks);
 
     // sending a message to the top of the results
-    var explanationText = "No results were found for " + failedQuery + ". Perhaps you will enjoy one of these musical selections:"
+    var explanationText = "No results were found for " + failedQuery + ". ";
+    explanationText += "Perhaps you will enjoy one of these musical selections:";
     displayMessage(explanationText);
   }
 });
