@@ -2,6 +2,7 @@ class ApiController < ApplicationController
   JAM = "http://api.thisismyjam.com/1/search/jam.json"
   POPULAR = "http://api.thisismyjam.com/1/explore/popular.json"
   CHANCE = "http://api.thisismyjam.com/1/explore/chance.json"
+  TOP = 5
 
   def index; end
 
@@ -48,8 +49,8 @@ class ApiController < ApplicationController
 
   def setup_data(response)
     jams = response.fetch "jams", {}
-    top_ten = jams.first(10)
-    top_ten.map do |jam|
+    top = jams.first(TOP)
+    top.map do |jam|
       {
         via: jam.fetch("via", ""),
         url: jam.fetch("viaUrl", ""),
