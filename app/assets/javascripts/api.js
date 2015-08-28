@@ -1,4 +1,5 @@
 $(function() {
+
   $(".search").click(function(event) {
     event.preventDefault();
 
@@ -17,28 +18,60 @@ $(function() {
         result_array = data;
         clear();
 
-        if (result_array.length == 0){
-          failed_search();
-        } else {
-          for(i = 0; i < result_array.length; i++) {
-            if (result_array[i].via == 'youtube'){
-                embed_youtube(result_array[i].url);
-            } else if (result_array[i].via == 'vimeo') {
-                embed_vimeo(result_array[i].url);
-            } else  {
-                makeLink(result_array[i]);
-            }
-          }
-        }
+        result_array.length == 0 ? failed_search() : display(result_array);
+
         }
     });
 
   });
 
+
+  $(".popular").click(function(event){
+    event.preventDefault();
+
+    var method = this.method;
+    var url = this.action;
+    clear();
+
+    $.ajax(url, {
+      type: method,
+      success: function (data) {
+        result_array = data;
+        result_array.length == 0 ? failed_search() : display(result_array);
+      }
+    })
+  });
+
+  function display(result_array){
+
+    var list = $('<ul></ul>')
+    list.addClass('list-group')
+
+    for(i = 0; i < result_array.length; i++) {
+      var listItem = $('<li></li>');
+      listItem.addClass('list-group-item')
+            if (result_array[i].via == 'youtube'){
+                iframe = embed_youtube(result_array[i].url);
+                $(listItem).append(iframe);
+            } else if (result_array[i].via == 'vimeo') {
+                iframe = embed_vimeo(result_array[i].url);
+                $(listItem).append(iframe);
+            } else  {
+                anchor = makeLink(result_array[i]);
+                $(listItem).append(anchor);
+            }
+      list.append(listItem);
+    }
+
+    $('div').append(list);
+  }
+
   function clear(){
     $('a').remove();
     $('br').remove();
     $('iframe').remove();
+    $('ul').remove();
+    $('li').remove();
   }
 
   function makeLink(url){
@@ -46,8 +79,7 @@ $(function() {
       anchor.text(result_array[i].artist + " " + result_array[i].title);
       anchor.prop('href', result_array[i].url);
 
-      $('div').append(anchor);
-
+      return anchor
   }
 
   function embed_youtube(url) {
@@ -56,7 +88,7 @@ $(function() {
 
     var iframe = $('<iframe width="560" height="315" src="' + new_url + '" frameborder="0" allowfullscreen></iframe>');
 
-    $('div').append(iframe);
+    return iframe
   }
 
   function embed_vimeo(url){
@@ -64,7 +96,7 @@ $(function() {
 
      var iframe = $('<iframe src="' + new_url + '" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
 
-      $('div').append(iframe);
+      return iframe
   }
 
   function failed_search(){
@@ -72,4 +104,5 @@ $(function() {
 
     $('div').append(iframe);
   }
+
 });
