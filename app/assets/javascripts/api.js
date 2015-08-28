@@ -34,27 +34,44 @@ $(function() {
   function ajax_callback(url, method) {
     $.ajax(url, {
       type: method,
-      success: newFunc // callback to this function on success
+      success: displayResults // callback to this function on success
     });
   }
 
-  function newFunc(data, url) {
+  function formatData(data) {
+
+    for (var i = 0; i < data.length; i++) {
+      artist_title = data[i].artist + ": " + data[i].title;
+      url = data[i].url;
+      var anchor = $('<a></a>');
+      anchor.text(artist_title);
+      anchor.prop('href', url);
+      var p_tag = $('<p></p>');
+      p_tag.append(anchor);
+      $('.results').append(p_tag);
+    }
+    return data;
+    // note-to-self: return artist will have console.log(formatData(data)); inside success function to be only the artist
+  }
+
+  function displayResults(data) {
+    var url = $(this)[0].url; // local v url to hold prop
     // if the user decided to retrieve a random song
     if(url === "/rando") {
       $( ".results" ).addClass( "jamz-background" );
       $('.results').removeClass("no-results-photo");
 
       if ($('.results').is(':empty')) {
-        displayData(data.sort( randOrd).slice(0,10));
+        formatData(data.sort( randOrd).slice(0,10));
       } else {
         // '.empty().append()' prevents new calls for random songs to be appended on top of the old list
-        $('.results').empty().append(displayData(data.sort(randOrd).slice(0,10)));
+        $('.results').empty().append(formatData(data.sort(randOrd).slice(0,10)));
       }
     // if there were no prior results
     } else if ( $('.results').is(':empty')) {
         if (data.length > 0) {
 
-          displayData(data);
+          formatData(data);
           $( ".results" ).addClass( "jamz-background" );
           $('.results').removeClass("no-results-photo");
 
@@ -67,7 +84,7 @@ $(function() {
       // if the new data gave results
       if (data.length > 0) {
         $('.results').removeClass("no-results-photo");
-        $('.results').empty().append(displayData(data));
+        $('.results').empty().append(formatData(data));
         $( ".results" ).addClass( "jamz-background" );
       } else {
         // if there were prior results and the new data gave 0 results
@@ -75,21 +92,6 @@ $(function() {
       }
     }
   }
-    function displayData(data) {
-
-      for (var i = 0; i < data.length; i++) {
-        artist_title = data[i].artist + ": " + data[i].title;
-        url = data[i].url;
-        var anchor = $('<a></a>');
-        anchor.text(artist_title);
-        anchor.prop('href', url);
-        var p_tag = $('<p></p>');
-        p_tag.append(anchor);
-        $('.results').append(p_tag);
-      }
-      return data;
-      // note-to-self: return artist will have console.log(displayData(data)); inside success function to be only the artist
-    }
 
     // for making the results for a random song to actually be random
     function randOrd(){
