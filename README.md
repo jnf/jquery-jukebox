@@ -18,10 +18,10 @@ Hi! For this project, let's use [This is My Jam](https://www.thisismyjam.com/) t
 - DONE Utilize one of the API calls provided by TIMJ described below to create a new API endpoint in the `ApiController`. 
 - DONE Write tests for your endpoint.
 - DONE The API endpoint should return JSON.
-- Add new functionality to your view/javascript to...
-  - Let the user determine what functionality they would like to use
-  - Hit your new endpoint using Ajax
-  - Render results in the browser without reloading the page at any point.
+- DONE Add new functionality to your view/javascript to...
+  - DONE Let the user determine what functionality they would like to use
+  - DONE Hit your new endpoint using Ajax
+  - DONE Render results in the browser without reloading the page at any point.
 
 ### Wave 2 TIMJ API Calls - Choose at least one to implement
 - DONE __Popular__
@@ -45,4 +45,4 @@ Hi! For this project, let's use [This is My Jam](https://www.thisismyjam.com/) t
 - Instead of adding links to the view, try using the data to create embedded players for the specific service (i.e., embed the YouTube video, instead of linking to it).
   - __HINT:__ YouTube and Vimeo use html `iframe` elements to do video embedding.
   - __MOAR HINT:__ Don't use "embedly"
-- If a user's search returns no results, suggest/embed/link to something for them instead.
+- DONE If a user's search returns no results, suggest/embed/link to something for them instead.
