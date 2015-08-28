@@ -3,7 +3,7 @@
 
   <br><br>
 
-  <div class="center-block col-sm-8 no-float">
+  <nav class="center-block col-sm-8 no-float">
     <div class="col-sm-5">
       <%= form_tag(search_path(:artist), method: :get) do %>
         <%= label_tag :artist, "Find Jams by Artist" %>
@@ -20,7 +20,7 @@
     <div class="col-sm-5 center-text">
       <%= button_tag "I'm Feelin' Lucky", class: "btn btn-default", id: "random" %>
     </div>
-  </div>
+  </nav>
 </div>
 
 <div id="results" class="center-block col-sm-6 no-float">
