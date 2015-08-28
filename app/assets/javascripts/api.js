@@ -91,17 +91,23 @@ $(function() { // autoloads javascript into browser window for the rails window
 });
 
   function result(i, data, list) {
-    var sourceUrl = data[i].url;
     var title = data[i].title;
     var artist = data[i].artist;
     var listItem = $('<li></li>'); // new list element
     var anchor = $('<a></a>'); // new anchor element
+    var sourceUrl = data[i].url;
+    var via = data[i].via
+
+    if (via == "youtube") {
+      var content = embedYouTube(sourceUrl);
+    }
 
     anchor.text(data[i].via);
     anchor.prop('href', sourceUrl);
 
-    listItem.text(title + ", by: " + artist + " via "); // text within <li> tags
+    listItem.text(title + ", by: " + artist + " via " + via); // text within <li> tags
     listItem.append(anchor[0]); // link
+    listItem.append(content)
     list.append(listItem);
   };
 
@@ -111,19 +117,16 @@ $(function() { // autoloads javascript into browser window for the rails window
     list.append('<iframe width="420" height="315" src="https://www.youtube.com/embed/KmtzQCSh6xk" frameborder="0" allowfullscreen></iframe>');
   }
 
-  function animateButton() {
-    var chance = $;
-  var angle = 0, lastTime = null;
-  function animate(time) {
-    if (lastTime != null)
-      angle += (time - lastTime) * 0.001;
-    lastTime = time;
-    chance.style.top = (Math.sin(angle) * 20) + "px";
-    chance.style.left = (Math.cos(angle) * 200) + "px";
-    requestAnimationFrame(animate);
-  }
-  requestAnimationFrame(animate);
-
+  function embedYouTube(sourceUrl) {
+    var start = sourceUrl.lastIndexOf('=');
+    var end = sourceUrl.length;
+    var identity = sourceUrl.substr(start + 1)
+    var video = "<iframe width='560' height='315' src='https://www.youtube.com/embed/" + identity + "' frameborder='0'></iframe>"
+    console.log(sourceUrl)
+    console.log(video)
+    return video
+    // var thisVideo = $(lastIndexOf(sourceUrl));
+// <iframe width="560" height="315" src="https://www.youtube.com/embed/XeRSk_cpz2Y" frameborder="0" allowfullscreen>;
   }
 
 }); // end
