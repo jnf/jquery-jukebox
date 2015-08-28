@@ -16,6 +16,22 @@ $(function() {
     $(".search-results").append(anchor);
   }
 
+  function showResults(songCollection){
+    for (i = 0; i < songCollection.length; i++) {
+      // YouTube Display
+      if (songCollection[i].via == "youtube") {
+        youtubeFactory(songCollection[i]);
+      // Link Display
+      } else {
+        linkFactory(songCollection[i]);
+      }
+    }
+
+    // Wrap it all up in a paragraph blanket
+    $(".song-link, .youtube").wrap("<p></p>");
+  }
+
+  // When you search for an artist...
   $(".search").click(function(event){
 
     event.preventDefault();
@@ -45,18 +61,7 @@ $(function() {
 
           var songCollection = data;
 
-          for (i = 0; i < songCollection.length; i++) {
-            // YouTube Display
-            if (songCollection[i].via == "youtube") {
-              youtubeFactory(songCollection[i]);
-            // Link Display
-            } else {
-              linkFactory(songCollection[i]);
-            }
-          }
-
-          // Wrap it all up in a paragraph blanket
-          $(".song-link, .youtube").wrap("<p></p>");
+          showResults(songCollection);
 
         }
       });
@@ -66,7 +71,7 @@ $(function() {
 
   });
 
-  // Popular Tracks
+  // When you look for popular tracks...
   $("#popular-button").click(function(event){
 
     event.preventDefault();
@@ -90,28 +95,10 @@ $(function() {
           // Clear old results
           $("a, iframe").remove();
 
-          var artistArray = data;
+          var songCollection = data;
 
-          // For each result
-          for (i = 0; i < artistArray.length; i++) {
+          showResults(songCollection);
 
-            // YouTube embed
-            if (artistArray[i].via == "youtube") {
-              var iframeTemplate = $("<iframe class='other-media' type='text/html' width='640' height='390' src = '' ></iframe>");
-              var youtubeURL = artistArray[i].url;
-              var modifiedYoutubeUrl = youtubeURL.replace("watch?v=", "embed/");
-              iframeTemplate.attr("src", modifiedYoutubeUrl);
-              $(".search-results").append(iframeTemplate);
-            } else {
-              //  Link Version
-              var anchor = $("<a class='song-link' target='new'></a>");
-              anchor.text(artistArray[i].artist + " - " + artistArray[i].title);
-              anchor.prop("href", artistArray[i].url);
-              $(".search-results").append(anchor);
-            }
-          }
-
-          $(".song-link").wrap("<p></p>");
         }
       });
     }
