@@ -1,6 +1,6 @@
 $(function () {
     var media   = $(".media");
-    var message = $(".message")
+    var message = $("div.message");
 
 
   $(".chance").click(function () {
@@ -54,7 +54,6 @@ $(function () {
     var artist  = $("#artist").val();
     var url     = "/search/" + artist;
 
-
     $.ajax(url, {
       type: method,
       success: function (data, textStatus, jqHXR) {
@@ -63,7 +62,7 @@ $(function () {
         if (jqHXR.status == 200) {
           var songs = data;
 
-          if (artist == "Madonna" || "Whitney Houston" || "Annie Lennox") {
+          if (artist == "Madonna" || artist == "Whitney Houston" || artist == "Annie Lennox") {
             var affirm = sendAffirmation();
 
             message.html(affirm);
@@ -106,11 +105,13 @@ $(function () {
 
   function sendAffirmation() {
     var affirmHtml = $("<h3></h3>");
+    affirmHtml.addClass("msg-text");
     affirmHtml.addClass("text-center");
+
     var heartEyes = "&#x1F60D";
     var affirm    = heartEyes + " You have great taste! " + heartEyes;
 
-    return affirmHtml.html(affirm);;
+    return affirmHtml.html(affirm);
   }
 
   function suggestArtist() {
