@@ -5,6 +5,13 @@ TIMJ_CHANCE = { cassette_name: "TIMJ_chance", record: :new_episodes }
 
 
 RSpec.describe ApiController, type: :controller do
+  describe "GET #index" do
+    it "should be successful" do
+      get :index
+      expect(response).to be_ok
+    end
+  end
+
   describe "Searching the This Is My Jam API", vcr: TIMJ_SEARCH do
     before :each do
       get :search, artist: "the knife"
