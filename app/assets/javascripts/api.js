@@ -23,7 +23,7 @@ $(function() {
     });
   });
 
-  $("input[value='Popular']").click(function(event) {
+  $("input[value='Hot']").click(function(event) {
     event.preventDefault();
 
     var url = "/popular";
@@ -44,7 +44,7 @@ $(function() {
     });
   });
 
-  $("input[value='Random']").click(function(event) {
+  $("input[value='Rand']").click(function(event) {
     event.preventDefault();
 
     var url = "/random";
