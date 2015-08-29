@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8 col-center">
+      <%= button_to("Get Random JAM Songs", rando_path, {method: :get, class: "rando btn btn-default"})%>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 col-center">
+      <%= form_for :search, url: search_post_path, html: { class: "search"}  do |f| %>
+        <%= f.text_field :artist %>
+
+        <%= f.submit 'Search', class: "button" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 col-center">
+      <ul id="results">
+      </ul>
+    </div>
+  </div>
+</div>
+
