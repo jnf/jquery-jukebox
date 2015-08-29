@@ -71,6 +71,7 @@ $(function() {
     }
     return link;
   }
+
 // YouTube----------------------------------------------------------------------
   function youtube(url) {
     var link = youtubeEmbededUrl() + youtubeVideoCode(url);

@@ -1,9 +1,23 @@
-<h1>Find songs of your favourite artist!<h1>
-<%= form_tag("/search/", method: "get") do %>
-  <%= text_field_tag :artist, class: "artist" %>
-  <%= submit_tag "Search", class: "singer" %>
-<% end %>
+<div class="header">
+  <div class="jumbotron">
+    <div class="container">
+      <h1><%=image_tag("main.jpg") %><small>Find your favourite song!<small><h1>
+    </div>
 
-<%= form_tag("/popular", method: "get") do %>
-  <%= submit_tag "Find most popular songs", class: "popular" %>
-<% end %>
+    <div class="fullscreen nopadding">
+      <div id="header">
+        <ul>
+          <li><%= form_tag("/search/", method: "get") do %>
+                <%= text_field_tag :artist %>
+                <%= submit_tag "🔍", class: "singer" %>
+              <% end %>
+          </li>
+          <li><%= form_tag("/popular", method: "get") do %>
+                <%= submit_tag "💗", class: "popular" %>
+              <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
