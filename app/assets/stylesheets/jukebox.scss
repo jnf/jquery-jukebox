@@ -1,0 +1,63 @@
+// Place all the styles related to the api controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+  // background-color: ;
+  font-size: 1.5em;
+  padding: 0;
+  font-family: "Lucida Console", Monaco, monospace;
+}
+
+main {
+  margin: 0;
+  padding: 1em;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  margin-bottom: .5em;
+  padding: 1em;
+  text-align: center;
+  background-color: black;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  padding: 1em;
+  list-style-type: none;
+  display: block;
+}
+
+li {
+  list-style-position: unset;
+
+  background-color: hsla(0, 0%, 95%, 1);
+  border-radius: 10px;
+
+  display: block;
+  width: 80%;
+  max-width: 750px;
+  min-width: 608px;
+  margin: auto;
+  margin-top: 0;
+  margin-bottom: 1em;
+  padding: 1em;
+}
+
+li li {
+  min-width: 560px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+iframe {
+  padding: 0;
+  margin: 0;
+}
