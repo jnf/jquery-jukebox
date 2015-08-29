@@ -17,6 +17,22 @@ $(function() {
     });
   })
 
+  $('button').click( function() {
+    event.preventDefault();
+    var url = '/box-of-chocolates';
+
+    $.ajax(url, {
+      type: 'get',
+      success: function(data) {
+        var list = createSongList(data);
+        $('main').append(list);
+      },
+      error: function(data) {
+        alert('Sorry, something went wrong!');
+      }
+    });
+  })
+
   function createSongList(data) {
     removeOldSearchList();
 

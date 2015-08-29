@@ -1,17 +1,31 @@
 class ApiController < ApplicationController
-  JAM = "http://api.thisismyjam.com/1/search/jam.json"
+  JAM_SEARCH = "http://api.thisismyjam.com/1/search/jam.json"
+  JAM_RANDOM = "http://api.thisismyjam.com/1/explore/chance.json"
 
   def search
     begin
-      response = HTTParty.get(JAM, query: { "by" => "artist", "q" => params[:artist] })
+      response = HTTParty.get(JAM_SEARCH, query: { "by" => "artist", "q" => params[:artist] })
       data = setup_data(response)
-      code = data.any? ? :ok : :no_content
+      status = data.any? ? :ok : :no_content
     rescue
       data = {}
-      code = :no_content
+      status = :no_content
     end
 
-    render json: data.as_json, status: code
+    render json: data.as_json, status: status
+  end
+
+  def random
+    begin
+      response = HTTParty.get(JAM_RANDOM)
+      data = setup_data(response)
+      status = data.any? ? :ok : :no_content
+    rescue
+      data = {}
+      status = :no_content
+    end
+
+    render json: data.as_json, status: status
   end
 
   private
