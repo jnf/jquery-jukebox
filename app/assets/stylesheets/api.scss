@@ -5,8 +5,12 @@
 @import "bootstrap";
 
 body {
-  margin: auto;
-  width: 960px;
+  color: #C3C9E6;
+  text-align: center;
+  background: radial-gradient(circle, #0224BA, #111836);
+}
+
+.page-header {
   text-align: center;
 }
 
@@ -14,6 +18,16 @@ body {
   display: inline;
 }
 
+h2 {
+  color: #000000;
+}
+
 ul {
   list-style-type: none;
+}
+
+a {
+  font-size: 20px;
+  text-decoration: underline;
+  color: #C3C9E6;
 }
