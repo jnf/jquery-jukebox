@@ -6,6 +6,7 @@ $(function() {
   $(".find").click(function(event){
     event.preventDefault();
     displayResults("/search/" + $("#searchArtist").val());
+    $("#searchArtist").val("");
   });
 
   $(".random").click(function(event){
@@ -21,11 +22,12 @@ $(function() {
 
 function displayResults(url)
 {
-  $("#searchResults").empty();
+  $("#searchResults").html("<b>Loading...</b>");
 
   $.ajax(url, {
     type: "GET",
     success: function (data) {
+      $("#searchResults").empty();
       if (data === undefined)
       {
         $("#searchResults").append("<p>You apparently have a horribly singular taste in 'good' music. Try searching for someone else and in the meantime, enjoy this Rick Roll while you think about what you've done...🐵 🙈 🙉 🙊</p><br>");
@@ -76,9 +78,6 @@ function displayResults(url)
 
               $("#searchResults").append(jam);
             }
-              // $("#searchResults").append(
-              //   "<a href=\"javascript: void(0)\">" + data[i].title + "</a>");
-              // }
             else {
               var jam = $("<div class='album'> </div>");
               var image = "<a href='" + data[i].url + "'><img class='resultItem' width='" + height + "' height='290px;' src='" + data[i].albumArt +
@@ -89,13 +88,6 @@ function displayResults(url)
               jam.append(caption);
 
               $("#searchResults").append(jam);
-
-              // $("#searchResults").append(
-              // "<a href='" + data[i].url + "'><img class='resultItem' width='" + height + "' height='290px;' src='" + data[i].albumArt +
-              // "'/></a>");
-              // $("#searchResults").prepend("<p>"+ data[i].artist + "</p>");
-              // $("#searchResults").prepend(
-              //   "<a href='" + data[i].url + "'>" + data[i].title + "</a>");
             }
           }
         }
