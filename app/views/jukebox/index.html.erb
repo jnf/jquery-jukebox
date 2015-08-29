@@ -1,0 +1,7 @@
+<h1>Jukebox Jams!</h1>
+
+<%= form_tag('/search', method: :get) do %>
+  <%= search_field_tag('artist') %>
+  <%= submit_tag('SEARCH') %>
+<% end %>
+
