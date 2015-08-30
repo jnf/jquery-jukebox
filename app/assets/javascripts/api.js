@@ -2,13 +2,11 @@ $(function () {
     var media   = $(".media");
     var message = $("div.message");
 
-
   $(".chance").click(function () {
     event.preventDefault();
 
     var button  = $(this);
     var body    = button.parents('body');
-    var formDiv = body.children(".form-block")
     var method  = button.attr("method");
     var url     = "/chance";
 
@@ -21,7 +19,7 @@ $(function () {
           var songs = data;
 
           for(i = 0; i < songs.length; i++) {
-            if (songs[i].via == "youtube" || "vimeo") {
+            if (songs[i].via == "youtube" || songs[i].via == "vimeo") {
               var video = makeEmbed(songs[i]);
 
               media.append(video);
@@ -35,9 +33,9 @@ $(function () {
         }
 
         else if (jqHXR.status == 204) {
-            sendApology();
-            var song = suggestArtist();
-            formDiv.append(song);
+            var apology = sendApology();
+            var song    = suggestArtist();
+            message.append(apology, song);
         }
       }
     });
@@ -48,7 +46,6 @@ $(function () {
 
     var button  = $(this);
     var body    = button.parents("body");
-    var formDiv = button.parents(".form-block");
     var form    = button.parents("form");
     var method  = form.attr("method");
     var artist  = $("#artist").val();
@@ -69,7 +66,7 @@ $(function () {
           }
 
           for(i = 0; i < songs.length; i++) {
-            if (songs[i].via == "youtube" || "vimeo") {
+            if (songs[i].via == "youtube" || songs[i].via == "vimeo") {
               var video = makeEmbed(songs[i]);
 
               media.append(video);
