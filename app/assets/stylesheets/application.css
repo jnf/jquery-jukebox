@@ -13,3 +13,155 @@
  *= require_tree .
  *= require_self
  */
+
+
+* {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+}
+
+.container {
+  padding-bottom: 30px;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #fff;
+}
+
+.scroll_border {
+  border-bottom: 2px solid #CCCCCC;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+}
+
+.button_to {
+  display: inline-block;
+}
+
+input[type="text"] {
+  display: block;
+  margin: 10px auto;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+
+input[type="submit"] {
+  border: 1px solid black;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.22);
+  background-color: #49EAC1;
+  border-radius: 50px;
+}
+
+input[type="submit"]:hover {
+  background-color: #34B998;
+}
+
+h1 {
+  font-family: 'Codystar', cursive;
+  text-align: center;
+  font-size: 4em;
+  margin: 20px auto;
+}
+
+h3 {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.main-h3 {
+  padding-top: 120px;
+
+}
+
+h4 {
+  text-align: center;
+  font-size: 1.5em;
+  padding: 200px;
+}
+
+.button_to {
+  text-align: center;
+  display: block;
+}
+
+.search-box {
+  text-align: center;
+  margin: 50px auto;
+}
+
+hr {
+  width: 70%;
+}
+
+.breaking_jams {
+  min-height: 204px;
+}
+
+.results {
+  margin: 40px auto;
+}
+
+.results div {
+  width: 20%;
+  display: inline-block;
+  text-align: center;
+  font-size: 0.7em;
+  vertical-align: top;
+  margin: 20px auto;
+}
+
+.results div img {
+  display: block;
+  margin: 5px auto;
+  width: 190px;
+  border-radius: 200px;
+}
+
+.active_video {
+  height: 0px;
+  overflow: hidden;
+}
+
+iframe {
+  height: 400px;
+  width: 500px;
+  display: block;
+  margin: 40px auto;
+}
+
+/******************************************
+/* MEDIA QUERIES                  
+/*******************************************/
+
+@media screen and (max-width: 1015px) {
+
+  .results div {
+    width: 30%;
+  }
+
+}
+
+@media screen and (max-width: 670px) {
+
+  .results div {
+    width: 50%;
+  }
+
+  iframe {
+    height: 200px;
+    width: 300px;
+  }
+
+  h4 {
+    font-size: 1em;
+    padding: 10px;
+    padding-top: 50px;
+  }
+
+}
