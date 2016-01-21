@@ -1,3 +1,8 @@
+
+# *Updated Note As of 1/2016
+
+This is my jam API search results will be null because website is in __archive__ mode and they have not yet updated API to be able to search through archived records. This is a reflection of the API being broken, not the code being incorrect. 
+
 # This Is My Jam: AJAX Playback Links Michelle McCarthy
 Hi! For this project, let's use [This is My Jam](https://www.thisismyjam.com/) to find lots of links to music we like. :)
 
