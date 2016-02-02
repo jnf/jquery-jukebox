@@ -1,4 +1,9 @@
-# This Is My Jam: AJAX Playback Links
+
+# *Updated Note As of 1/2016
+
+This is my jam API search results will be null because website is in __archive__ mode and they have not yet updated API to be able to search through archived records. This is a reflection of the API being broken, not the code being incorrect. 
+
+# This Is My Jam: AJAX Playback Links Michelle McCarthy
 Hi! For this project, let's use [This is My Jam](https://www.thisismyjam.com/) to find lots of links to music we like. :)
 
 ## This repo already has...
@@ -16,7 +21,7 @@ Hi! For this project, let's use [This is My Jam](https://www.thisismyjam.com/) t
 - At no point should the view refresh or the user be taken to another URL.
 
 ## Wave 2: Add a new endpoint
-- Utilize one of the API calls provided by TIMJ described below to create a new API endpoint in the `ApiController`. 
+- Utilize one of the API calls provided by TIMJ described below to create a new API endpoint in the `ApiController`.
 - Write tests for your endpoint.
 - The API endpoint should return JSON.
 - Add new functionality to your view/javascript to...
@@ -26,7 +31,7 @@ Hi! For this project, let's use [This is My Jam](https://www.thisismyjam.com/) t
 
 ### Wave 2 TIMJ API Calls - Choose at least one to implement
 - __Popular__
-    GET `http://api.thisismyjam.com/1/explore/popular.json`
+    GET http://api.thisismyjam.com/1/explore/popular.json
     Today’s most-loved jams.
 
 - __Breaking__
@@ -43,6 +48,9 @@ Hi! For this project, let's use [This is My Jam](https://www.thisismyjam.com/) t
 
 ## Bonus Fun
 - Instead of adding links to the view, try using the data to create embedded players for the specific service (i.e., embed the YouTube video, instead of linking to it).
+
+- If a user's search returns no results, suggest/embed/link to something for them instead. (there may or may not be a promise or lack of promise for RickRoll)
+
   - __HINT:__ YouTube and Vimeo use html `iframe` elements to do video embedding.
   - __MOAR HINT:__ Don't use "embedly"
 - If a user's search returns no results, suggest/embed/link to something for them instead.
